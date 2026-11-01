@@ -67,9 +67,9 @@ export function ProductCard({ product, onOpenDetails, onCheckout }: ProductCardP
         </div>
       </div>
 
-      {/* Price & Actions */}
-      <div className="p-6 pt-4 border-t border-border flex items-center justify-between gap-4">
-        <div className="flex flex-col">
+      {/* Price & Actions (Stacked for 320px-1280px overflow protection) */}
+      <div className="p-6 pt-4 border-t border-border flex flex-col gap-3">
+        <div className="flex items-baseline justify-between gap-2">
           <div className="flex items-baseline gap-2">
             <span className="font-display font-bold text-ink text-price">
               {formatPrice(product.price)}
@@ -85,10 +85,11 @@ export function ProductCard({ product, onOpenDetails, onCheckout }: ProductCardP
           </span>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap">
           <Button
             variant="outline"
             size="sm"
+            fullWidth
             onClick={() => onOpenDetails(product)}
             aria-label={`Подробнее о ${product.title}`}
           >
@@ -98,6 +99,7 @@ export function ProductCard({ product, onOpenDetails, onCheckout }: ProductCardP
           <Button
             variant="primary"
             size="sm"
+            fullWidth
             onClick={() => onCheckout(product)}
             rightIcon={<ArrowRight className="w-3.5 h-3.5" />}
           >

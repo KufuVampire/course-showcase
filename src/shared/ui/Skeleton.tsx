@@ -1,5 +1,5 @@
 import type { HTMLAttributes } from 'react';
-import { cx } from '@/shared/lib/cx';
+import { cn } from '@/shared/lib/cn';
 
 export interface SkeletonProps extends HTMLAttributes<HTMLDivElement> {
   variant?: 'rectangular' | 'circular' | 'text';
@@ -16,7 +16,7 @@ export function Skeleton({ variant = 'rectangular', className = '', ...rest }: S
     <div
       {...rest}
       aria-hidden="true"
-      className={cx('bg-border/60 animate-pulse', variantStyles[variant], className)}
+      className={cn('bg-border/60 animate-pulse', variantStyles[variant], className)}
     />
   );
 }

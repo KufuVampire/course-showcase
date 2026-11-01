@@ -1,7 +1,7 @@
 import { Search, X, SlidersHorizontal } from 'lucide-react';
 import type { ProductFilters, ProductLevel, ProductType } from '@/shared/api';
-import { Button, Field } from '@/shared/ui';
-import { cx } from '@/shared/lib/cx';
+import { Button, Field, Select } from '@/shared/ui';
+import { cn } from '@/shared/lib/cn';
 
 export interface CatalogFiltersProps {
   filters: ProductFilters;
@@ -20,6 +20,20 @@ const typeTabs: { type: ProductType | 'all'; label: string }[] = [
   { type: 'course', label: 'Курсы' },
   { type: 'workshop', label: 'Воркшопы' },
   { type: 'consultation', label: 'Консультации' },
+];
+
+const levelOptions = [
+  { value: 'all', label: 'Любой уровень' },
+  { value: 'beginner', label: 'Для начинающих' },
+  { value: 'intermediate', label: 'Middle / Middle+' },
+  { value: 'advanced', label: 'Senior / Lead' },
+];
+
+const sortOptions = [
+  { value: 'popular', label: 'По популярности' },
+  { value: 'price-asc', label: 'Сначала дешевле' },
+  { value: 'price-desc', label: 'Сначала дороже' },
+  { value: 'rating', label: 'По рейтингу' },
 ];
 
 export function CatalogFilters({ filters, onFilterChange, onReset, counts }: CatalogFiltersProps) {
@@ -45,7 +59,7 @@ export function CatalogFilters({ filters, onFilterChange, onReset, counts }: Cat
               role="tab"
               aria-selected={isActive}
               onClick={() => onFilterChange({ type: tab.type })}
-              className={cx(
+              className={cn(
                 'inline-flex items-center gap-2 px-4 py-2 rounded-md text-caption font-medium transition-all whitespace-nowrap cursor-pointer select-none',
                 isActive
                   ? 'bg-primary text-on-primary shadow-xs'
@@ -54,7 +68,7 @@ export function CatalogFilters({ filters, onFilterChange, onReset, counts }: Cat
             >
               <span>{tab.label}</span>
               <span
-                className={cx(
+                className={cn(
                   'text-xs px-1.5 py-0.5 rounded-sm',
                   isActive ? 'bg-on-primary/20 text-on-primary' : 'bg-border/70 text-ink-muted'
                 )}
@@ -94,40 +108,22 @@ export function CatalogFilters({ filters, onFilterChange, onReset, counts }: Cat
 
         {/* Level Select */}
         <div className="md:col-span-3">
-          <div className="relative">
-            <select
-              value={filters.level || 'all'}
-              onChange={(e) => onFilterChange({ level: e.target.value as ProductLevel })}
-              className="w-full bg-surface-raised border border-border rounded-md text-caption py-2.5 px-3.5 text-ink outline-none focus:ring-2 focus:ring-primary focus:border-primary cursor-pointer"
-              aria-label="Фильтр по уровню сложности"
-            >
-              <option value="all">Любой уровень</option>
-              <option value="beginner">Для начинающих</option>
-              <option value="intermediate">Middle / Middle+</option>
-              <option value="advanced">Senior / Lead</option>
-            </select>
-          </div>
+          <Select
+            options={levelOptions}
+            value={filters.level || 'all'}
+            onChange={(val) => onFilterChange({ level: val as ProductLevel })}
+            ariaLabel="Фильтр по уровню сложности"
+          />
         </div>
 
         {/* Sort Select */}
         <div className="md:col-span-3 flex items-center gap-2">
-          <div className="relative w-full">
-            <select
-              value={filters.sortBy || 'popular'}
-              onChange={(e) =>
-                onFilterChange({
-                  sortBy: e.target.value as ProductFilters['sortBy'],
-                })
-              }
-              className="w-full bg-surface-raised border border-border rounded-md text-caption py-2.5 px-3.5 text-ink outline-none focus:ring-2 focus:ring-primary focus:border-primary cursor-pointer"
-              aria-label="Сортировка каталога"
-            >
-              <option value="popular">По популярности</option>
-              <option value="price-asc">Сначала дешевле</option>
-              <option value="price-desc">Сначала дороже</option>
-              <option value="rating">По рейтингу</option>
-            </select>
-          </div>
+          <Select
+            options={sortOptions}
+            value={filters.sortBy || 'popular'}
+            onChange={(val) => onFilterChange({ sortBy: val as ProductFilters['sortBy'] })}
+            ariaLabel="Сортировка каталога"
+          />
 
           {isFiltered && (
             <Button

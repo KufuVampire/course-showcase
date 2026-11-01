@@ -2,6 +2,7 @@
 
 :root {
   color-scheme: light;
+  interpolate-size: allow-keywords;
 }
 
 @theme {
@@ -14,13 +15,14 @@
   --color-border: #e4e0d8;
   --color-primary: #0f5c54;
   --color-on-primary: #ffffff;
-  --color-accent: #d97706;
-  --color-on-accent: #14181f;
+  --color-accent: #92400e;
+  --color-on-accent: #ffffff;
   --color-type-consult: #4f46e5;
   --color-success: #166534;
-  --color-warning: #92400e;
+  --color-warning: #854d0e;
   --color-danger: #b42318;
   --color-info: #1d5fa8;
+  --color-scrim: #000000;
 
   /* typography */
   --font-display: 'Literata', Georgia, serif;
@@ -71,6 +73,7 @@
   --color-warning: #fde047;
   --color-danger: #f87171;
   --color-info: #60a5fa;
+  --color-scrim: #000000;
 }
 
 @utility duration-fast {
@@ -83,4 +86,53 @@
 
 @utility max-w-page {
   max-width: var(--container-page);
+}
+
+/* Custom scrollbars */
+.scrollbar-custom {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: var(--color-border);
+  border-radius: 9999px;
+}
+
+/* Modal Open Animation */
+dialog[open] {
+  animation: modal-enter var(--duration-fast) var(--ease-out-soft);
+}
+
+@keyframes modal-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Smooth Accordion via ::details-content */
+details::details-content {
+  transition:
+    block-size var(--duration-fast) var(--ease-out-soft),
+    content-visibility var(--duration-fast) allow-discrete;
+  block-size: 0;
+  overflow: hidden;
+}
+
+details[open]::details-content {
+  block-size: auto;
 }

@@ -22,13 +22,20 @@ export function ProductDetailsModal({
   const typeMeta = PRODUCT_TYPE_META[product.type];
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl" ariaLabel={product.title}>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      maxWidth="xl"
+      title={product.title}
+      description={product.subtitle}
+      ariaLabel={product.title}
+    >
       <div className="flex flex-col gap-6">
         {/* Header tags and rating */}
         <div className="flex items-center justify-between gap-2 flex-wrap">
           <div className="flex items-center gap-2">
             <Badge variant={typeMeta.variant}>{typeMeta.label}</Badge>
-            {product.badge && <Badge variant="accent">{product.badge}</Badge>}
+            {product.badge && <Badge variant="default">{product.badge}</Badge>}
           </div>
 
           <div className="flex items-center gap-1 text-caption text-ink font-semibold">
@@ -36,12 +43,6 @@ export function ProductDetailsModal({
             <span>{product.rating.toFixed(2)}</span>
             <span className="text-ink-muted font-normal">({product.reviewsCount} отзывов)</span>
           </div>
-        </div>
-
-        {/* Title and subtitle */}
-        <div className="flex flex-col gap-2">
-          <h2 className="font-display text-h2 font-bold text-ink leading-tight">{product.title}</h2>
-          <p className="text-body text-ink-muted leading-relaxed">{product.subtitle}</p>
         </div>
 
         {/* Quick info row */}

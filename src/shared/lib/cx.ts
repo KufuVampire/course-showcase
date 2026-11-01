@@ -1,3 +1,1 @@
-export function cx(...classes: (string | boolean | undefined | null)[]): string {
-  return classes.filter(Boolean).join(' ');
-}
+export { cn as cx } from './cn';

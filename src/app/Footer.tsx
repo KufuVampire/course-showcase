@@ -26,16 +26,16 @@ export function Footer() {
             <span className="font-semibold text-ink uppercase tracking-wider text-xs">
               Навигация
             </span>
-            <a href="#catalog" className="text-ink-muted hover:text-ink transition-colors">
+            <a href="/#catalog" className="text-ink-muted hover:text-ink transition-colors">
               Каталог продуктов
             </a>
-            <a href="#benefits" className="text-ink-muted hover:text-ink transition-colors">
+            <a href="/#benefits" className="text-ink-muted hover:text-ink transition-colors">
               О подходе
             </a>
-            <a href="#process" className="text-ink-muted hover:text-ink transition-colors">
+            <a href="/#process" className="text-ink-muted hover:text-ink transition-colors">
               Процесс обучения
             </a>
-            <a href="#reviews" className="text-ink-muted hover:text-ink transition-colors">
+            <a href="/#reviews" className="text-ink-muted hover:text-ink transition-colors">
               Отзывы выпускников
             </a>
           </div>
@@ -52,8 +52,12 @@ export function Footer() {
               support@praktikum-pro.dev
             </a>
             <span className="text-ink-muted">Пн-Пт: 10:00 — 19:00 (МСК)</span>
-            <span className="text-ink-muted">Публичная оферта № 2026/01</span>
-            <span className="text-ink-muted">Политика конфиденциальности</span>
+            <a href="/oferta" className="text-ink-muted hover:text-ink transition-colors">
+              Публичная оферта
+            </a>
+            <a href="/privacy" className="text-ink-muted hover:text-ink transition-colors">
+              Политика конфиденциальности
+            </a>
           </div>
         </div>
 

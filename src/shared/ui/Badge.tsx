@@ -1,5 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react';
-import { cx } from '@/shared/lib/cx';
+import { cn } from '@/shared/lib/cn';
 
 export type BadgeVariant =
   'default' | 'primary' | 'accent' | 'consult' | 'success' | 'warning' | 'danger';
@@ -34,8 +34,8 @@ export function Badge({
 }: BadgeProps) {
   return (
     <span
-      className={cx(
-        'inline-flex items-center gap-1 leading-none tracking-normal',
+      className={cn(
+        'inline-flex items-center gap-1 leading-none tracking-normal font-medium',
         variantStyles[variant],
         sizeStyles[size],
         className

@@ -1,4 +1,12 @@
-import { createContext, useContext, useCallback, useEffect, useState, type ReactNode } from 'react';
+import {
+  createContext,
+  useContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
+} from 'react';
 import { authService, type Order, type User } from '@/shared/api';
 
 interface AuthContextValue {
@@ -42,19 +50,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     init();
   }, [init]);
 
-  const login = async (email: string, name?: string) => {
+  const login = useCallback(async (email: string, name?: string) => {
     setIsLoading(true);
     try {
       const loggedUser = await authService.login(email, name);
       setUser(loggedUser);
-      await refreshOrders();
+      const userOrders = await authService.getUserOrders();
+      setOrders(userOrders);
       return loggedUser;
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
-  const logout = async () => {
+  const logout = useCallback(async () => {
     setIsLoading(true);
     try {
       await authService.logout();
@@ -63,22 +72,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
-  return (
-    <AuthContext.Provider
-      value={{
-        user,
-        orders,
-        isLoading,
-        login,
-        logout,
-        refreshOrders,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
+  const value = useMemo(
+    () => ({
+      user,
+      orders,
+      isLoading,
+      login,
+      logout,
+      refreshOrders,
+    }),
+    [user, orders, isLoading, login, logout, refreshOrders]
   );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 export function useAuthContext(): AuthContextValue {

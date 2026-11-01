@@ -1,5 +1,5 @@
 import { useId, type InputHTMLAttributes, type ReactNode } from 'react';
-import { cx } from '@/shared/lib/cx';
+import { cn } from '@/shared/lib/cn';
 
 export interface FieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -49,9 +49,9 @@ export function Field({
           id={inputId}
           required={required}
           aria-invalid={Boolean(error)}
-          aria-describedby={cx(errorId, hintId) || undefined}
-          className={cx(
-            'w-full bg-surface-raised border rounded-md text-body text-ink placeholder:text-ink-muted/60 transition-colors py-2.5 px-3.5 outline-none focus:ring-2 focus:ring-primary focus:border-primary disabled:opacity-50 disabled:cursor-not-allowed',
+          aria-describedby={cn(errorId, hintId) || undefined}
+          className={cn(
+            'w-full bg-surface-raised border rounded-md text-body text-ink placeholder:text-ink-muted/80 transition-colors py-2.5 px-3.5 outline-none focus:ring-2 focus:ring-primary focus:border-primary disabled:opacity-50 disabled:cursor-not-allowed',
             leftElement ? 'pl-10' : '',
             rightElement ? 'pr-10' : '',
             error ? 'border-danger focus:ring-danger' : 'border-border',

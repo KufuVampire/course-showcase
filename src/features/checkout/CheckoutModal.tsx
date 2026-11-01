@@ -288,7 +288,29 @@ export function CheckoutModal({ product, isOpen, onClose, onOpenAccount }: Check
 
           {/* Terms checkbox */}
           <Checkbox
-            label="Я согласен с условиями публичной оферты и политикой обработки персональных данных."
+            label={
+              <span>
+                Я согласен с{' '}
+                <a
+                  href="/oferta"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline text-ink hover:text-primary transition-colors"
+                >
+                  условиями публичной оферты
+                </a>{' '}
+                и{' '}
+                <a
+                  href="/privacy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline text-ink hover:text-primary transition-colors"
+                >
+                  политикой обработки данных
+                </a>
+                .
+              </span>
+            }
             checked={agreed}
             onChange={(e) => setAgreed(e.target.checked)}
             error={errors.agreed}

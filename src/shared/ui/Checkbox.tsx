@@ -1,8 +1,8 @@
-import { useId, type InputHTMLAttributes } from 'react';
-import { cx } from '@/shared/lib/cx';
+import { useId, type InputHTMLAttributes, type ReactNode } from 'react';
+import { cn } from '@/shared/lib/cn';
 
 export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
-  label: string;
+  label: ReactNode;
   error?: string;
   hint?: string;
 }
@@ -29,9 +29,9 @@ export function Checkbox({
           type="checkbox"
           required={required}
           aria-invalid={Boolean(error)}
-          aria-describedby={cx(errorId, hintId) || undefined}
-          className={cx(
-            'mt-0.5 h-4 w-4 rounded-sm border-border accent-primary cursor-pointer transition-colors',
+          aria-describedby={cn(errorId, hintId) || undefined}
+          className={cn(
+            'mt-0.5 h-4 w-4 rounded-sm border-border accent-primary cursor-pointer transition-colors shrink-0',
             className
           )}
           {...rest}

@@ -23,18 +23,18 @@ export function HeroSection() {
         </p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 mb-16 w-full sm:w-auto">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 w-full sm:w-auto">
           <Button
-            href="#catalog"
+            href="/#catalog"
             variant="accent"
             size="lg"
-            fullWidth
+            className="w-full sm:w-auto"
             rightIcon={<ArrowDown className="w-4 h-4" />}
           >
             Выбрать программу в каталоге
           </Button>
 
-          <Button href="#benefits" variant="outline" size="lg" fullWidth>
+          <Button href="/#benefits" variant="outline" size="lg" className="w-full sm:w-auto">
             Как устроено обучение
           </Button>
         </div>

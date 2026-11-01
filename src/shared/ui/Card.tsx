@@ -1,5 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react';
-import { cx } from '@/shared/lib/cx';
+import { cn } from '@/shared/lib/cn';
 
 export type CardVariant = 'raised' | 'sunken' | 'outlined';
 export type CardPadding = 'none' | 'sm' | 'md' | 'lg';
@@ -36,7 +36,7 @@ export function Card({
 }: CardProps) {
   return (
     <Component
-      className={cx(
+      className={cn(
         'rounded-lg transition-all',
         variantStyles[variant],
         paddingStyles[padding],
