@@ -2,7 +2,13 @@ import type { HTMLAttributes, ReactNode } from 'react';
 import { cn } from '@/shared/lib/cn';
 
 export type BadgeVariant =
-  'default' | 'primary' | 'accent' | 'consult' | 'success' | 'warning' | 'danger';
+  | 'default'
+  | 'primary'
+  | 'secondary'
+  | 'consult'
+  | 'success'
+  | 'warning'
+  | 'danger';
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   variant?: BadgeVariant;
@@ -12,8 +18,8 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 
 const variantStyles: Record<BadgeVariant, string> = {
   default: 'bg-surface-sunken text-ink-muted border border-border',
-  primary: 'bg-primary/10 text-primary border border-primary/20',
-  accent: 'bg-accent/15 text-accent border border-accent/30',
+  primary: 'bg-primary/15 text-ink border border-primary/30',
+  secondary: 'bg-secondary/15 text-secondary border border-secondary/30',
   consult: 'bg-type-consult/15 text-type-consult border border-type-consult/30',
   success: 'bg-success/15 text-success border border-success/30',
   warning: 'bg-warning/15 text-warning border border-warning/30',

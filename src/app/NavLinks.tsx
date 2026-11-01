@@ -51,7 +51,7 @@ export function NavLinks({ variant = 'desktop', onItemClick, className }: NavLin
           href={item.href}
           onClick={onItemClick}
           className={cn(
-            'py-2.5 px-3 rounded-md hover:bg-surface-sunken outline-none focus-visible:ring-2 focus-visible:ring-accent',
+            'py-2.5 px-3 rounded-md hover:bg-surface-sunken outline-none focus-visible:ring-2 focus-visible:ring-primary',
             className
           )}
         >

@@ -180,13 +180,13 @@ export function CheckoutFormStep({
                 aria-checked={isSelected}
                 onClick={() => onPaymentMethodChange(opt.id)}
                 className={cn(
-                  'p-3 rounded-md border flex flex-col items-center justify-center gap-2 cursor-pointer transition-colors text-center outline-none focus-visible:ring-2 focus-visible:ring-accent',
+                  'p-3 rounded-md border flex flex-col items-center justify-center gap-2 cursor-pointer transition-colors text-center outline-none focus-visible:ring-2 focus-visible:ring-primary',
                   isSelected
-                    ? 'border-accent bg-accent/10 text-ink font-semibold ring-1 ring-accent'
+                    ? 'border-primary bg-primary/10 text-ink font-semibold ring-1 ring-primary'
                     : 'border-border bg-surface-raised text-ink hover:bg-surface-sunken'
                 )}
               >
-                <Icon className={cn('w-5 h-5 shrink-0', isSelected ? 'text-accent' : 'text-ink-muted')} />
+                <Icon className={cn('w-5 h-5 shrink-0', isSelected ? 'text-primary' : 'text-ink-muted')} />
                 <span className="text-caption">{opt.label}</span>
               </button>
             );
@@ -203,7 +203,7 @@ export function CheckoutFormStep({
               href="/oferta"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:underline"
+              className="text-secondary hover:underline"
             >
               условиями публичной оферты
             </a>{' '}
@@ -212,7 +212,7 @@ export function CheckoutFormStep({
               href="/privacy"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:underline"
+              className="text-secondary hover:underline"
             >
               политикой обработки персональных данных
             </a>
@@ -226,7 +226,7 @@ export function CheckoutFormStep({
       />
 
       {/* Submit */}
-      <Button type="submit" variant="accent" size="lg" fullWidth>
+      <Button type="submit" variant="primary" size="lg" fullWidth>
         Оплатить {formatPrice(currentTotal)}
       </Button>
     </form>

@@ -39,7 +39,7 @@ export function AccountLoginForm({
         autoComplete="name"
       />
 
-      <Button type="submit" variant="accent" size="md" fullWidth isLoading={isSubmitting}>
+      <Button type="submit" variant="primary" size="md" fullWidth isLoading={isSubmitting}>
         Войти в кабинет
       </Button>
 

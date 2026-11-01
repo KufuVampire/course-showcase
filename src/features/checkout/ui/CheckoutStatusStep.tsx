@@ -72,7 +72,7 @@ export function CheckoutStatusStep({
             Закрыть
           </Button>
           <Button
-            variant="accent"
+            variant="primary"
             size="md"
             onClick={() => {
               onClose();

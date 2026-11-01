@@ -10,7 +10,7 @@ export interface LogoProps {
 export function Logo({ showSubtitle = false, className, asLink = true }: LogoProps) {
   const content = (
     <>
-      <div className="w-8 h-8 rounded-md bg-accent text-[#14181f] flex items-center justify-center font-display font-bold text-base shadow-xs shrink-0 group-hover:opacity-90 transition-opacity">
+      <div className="w-8 h-8 rounded-md bg-primary text-[#14181f] flex items-center justify-center font-display font-bold text-base shadow-xs shrink-0 group-hover:opacity-90 transition-opacity">
         <BookOpen className="w-4 h-4 text-[#14181f]" />
       </div>
       <div className="flex flex-col min-w-0">

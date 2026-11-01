@@ -56,7 +56,7 @@ export function Navbar({ onOpenAccount, userEmail }: NavbarProps) {
     >
       <a
         href="#main"
-        className="sr-only focus-visible:not-sr-only focus-visible:absolute focus-visible:top-2 focus-visible:left-2 focus-visible:z-50 focus-visible:px-4 focus-visible:py-2 focus-visible:bg-accent focus-visible:text-on-accent focus-visible:rounded-md"
+        className="sr-only focus-visible:not-sr-only focus-visible:absolute focus-visible:top-2 focus-visible:left-2 focus-visible:z-50 focus-visible:px-4 focus-visible:py-2 focus-visible:bg-primary focus-visible:text-on-primary focus-visible:rounded-md"
       >
         Перейти к содержимому
       </a>
@@ -85,7 +85,7 @@ export function Navbar({ onOpenAccount, userEmail }: NavbarProps) {
             variant="outline"
             size="sm"
             onClick={onOpenAccount}
-            leftIcon={<UserIcon className="w-4 h-4 text-accent" />}
+            leftIcon={<UserIcon className="w-4 h-4 text-primary" />}
             className="px-2.5 sm:px-3"
             aria-label="Личный кабинет"
           >

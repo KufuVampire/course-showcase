@@ -3,7 +3,7 @@ import type { Order, PaymentMethod, ProductLevel, ProductType } from '@/shared/a
 
 export const PRODUCT_TYPE_META: Record<ProductType, { label: string; variant: BadgeVariant }> = {
   course: { label: 'Курс', variant: 'primary' },
-  workshop: { label: 'Воркшоп', variant: 'accent' },
+  workshop: { label: 'Воркшоп', variant: 'secondary' },
   consultation: { label: 'Консультация', variant: 'consult' },
 };
 

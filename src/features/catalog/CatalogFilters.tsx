@@ -60,9 +60,9 @@ export function CatalogFilters({ filters, onFilterChange, onReset, counts }: Cat
               aria-selected={isActive}
               onClick={() => onFilterChange({ type: tab.type })}
               className={cn(
-                'inline-flex items-center gap-2 px-4 py-2 rounded-md text-caption font-medium transition-colors duration-fast whitespace-nowrap cursor-pointer select-none outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2',
+                'inline-flex items-center gap-2 px-4 py-2 rounded-md text-caption font-medium transition-colors duration-fast whitespace-nowrap cursor-pointer select-none outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2',
                 isActive
-                  ? 'bg-accent text-on-accent shadow-xs font-semibold'
+                  ? 'bg-primary text-on-primary shadow-xs font-semibold'
                   : 'bg-surface-sunken text-ink hover:bg-border/60'
               )}
             >
@@ -70,7 +70,7 @@ export function CatalogFilters({ filters, onFilterChange, onReset, counts }: Cat
               <span
                 className={cn(
                   'text-xs px-1.5 py-0.5 rounded-sm font-mono tabular-nums',
-                  isActive ? 'bg-on-accent/20 text-on-accent' : 'bg-border/70 text-ink-muted'
+                  isActive ? 'bg-on-primary/20 text-on-primary' : 'bg-border/70 text-ink-muted'
                 )}
               >
                 {count}
@@ -90,13 +90,13 @@ export function CatalogFilters({ filters, onFilterChange, onReset, counts }: Cat
             placeholder="Поиск по курсам, технологиям, авторам..."
             value={filters.query || ''}
             onChange={(e) => onFilterChange({ query: e.target.value })}
-            leftElement={<Search className="w-4 h-4 text-accent" />}
+            leftElement={<Search className="w-4 h-4 text-primary" />}
             rightElement={
               filters.query ? (
                 <button
                   type="button"
                   onClick={() => onFilterChange({ query: '' })}
-                  className="hover:text-ink cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
+                  className="hover:text-ink cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
                   aria-label="Очистить поиск"
                 >
                   <X className="w-4 h-4" />
@@ -134,7 +134,7 @@ export function CatalogFilters({ filters, onFilterChange, onReset, counts }: Cat
               title="Сбросить все фильтры"
               aria-label="Сбросить все фильтры"
             >
-              <SlidersHorizontal className="w-4 h-4 mr-1 text-accent" />
+              <SlidersHorizontal className="w-4 h-4 mr-1 text-primary" />
               Сброс
             </Button>
           )}

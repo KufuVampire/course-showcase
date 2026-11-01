@@ -42,7 +42,7 @@ export function ProductDetailsModal({
           </div>
 
           <div className="flex items-center gap-1 text-caption text-ink font-semibold">
-            <Star className="w-4 h-4 fill-accent text-accent" />
+            <Star className="w-4 h-4 fill-primary text-primary" />
             <span className="font-mono">{product.rating.toFixed(2)}</span>
             <span className="text-ink-muted font-normal">({product.reviewsCount}&nbsp;отзывов)</span>
           </div>
@@ -53,7 +53,7 @@ export function ProductDetailsModal({
           <div>
             <span className="text-ink-muted block text-xs">Длительность</span>
             <span className="font-semibold text-ink flex items-center gap-1 mt-0.5 font-mono">
-              <Clock className="w-3.5 h-3.5 text-accent" />
+              <Clock className="w-3.5 h-3.5 text-primary" />
               {formatDuration(product.durationHours)}
             </span>
           </div>

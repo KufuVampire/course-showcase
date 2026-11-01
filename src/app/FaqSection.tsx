@@ -31,7 +31,7 @@ export function FaqSection() {
     >
       <div className="max-w-page mx-auto px-4 sm:px-6 flex flex-col gap-10">
         <div className="flex flex-col gap-2 max-w-2xl">
-          <span className="text-caption font-medium text-accent">
+          <span className="text-caption font-medium text-primary">
             Вопросы и ответы
           </span>
           <h2 className="font-display text-h2 font-semibold text-ink leading-tight text-balance">
@@ -48,11 +48,11 @@ export function FaqSection() {
               key={faq.q}
               className="group border border-border rounded-lg bg-surface transition-colors overflow-hidden"
             >
-              <summary className="list-none p-5 text-left flex items-center justify-between gap-4 cursor-pointer hover:text-accent focus-visible:outline-none focus-visible:text-accent transition-colors select-none">
+              <summary className="list-none p-5 text-left flex items-center justify-between gap-4 cursor-pointer hover:text-primary focus-visible:outline-none focus-visible:text-primary transition-colors select-none">
                 <h3 className="font-display font-semibold text-ink text-base leading-snug">
                   {faq.q}
                 </h3>
-                <ChevronDown className="w-5 h-5 text-ink-muted shrink-0 transition-transform duration-fast group-open:rotate-180 group-open:text-accent" />
+                <ChevronDown className="w-5 h-5 text-ink-muted shrink-0 transition-transform duration-fast group-open:rotate-180 group-open:text-primary" />
               </summary>
 
               <div className="px-5 pb-5 pt-0 text-caption lg:text-body text-ink-muted leading-relaxed border-t border-border/40 mt-1">

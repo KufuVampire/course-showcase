@@ -196,11 +196,11 @@ export function Select({ options, value, onChange, ariaLabel, className = '' }: 
                 className={cn(
                   'relative flex items-center justify-between py-2 px-3 rounded-sm cursor-pointer select-none transition-colors',
                   isFocused ? 'bg-surface-sunken text-ink' : 'text-ink-muted hover:text-ink',
-                  isSelected ? 'font-semibold text-accent' : ''
+                  isSelected ? 'font-semibold text-primary' : ''
                 )}
               >
                 <span className="truncate">{opt.label}</span>
-                {isSelected && <Check className="w-3.5 h-3.5 text-accent shrink-0" />}
+                {isSelected && <Check className="w-3.5 h-3.5 text-primary shrink-0" />}
               </li>
             );
           })}

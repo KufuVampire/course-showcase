@@ -52,7 +52,7 @@ export function MainLayout() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-surface text-ink flex flex-col font-sans transition-colors selection:bg-accent/30 selection:text-ink">
+    <div className="min-h-screen bg-surface text-ink flex flex-col font-sans transition-colors selection:bg-primary/30 selection:text-ink">
       <ScrollManager />
       <JsonLd products={catalogState.products} />
 

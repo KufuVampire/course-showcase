@@ -10,7 +10,7 @@ export function HeroSection() {
           <div className="lg:col-span-6 flex flex-col items-start text-left">
             {/* Quiet status eyebrow */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-surface-sunken border border-border text-caption text-ink font-medium mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" aria-hidden="true" />
+              <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true" />
               <span>Инженерные практикумы и&nbsp;код-ревью</span>
             </div>
 
@@ -30,7 +30,7 @@ export function HeroSection() {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto">
               <Button
                 href="/#catalog"
-                variant="accent"
+                variant="primary"
                 size="lg"
                 rightIcon={<ArrowRight className="w-4 h-4" />}
               >
@@ -72,10 +72,10 @@ export function HeroSection() {
                   </div>
 
                   {/* Clean FSD query code */}
-                  <div className="text-primary bg-primary/10 px-2 py-1 rounded-sm font-medium">
+                  <div className="text-secondary bg-secondary/10 px-2 py-1 rounded-sm font-medium">
                     + const &#123; data: products, status &#125; = useCatalogQuery(filters);
                   </div>
-                  <div className="text-primary bg-primary/10 px-2 py-1 rounded-sm font-medium">
+                  <div className="text-secondary bg-secondary/10 px-2 py-1 rounded-sm font-medium">
                     + const updateFilters = useCatalogFiltersSync();
                   </div>
                 </div>
@@ -101,7 +101,7 @@ export function HeroSection() {
               {/* Meta spec strip */}
               <div className="px-4 py-2.5 border-t border-border bg-surface-sunken/40 flex items-center justify-between text-xs font-mono text-ink-muted">
                 <span>Stack: TypeScript 5.8 · React 19 · FSD 2.1</span>
-                <span className="text-primary font-medium">0 cycles detected</span>
+                <span className="text-secondary font-medium">0 cycles detected</span>
               </div>
             </div>
           </div>

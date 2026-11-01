@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes, AnchorHTMLAttributes, ReactNode } from 'reac
 import { Loader2 } from 'lucide-react';
 import { cn } from '@/shared/lib/cn';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'accent' | 'ghost' | 'outline';
+export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'outline';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 interface CommonProps {
@@ -25,11 +25,9 @@ export type ButtonProps = CommonProps &
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    'bg-accent text-on-accent font-semibold shadow-xs hover:brightness-110 active:brightness-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
+    'bg-primary text-on-primary font-semibold shadow-xs hover:brightness-110 active:brightness-90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
   secondary:
-    'bg-primary text-on-primary font-medium hover:brightness-110 active:brightness-90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
-  accent:
-    'bg-accent text-on-accent font-semibold shadow-xs hover:brightness-110 active:brightness-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
+    'bg-secondary text-on-secondary font-medium hover:brightness-110 active:brightness-90 focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
   outline:
     'border border-border text-ink bg-transparent hover:brightness-105 hover:bg-surface-sunken active:brightness-95 active:bg-border/30 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
   ghost:
