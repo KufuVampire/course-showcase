@@ -1,8 +1,8 @@
-import React from 'react';
 import { Star, Clock, User, ArrowRight } from 'lucide-react';
-import { Product, ProductType } from '@/shared/api';
+import type { Product } from '@/shared/api';
 import { formatDuration, formatPrice } from '@/shared/lib/formatters';
 import { Badge, Button, Card } from '@/shared/ui';
+import { LEVEL_LABEL, PRODUCT_TYPE_META } from '@/shared/config/product';
 
 export interface ProductCardProps {
   product: Product;
@@ -10,31 +10,20 @@ export interface ProductCardProps {
   onCheckout: (product: Product) => void;
 }
 
-const typeConfig: Record<ProductType, { label: string; variant: 'primary' | 'accent' | 'consult' }> = {
-  course: { label: 'Курс', variant: 'primary' },
-  workshop: { label: 'Воркшоп', variant: 'accent' },
-  consultation: { label: 'Консультация', variant: 'consult' },
-};
-
-const levelLabels: Record<string, string> = {
-  all: 'Любой уровень',
-  beginner: 'Для начинающих',
-  intermediate: 'Middle / Middle+',
-  advanced: 'Senior / Lead',
-};
-
-export const ProductCard: React.FC<ProductCardProps> = ({
+export function ProductCard({
   product,
   onOpenDetails,
   onCheckout,
-}) => {
-  const typeMeta = typeConfig[product.type];
+}: ProductCardProps) {
+  const typeMeta = PRODUCT_TYPE_META[product.type];
+  const hasInstallments = product.price >= 10000 && product.type !== 'consultation';
 
   return (
     <Card
+      as="article"
       hoverable
       padding="none"
-      className="flex flex-col h-full overflow-hidden border border-border group"
+      className="flex flex-col h-full overflow-hidden"
     >
       {/* Card Header Media Accent */}
       <div className="p-6 pb-4 flex flex-col gap-3">
@@ -51,11 +40,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         </div>
 
-        <h3
-          onClick={() => onOpenDetails(product)}
-          className="font-display text-h2 font-bold text-ink hover:text-primary transition-colors cursor-pointer leading-tight text-xl"
-        >
-          {product.title}
+        <h3 className="font-display text-title font-bold text-ink leading-tight">
+          <button
+            type="button"
+            onClick={() => onOpenDetails(product)}
+            className="text-left hover:text-primary transition-colors cursor-pointer"
+          >
+            {product.title}
+          </button>
         </h3>
 
         <p className="text-caption text-ink-muted line-clamp-2 leading-relaxed">
@@ -70,7 +62,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {formatDuration(product.durationHours)}
         </span>
         <span>•</span>
-        <span>{levelLabels[product.level] || product.level}</span>
+        <span>{LEVEL_LABEL[product.level] || product.level}</span>
       </div>
 
       {/* Instructor info */}
@@ -88,7 +80,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       <div className="p-6 pt-4 border-t border-border flex items-center justify-between gap-4">
         <div className="flex flex-col">
           <div className="flex items-baseline gap-2">
-            <span className="font-display font-bold text-ink text-xl">
+            <span className="font-display font-bold text-ink text-price">
               {formatPrice(product.price)}
             </span>
             {product.oldPrice && (
@@ -97,7 +89,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               </span>
             )}
           </div>
-          <span className="text-xs text-ink-muted">Рассрочка от 0%</span>
+          <span className="text-xs text-ink-muted">
+            {hasInstallments ? 'Рассрочка от 0%' : 'Полный доступ'}
+          </span>
         </div>
 
         <div className="flex items-center gap-2">
@@ -122,4 +116,4 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       </div>
     </Card>
   );
-};
+}

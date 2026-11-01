@@ -1,5 +1,3 @@
-import React from 'react';
-
 const steps = [
   {
     step: '01',
@@ -27,10 +25,10 @@ const steps = [
   },
 ];
 
-export const ProcessSection: React.FC = () => {
+export function ProcessSection() {
   return (
-    <section id="process" className="py-20 md:py-28 bg-surface-raised border-b border-border">
-      <div className="max-w-[72rem] mx-auto px-4 sm:px-6 flex flex-col gap-14">
+    <section id="process" className="scroll-mt-20 py-20 md:py-28 bg-surface-raised border-b border-border">
+      <div className="max-w-page mx-auto px-4 sm:px-6 flex flex-col gap-14">
         <div className="flex flex-col gap-3 max-w-2xl">
           <span className="text-caption font-semibold text-primary uppercase tracking-wider">
             Прозрачный процесс
@@ -44,8 +42,8 @@ export const ProcessSection: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {steps.map((item, idx) => (
-            <div key={idx} className="flex flex-col gap-3 relative">
+          {steps.map((item) => (
+            <div key={item.title} className="flex flex-col gap-3 relative">
               <span className="font-display font-bold text-3xl text-primary/40 select-none">
                 {item.step}
               </span>
@@ -61,4 +59,4 @@ export const ProcessSection: React.FC = () => {
       </div>
     </section>
   );
-};
+}

@@ -1,5 +1,5 @@
 import { MOCK_PRODUCTS } from './mockData';
-import { Product, ProductLevel, ProductType } from './types';
+import type { Product, ProductLevel, ProductType } from './types';
 
 export interface ProductFilters {
   type?: ProductType | 'all';

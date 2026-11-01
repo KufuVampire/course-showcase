@@ -1,17 +1,27 @@
-import React, { ButtonHTMLAttributes, forwardRef } from 'react';
+import type { ButtonHTMLAttributes, AnchorHTMLAttributes, ReactNode } from 'react';
 import { Loader2 } from 'lucide-react';
+import { cx } from '@/shared/lib/cx';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'accent' | 'ghost' | 'outline';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface CommonProps {
   variant?: ButtonVariant;
   size?: ButtonSize;
   isLoading?: boolean;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
+  leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
   fullWidth?: boolean;
+  iconOnly?: boolean;
+  className?: string;
+  children?: ReactNode;
 }
+
+export type ButtonProps = CommonProps &
+  (
+    | ({ href?: undefined } & ButtonHTMLAttributes<HTMLButtonElement>)
+    | ({ href: string } & AnchorHTMLAttributes<HTMLAnchorElement>)
+  );
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
@@ -29,47 +39,69 @@ const variantStyles: Record<ButtonVariant, string> = {
 const sizeStyles: Record<ButtonSize, string> = {
   sm: 'text-caption py-1.5 px-3 rounded-sm gap-1.5',
   md: 'text-body py-2.5 px-5 rounded-md gap-2 font-medium',
-  lg: 'text-body py-3.5 px-7 rounded-md gap-2.5 font-semibold text-base',
+  lg: 'text-body py-3.5 px-7 rounded-md gap-2.5 font-semibold',
 };
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      variant = 'primary',
-      size = 'md',
-      isLoading = false,
-      leftIcon,
-      rightIcon,
-      fullWidth = false,
-      disabled,
-      className = '',
-      children,
-      ...rest
-    },
-    ref
-  ) => {
-    const baseStyles =
-      'inline-flex items-center justify-center transition-all cursor-pointer select-none outline-none disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed';
+const iconOnlySizeStyles: Record<ButtonSize, string> = {
+  sm: 'p-1.5 rounded-sm',
+  md: 'p-2.5 rounded-md',
+  lg: 'p-3.5 rounded-md',
+};
 
+export function Button({
+  variant = 'primary',
+  size = 'md',
+  isLoading = false,
+  leftIcon,
+  rightIcon,
+  fullWidth = false,
+  iconOnly = false,
+  className = '',
+  children,
+  ...props
+}: ButtonProps) {
+  const baseStyles =
+    'inline-flex items-center justify-center transition-colors cursor-pointer select-none outline-none disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed text-center';
+
+  const classes = cx(
+    baseStyles,
+    variantStyles[variant],
+    iconOnly ? iconOnlySizeStyles[size] : sizeStyles[size],
+    fullWidth ? 'w-full' : '',
+    className
+  );
+
+  const content = (
+    <>
+      {isLoading ? (
+        <Loader2 className="w-4 h-4 animate-spin text-current" aria-hidden="true" />
+      ) : (
+        leftIcon
+      )}
+      {children}
+      {!isLoading && rightIcon}
+    </>
+  );
+
+  if ('href' in props && props.href) {
+    const { href, ...anchorRest } = props;
     return (
-      <button
-        ref={ref}
-        disabled={disabled || isLoading}
-        className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${
-          fullWidth ? 'w-full' : ''
-        } ${className}`}
-        {...rest}
-      >
-        {isLoading ? (
-          <Loader2 className="w-4 h-4 animate-spin text-current" aria-hidden="true" />
-        ) : (
-          leftIcon
-        )}
-        <span>{children}</span>
-        {!isLoading && rightIcon}
-      </button>
+      <a href={href} className={classes} {...anchorRest}>
+        {content}
+      </a>
     );
   }
-);
 
-Button.displayName = 'Button';
+  const { type = 'button', disabled, ...buttonRest } = props as ButtonHTMLAttributes<HTMLButtonElement>;
+
+  return (
+    <button
+      type={type}
+      disabled={disabled || isLoading}
+      className={classes}
+      {...buttonRest}
+    >
+      {content}
+    </button>
+  );
+}

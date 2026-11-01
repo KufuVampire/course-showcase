@@ -1,5 +1,6 @@
-import { CheckoutPayload, Order } from './types';
+import type { CheckoutPayload, Order } from './types';
 import { catalogApi } from './catalogApi';
+import { applyPromo, type PromoDiscount } from '@/shared/lib/promo';
 
 export interface PaymentSuccess {
   success: true;
@@ -25,7 +26,7 @@ export class MockPaymentGateway implements PaymentGateway {
     this.delayMs = delayMs;
   }
 
-  async validatePromo(code: string) {
+  async validatePromo(code: string): Promise<{ valid: boolean; discountPercent?: number; discountAmount?: number }> {
     await new Promise((r) => setTimeout(r, 200));
     const upper = code.trim().toUpperCase();
     if (upper === 'PROMO10' || upper === 'FRONTEND') {
@@ -56,17 +57,15 @@ export class MockPaymentGateway implements PaymentGateway {
       };
     }
 
-    let finalAmount = product.price;
+    let promoDiscount: PromoDiscount | null = null;
     if (payload.promoCode) {
       const promo = await this.validatePromo(payload.promoCode);
       if (promo.valid) {
-        if (promo.discountPercent) {
-          finalAmount = Math.round(finalAmount * (1 - promo.discountPercent / 100));
-        } else if (promo.discountAmount) {
-          finalAmount = Math.max(100, finalAmount - promo.discountAmount);
-        }
+        promoDiscount = promo;
       }
     }
+
+    const finalAmount = applyPromo(product.price, promoDiscount);
 
     const randomSuffix = Math.floor(1000 + Math.random() * 9000);
     const order: Order = {
@@ -93,6 +92,16 @@ export class MockPaymentGateway implements PaymentGateway {
       const orders = JSON.parse(existingRaw) as Order[];
       orders.unshift(order);
       localStorage.setItem('course_showcase_orders', JSON.stringify(orders));
+
+      // Also mark product as purchased in user state if logged in
+      const userRaw = localStorage.getItem('course_showcase_user');
+      if (userRaw) {
+        const u = JSON.parse(userRaw);
+        if (!u.purchasedProductIds.includes(product.id)) {
+          u.purchasedProductIds.push(product.id);
+          localStorage.setItem('course_showcase_user', JSON.stringify(u));
+        }
+      }
     } catch {
       // localStorage may fail in private mode
     }

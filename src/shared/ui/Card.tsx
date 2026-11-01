@@ -1,12 +1,15 @@
-import React from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
+import { cx } from '@/shared/lib/cx';
 
 export type CardVariant = 'raised' | 'sunken' | 'outlined';
 export type CardPadding = 'none' | 'sm' | 'md' | 'lg';
 
-export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   variant?: CardVariant;
   padding?: CardPadding;
   hoverable?: boolean;
+  as?: 'div' | 'article' | 'section';
+  children?: ReactNode;
 }
 
 const variantStyles: Record<CardVariant, string> = {
@@ -22,22 +25,27 @@ const paddingStyles: Record<CardPadding, string> = {
   lg: 'p-8',
 };
 
-export const Card: React.FC<CardProps> = ({
+export function Card({
   variant = 'raised',
   padding = 'md',
   hoverable = false,
+  as: Component = 'div',
   className = '',
   children,
   ...rest
-}) => {
+}: CardProps) {
   return (
-    <div
-      className={`rounded-lg transition-all ${variantStyles[variant]} ${paddingStyles[padding]} ${
-        hoverable ? 'hover:shadow-pop hover:border-primary/40' : ''
-      } ${className}`}
+    <Component
+      className={cx(
+        'rounded-lg transition-all',
+        variantStyles[variant],
+        paddingStyles[padding],
+        hoverable ? 'hover:shadow-pop hover:border-primary/40' : '',
+        className
+      )}
       {...rest}
     >
       {children}
-    </div>
+    </Component>
   );
-};
+}

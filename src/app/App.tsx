@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { Product } from '@/shared/api';
+import { useState } from 'react';
+import type { Product } from '@/shared/api';
 import { CatalogFilters, CatalogList, ProductDetailsModal, useCatalog } from '@/features/catalog';
 import { CheckoutModal } from '@/features/checkout';
-import { AccountModal, useAuth } from '@/features/account';
+import { AccountModal } from '@/features/account';
+import { AuthProvider, useAuthContext } from './AuthContext';
 import { Navbar } from './Navbar';
 import { HeroSection } from './HeroSection';
 import { BenefitsSection } from './BenefitsSection';
@@ -12,8 +13,8 @@ import { FaqSection } from './FaqSection';
 import { Footer } from './Footer';
 import { JsonLd } from './JsonLd';
 
-export const App: React.FC = () => {
-  const { user } = useAuth();
+function MainLayout() {
+  const { user } = useAuthContext();
   const {
     products,
     isLoading,
@@ -51,7 +52,10 @@ export const App: React.FC = () => {
         <HeroSection />
 
         {/* CATALOG SECTION */}
-        <section id="catalog" className="py-20 md:py-28 max-w-[72rem] mx-auto px-4 sm:px-6 w-full flex flex-col gap-10">
+        <section
+          id="catalog"
+          className="scroll-mt-20 py-20 md:py-28 max-w-page mx-auto px-4 sm:px-6 w-full flex flex-col gap-10"
+        >
           <div className="flex flex-col gap-3">
             <span className="text-caption font-semibold text-primary uppercase tracking-wider">
               Витрина программ
@@ -60,7 +64,11 @@ export const App: React.FC = () => {
               <h2 className="font-display text-h2 font-bold text-ink leading-tight">
                 Каталог образовательных продуктов
               </h2>
-              <span className="text-caption text-ink-muted">
+              <span
+                aria-live="polite"
+                aria-atomic="true"
+                className="text-caption text-ink-muted"
+              >
                 Найдено программ: <strong className="text-ink">{products.length}</strong>
               </span>
             </div>
@@ -103,12 +111,15 @@ export const App: React.FC = () => {
         onProceedToCheckout={handleOpenCheckout}
       />
 
-      <CheckoutModal
-        product={selectedProduct}
-        isOpen={isCheckoutOpen}
-        onClose={() => setIsCheckoutOpen(false)}
-        onOpenAccount={() => setIsAccountOpen(true)}
-      />
+      {isCheckoutOpen && selectedProduct && (
+        <CheckoutModal
+          key={selectedProduct.id}
+          product={selectedProduct}
+          isOpen={isCheckoutOpen}
+          onClose={() => setIsCheckoutOpen(false)}
+          onOpenAccount={() => setIsAccountOpen(true)}
+        />
+      )}
 
       <AccountModal
         isOpen={isAccountOpen}
@@ -116,4 +127,12 @@ export const App: React.FC = () => {
       />
     </div>
   );
-};
+}
+
+export function App() {
+  return (
+    <AuthProvider>
+      <MainLayout />
+    </AuthProvider>
+  );
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import {
   CreditCard,
   QrCode,
@@ -8,9 +8,13 @@ import {
   ArrowRight,
   RotateCcw,
 } from 'lucide-react';
-import { CheckoutPayload, Order, PaymentMethod, Product, paymentGateway } from '@/shared/api';
+import type { CheckoutPayload, Order, PaymentMethod, Product } from '@/shared/api';
+import { paymentGateway } from '@/shared/api';
 import { formatPrice } from '@/shared/lib/formatters';
+import { applyPromo, type PromoDiscount } from '@/shared/lib/promo';
 import { Button, Field, Modal } from '@/shared/ui';
+import { useAuthContext } from '@/app/AuthContext';
+import { cx } from '@/shared/lib/cx';
 
 export interface CheckoutModalProps {
   product: Product | null;
@@ -21,24 +25,25 @@ export interface CheckoutModalProps {
 
 type CheckoutStep = 'form' | 'processing' | 'success' | 'error';
 
-export const CheckoutModal: React.FC<CheckoutModalProps> = ({
+export function CheckoutModal({
   product,
   isOpen,
   onClose,
   onOpenAccount,
-}) => {
+}: CheckoutModalProps) {
+  const { refreshOrders } = useAuthContext();
   const [step, setStep] = useState<CheckoutStep>('form');
   const [order, setOrder] = useState<Order | null>(null);
-  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   // Form state
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('+7 ');
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('card');
-  const [agreed, setAgreed] = useState(true);
+  const [agreed, setAgreed] = useState(false);
   const [promoCode, setPromoCode] = useState('');
-  const [promoApplied, setPromoApplied] = useState<{ discountPercent?: number; discountAmount?: number } | null>(null);
+  const [promoApplied, setPromoApplied] = useState<PromoDiscount | null>(null);
   const [promoError, setPromoError] = useState('');
   const [isCheckingPromo, setIsCheckingPromo] = useState(false);
 
@@ -47,15 +52,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
   if (!product) return null;
 
-  const calculateTotal = () => {
-    let price = product.price;
-    if (promoApplied?.discountPercent) {
-      price = Math.round(price * (1 - promoApplied.discountPercent / 100));
-    } else if (promoApplied?.discountAmount) {
-      price = Math.max(100, price - promoApplied.discountAmount);
-    }
-    return price;
-  };
+  const currentTotal = applyPromo(product.price, promoApplied);
 
   const handleApplyPromo = async () => {
     if (!promoCode.trim()) return;
@@ -91,19 +88,20 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
       errs.email = 'Введите корректный email адрес';
     }
 
-    if (phone.trim().length < 11) {
-      errs.phone = 'Укажите номер телефона для связи';
+    const digitsOnly = phone.replace(/\D/g, '');
+    if (digitsOnly.length < 10) {
+      errs.phone = 'Укажите полный номер телефона (не менее 10 цифр)';
     }
 
     if (!agreed) {
-      errs.agreed = 'Необходимо согласие с условиями оферты';
+      errs.agreed = 'Необходимо подтвердить согласие с условиями оферты';
     }
 
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
@@ -125,6 +123,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
       if (result.success) {
         setOrder(result.order);
+        await refreshOrders();
         setStep('success');
       } else {
         setErrorMessage(result.error);
@@ -141,17 +140,22 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
     setErrorMessage('');
   };
 
+  const handleClose = () => {
+    handleReset();
+    onClose();
+  };
+
   return (
     <Modal
       isOpen={isOpen}
       onClose={() => {
         if (step !== 'processing') {
-          handleReset();
-          onClose();
+          handleClose();
         }
       }}
       maxWidth="lg"
       title={step === 'form' ? 'Оформление заказа' : undefined}
+      ariaLabel="Оформление заказа"
     >
       {/* STEP 1: FORM */}
       {step === 'form' && (
@@ -164,7 +168,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
             </div>
             <div className="text-right shrink-0">
               <span className="font-display font-bold text-ink text-lg">
-                {formatPrice(calculateTotal())}
+                {formatPrice(currentTotal)}
               </span>
               {promoApplied && (
                 <span className="block text-caption text-success font-medium">Скидка учтена</span>
@@ -180,6 +184,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               error={errors.fullName}
+              autoComplete="name"
               required
             />
 
@@ -191,6 +196,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 error={errors.email}
+                autoComplete="email"
                 hint="Доступ к материалам придет на эту почту"
                 required
               />
@@ -202,6 +208,8 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 error={errors.phone}
+                autoComplete="tel"
+                inputMode="tel"
                 required
               />
             </div>
@@ -209,9 +217,12 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
           {/* Promo code field */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-caption font-medium text-ink">Промокод</label>
+            <label htmlFor="checkout-promo" className="text-caption font-medium text-ink">
+              Промокод
+            </label>
             <div className="flex gap-2">
               <input
+                id="checkout-promo"
                 type="text"
                 placeholder="PROMO10 или DEV2000"
                 value={promoCode}
@@ -239,16 +250,17 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
           {/* Payment Methods */}
           <div className="flex flex-col gap-2">
-            <label className="text-caption font-medium text-ink">Способ оплаты</label>
+            <span className="text-caption font-medium text-ink">Способ оплаты</span>
             <div className="grid grid-cols-3 gap-3">
               <button
                 type="button"
                 onClick={() => setPaymentMethod('card')}
-                className={`p-3 rounded-md border flex flex-col items-center gap-2 cursor-pointer transition-all ${
+                className={cx(
+                  'p-3 rounded-md border flex flex-col items-center gap-2 cursor-pointer transition-colors',
                   paymentMethod === 'card'
                     ? 'border-primary bg-primary/5 text-primary font-semibold ring-1 ring-primary'
                     : 'border-border bg-surface-raised text-ink hover:bg-surface-sunken'
-                }`}
+                )}
               >
                 <CreditCard className="w-5 h-5" />
                 <span className="text-caption">Карта РФ / Мир</span>
@@ -257,11 +269,12 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
               <button
                 type="button"
                 onClick={() => setPaymentMethod('sbp')}
-                className={`p-3 rounded-md border flex flex-col items-center gap-2 cursor-pointer transition-all ${
+                className={cx(
+                  'p-3 rounded-md border flex flex-col items-center gap-2 cursor-pointer transition-colors',
                   paymentMethod === 'sbp'
                     ? 'border-primary bg-primary/5 text-primary font-semibold ring-1 ring-primary'
                     : 'border-border bg-surface-raised text-ink hover:bg-surface-sunken'
-                }`}
+                )}
               >
                 <QrCode className="w-5 h-5" />
                 <span className="text-caption">СБП (QR-код)</span>
@@ -270,11 +283,12 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
               <button
                 type="button"
                 onClick={() => setPaymentMethod('installments')}
-                className={`p-3 rounded-md border flex flex-col items-center gap-2 cursor-pointer transition-all ${
+                className={cx(
+                  'p-3 rounded-md border flex flex-col items-center gap-2 cursor-pointer transition-colors',
                   paymentMethod === 'installments'
                     ? 'border-primary bg-primary/5 text-primary font-semibold ring-1 ring-primary'
                     : 'border-border bg-surface-raised text-ink hover:bg-surface-sunken'
-                }`}
+                )}
               >
                 <CalendarCheck className="w-5 h-5" />
                 <span className="text-caption">Рассрочка 0%</span>
@@ -289,7 +303,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 type="checkbox"
                 checked={agreed}
                 onChange={(e) => setAgreed(e.target.checked)}
-                className="mt-1 h-4 w-4 rounded-sm border-border text-primary focus:ring-primary"
+                className="mt-1 h-4 w-4 rounded-sm border-border accent-primary cursor-pointer"
               />
               <span className="text-caption text-ink-muted leading-tight">
                 Я согласен с условиями публичной оферты и политикой обработки персональных данных.
@@ -306,7 +320,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
             fullWidth
             rightIcon={<ArrowRight className="w-4 h-4" />}
           >
-            Оплатить {formatPrice(calculateTotal())}
+            Оплатить {formatPrice(currentTotal)}
           </Button>
         </form>
       )}
@@ -356,7 +370,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
           </p>
 
           <div className="flex items-center gap-3 w-full">
-            <Button variant="outline" size="md" fullWidth onClick={onClose}>
+            <Button variant="outline" size="md" fullWidth onClick={handleClose}>
               Вернуться в каталог
             </Button>
             <Button
@@ -364,7 +378,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
               size="md"
               fullWidth
               onClick={() => {
-                onClose();
+                handleClose();
                 onOpenAccount();
               }}
             >
@@ -391,7 +405,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
           </p>
 
           <div className="flex items-center gap-3 w-full">
-            <Button variant="outline" size="md" fullWidth onClick={onClose}>
+            <Button variant="outline" size="md" fullWidth onClick={handleClose}>
               Отмена
             </Button>
             <Button
@@ -408,4 +422,4 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
       )}
     </Modal>
   );
-};
+}

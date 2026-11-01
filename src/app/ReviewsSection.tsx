@@ -1,4 +1,3 @@
-import React from 'react';
 import { Star, Quote } from 'lucide-react';
 import { Card } from '@/shared/ui';
 
@@ -26,10 +25,10 @@ const reviews = [
   },
 ];
 
-export const ReviewsSection: React.FC = () => {
+export function ReviewsSection() {
   return (
-    <section id="reviews" className="py-20 md:py-28 bg-surface-sunken/40 border-b border-border">
-      <div className="max-w-[72rem] mx-auto px-4 sm:px-6 flex flex-col gap-12">
+    <section id="reviews" className="scroll-mt-20 py-20 md:py-28 bg-surface-sunken/40 border-b border-border">
+      <div className="max-w-page mx-auto px-4 sm:px-6 flex flex-col gap-12">
         <div className="flex flex-col gap-3 max-w-2xl">
           <span className="text-caption font-semibold text-primary uppercase tracking-wider">
             Отзывы
@@ -38,13 +37,13 @@ export const ReviewsSection: React.FC = () => {
             Истории инженеров, прошедших наши программы
           </h2>
           <p className="text-body text-ink-muted leading-relaxed">
-            Реальный опыт выпускников, применивших полученные практики в своих продуктовых командах.
+            Пример отзывов выпускников (демо-витрина продуктовых практик).
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {reviews.map((rev, idx) => (
-            <Card key={idx} padding="lg" className="flex flex-col gap-4 border border-border bg-surface-raised relative">
+          {reviews.map((rev) => (
+            <Card key={rev.author} padding="lg" className="flex flex-col gap-4 bg-surface-raised relative">
               <Quote className="w-8 h-8 text-primary/15 absolute top-6 right-6" />
 
               <div className="flex items-center gap-1">
@@ -68,4 +67,4 @@ export const ReviewsSection: React.FC = () => {
       </div>
     </section>
   );
-};
+}

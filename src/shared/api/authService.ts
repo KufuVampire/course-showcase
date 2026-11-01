@@ -1,4 +1,4 @@
-import { Order, User } from './types';
+import type { Order, User } from './types';
 
 export interface AuthService {
   getCurrentUser(): Promise<User | null>;

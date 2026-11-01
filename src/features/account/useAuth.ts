@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { authService, Order, User } from '@/shared/api';
+import { authService, type Order, type User } from '@/shared/api';
 
 export function useAuth() {
   const [user, setUser] = useState<User | null>(null);

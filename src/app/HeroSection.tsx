@@ -1,19 +1,18 @@
-import React from 'react';
 import { ArrowDown, Shield, Sparkles, Award } from 'lucide-react';
 import { Button } from '@/shared/ui';
 
-export const HeroSection: React.FC = () => {
+export function HeroSection() {
   return (
     <section className="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden border-b border-border bg-surface-raised">
-      <div className="max-w-[72rem] mx-auto px-4 sm:px-6 flex flex-col items-center text-center">
+      <div className="max-w-page mx-auto px-4 sm:px-6 flex flex-col items-center text-center">
         {/* Editorial Eyebrow */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-surface-sunken border border-border text-caption text-ink font-medium mb-6">
           <Sparkles className="w-3.5 h-3.5 text-accent" />
-          <span>Практический инженеринг и продуктовый дизайн</span>
+          <span>Практический инжиниринг и продуктовый дизайн</span>
         </div>
 
         {/* Hero Title */}
-        <h1 className="font-display text-display font-bold text-ink max-w-4xl tracking-tight leading-[1.08] mb-6">
+        <h1 className="font-display text-display font-bold text-ink max-w-4xl tracking-tight mb-6">
           Образование от практиков, создающих реальные цифровые системы
         </h1>
 
@@ -24,16 +23,24 @@ export const HeroSection: React.FC = () => {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center gap-4 mb-16 w-full sm:w-auto">
-          <a href="#catalog" className="w-full sm:w-auto">
-            <Button variant="accent" size="lg" fullWidth rightIcon={<ArrowDown className="w-4 h-4" />}>
-              Выбрать программу в каталоге
-            </Button>
-          </a>
-          <a href="#benefits" className="w-full sm:w-auto">
-            <Button variant="outline" size="lg" fullWidth>
-              Как устроено обучение
-            </Button>
-          </a>
+          <Button
+            href="#catalog"
+            variant="accent"
+            size="lg"
+            fullWidth
+            rightIcon={<ArrowDown className="w-4 h-4" />}
+          >
+            Выбрать программу в каталоге
+          </Button>
+
+          <Button
+            href="#benefits"
+            variant="outline"
+            size="lg"
+            fullWidth
+          >
+            Как устроено обучение
+          </Button>
         </div>
 
         {/* Key Indicators / Trust Strip */}
@@ -62,4 +69,4 @@ export const HeroSection: React.FC = () => {
       </div>
     </section>
   );
-};
+}

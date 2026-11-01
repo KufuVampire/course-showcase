@@ -1,12 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useId, useRef, type ReactNode } from 'react';
 import { X } from 'lucide-react';
+import { cx } from '@/shared/lib/cx';
 
 export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   title?: string;
+  ariaLabel?: string;
   description?: string;
-  children: React.ReactNode;
+  children: ReactNode;
   maxWidth?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
@@ -17,58 +19,78 @@ const maxWidthStyles = {
   xl: 'max-w-2xl',
 };
 
-export const Modal: React.FC<ModalProps> = ({
+export function Modal({
   isOpen,
   onClose,
   title,
+  ariaLabel,
   description,
   children,
   maxWidth = 'md',
-}) => {
-  const modalRef = useRef<HTMLDivElement>(null);
+}: ModalProps) {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const titleId = useId();
+  const descId = useId();
 
   useEffect(() => {
-    if (!isOpen) return;
+    const dialog = dialogRef.current;
+    if (!dialog) return;
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose();
+    if (isOpen) {
+      if (!dialog.open) {
+        dialog.showModal();
       }
+    } else {
+      if (dialog.open) {
+        dialog.close();
+      }
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    const handleCancel = (e: Event) => {
+      e.preventDefault();
+      onClose();
     };
 
-    document.body.style.overflow = 'hidden';
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = '';
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [isOpen, onClose]);
+    dialog.addEventListener('cancel', handleCancel);
+    return () => dialog.removeEventListener('cancel', handleCancel);
+  }, [onClose]);
 
   if (!isOpen) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/50 backdrop-blur-xs transition-opacity animate-in fade-in duration-fast"
+    <dialog
+      ref={dialogRef}
+      aria-labelledby={title ? titleId : undefined}
+      aria-label={!title ? ariaLabel || 'Диалоговое окно' : undefined}
+      aria-describedby={description ? descId : undefined}
       onClick={(e) => {
-        if (e.target === e.currentTarget) onClose();
+        if (e.target === dialogRef.current) {
+          onClose();
+        }
       }}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby={title ? 'modal-title' : undefined}
+      className={cx(
+        'w-full bg-surface-raised border border-border rounded-lg shadow-pop p-6 md:p-8 m-auto text-ink outline-none backdrop:bg-ink/50 backdrop:backdrop-blur-xs',
+        maxWidthStyles[maxWidth]
+      )}
     >
-      <div
-        ref={modalRef}
-        className={`w-full ${maxWidthStyles[maxWidth]} bg-surface-raised border border-border rounded-lg shadow-pop p-6 md:p-8 flex flex-col gap-6 relative animate-in zoom-in-95 duration-fast`}
-      >
+      <div className="flex flex-col gap-6">
         <div className="flex items-start justify-between gap-4">
           <div className="flex flex-col gap-1">
             {title && (
-              <h2 id="modal-title" className="font-display text-h2 text-ink font-semibold">
+              <h2 id={titleId} className="font-display text-h2 text-ink font-semibold">
                 {title}
               </h2>
             )}
-            {description && <p className="text-caption text-ink-muted">{description}</p>}
+            {description && (
+              <p id={descId} className="text-caption text-ink-muted">
+                {description}
+              </p>
+            )}
           </div>
 
           <button
@@ -83,6 +105,6 @@ export const Modal: React.FC<ModalProps> = ({
 
         <div className="w-full">{children}</div>
       </div>
-    </div>
+    </dialog>
   );
-};
+}

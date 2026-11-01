@@ -1,7 +1,6 @@
-import React from 'react';
-import { MOCK_PRODUCTS } from '@/shared/api';
+import { MOCK_PRODUCTS } from '@/shared/api/mockData';
 
-export const JsonLd: React.FC = () => {
+export function JsonLd() {
   const schemaData = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -15,13 +14,18 @@ export const JsonLd: React.FC = () => {
         provider: {
           '@type': 'Organization',
           name: 'Практикум.PRO',
-          sameAs: 'https://github.com/KufuVampire/course-showcase',
+          sameAs: 'https://praktikum-pro.dev',
         },
         offers: {
           '@type': 'Offer',
           price: prod.price,
           priceCurrency: 'RUB',
           availability: 'https://schema.org/InStock',
+        },
+        hasCourseInstance: {
+          '@type': 'CourseInstance',
+          courseMode: 'online',
+          courseWorkload: `PT${prod.durationHours}H`,
         },
         instructor: {
           '@type': 'Person',
@@ -32,10 +36,12 @@ export const JsonLd: React.FC = () => {
     })),
   };
 
+  const safeJson = JSON.stringify(schemaData).replace(/</g, '\\u003c');
+
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      dangerouslySetInnerHTML={{ __html: safeJson }}
     />
   );
-};
+}

@@ -1,7 +1,7 @@
-import React from 'react';
 import { Search, X, SlidersHorizontal } from 'lucide-react';
-import { ProductFilters, ProductLevel, ProductType } from '@/shared/api';
+import type { ProductFilters, ProductLevel, ProductType } from '@/shared/api';
 import { Button, Field } from '@/shared/ui';
+import { cx } from '@/shared/lib/cx';
 
 export interface CatalogFiltersProps {
   filters: ProductFilters;
@@ -22,12 +22,12 @@ const typeTabs: { type: ProductType | 'all'; label: string }[] = [
   { type: 'consultation', label: 'Консультации' },
 ];
 
-export const CatalogFilters: React.FC<CatalogFiltersProps> = ({
+export function CatalogFilters({
   filters,
   onFilterChange,
   onReset,
   counts,
-}) => {
+}: CatalogFiltersProps) {
   const isFiltered = Boolean(
     (filters.type && filters.type !== 'all') ||
       (filters.level && filters.level !== 'all') ||
@@ -38,7 +38,7 @@ export const CatalogFilters: React.FC<CatalogFiltersProps> = ({
   return (
     <div className="flex flex-col gap-6 w-full">
       {/* Category Pills */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+      <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" role="tablist">
         {typeTabs.map((tab) => {
           const isActive = (filters.type || 'all') === tab.type;
           const count = counts[tab.type];
@@ -47,18 +47,22 @@ export const CatalogFilters: React.FC<CatalogFiltersProps> = ({
             <button
               key={tab.type}
               type="button"
+              role="tab"
+              aria-selected={isActive}
               onClick={() => onFilterChange({ type: tab.type })}
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-md text-caption font-medium transition-all whitespace-nowrap cursor-pointer select-none ${
+              className={cx(
+                'inline-flex items-center gap-2 px-4 py-2 rounded-md text-caption font-medium transition-all whitespace-nowrap cursor-pointer select-none',
                 isActive
                   ? 'bg-primary text-on-primary shadow-xs'
                   : 'bg-surface-sunken text-ink hover:bg-border/60'
-              }`}
+              )}
             >
               <span>{tab.label}</span>
               <span
-                className={`text-xs px-1.5 py-0.5 rounded-sm ${
+                className={cx(
+                  'text-xs px-1.5 py-0.5 rounded-sm',
                   isActive ? 'bg-on-primary/20 text-on-primary' : 'bg-border/70 text-ink-muted'
-                }`}
+                )}
               >
                 {count}
               </span>
@@ -72,6 +76,8 @@ export const CatalogFilters: React.FC<CatalogFiltersProps> = ({
         {/* Search */}
         <div className="md:col-span-6">
           <Field
+            name="search"
+            aria-label="Поиск по курсам, технологиям, авторам"
             placeholder="Поиск по курсам, технологиям, авторам..."
             value={filters.query || ''}
             onChange={(e) => onFilterChange({ query: e.target.value })}
@@ -145,4 +151,4 @@ export const CatalogFilters: React.FC<CatalogFiltersProps> = ({
       </div>
     </div>
   );
-};
+}

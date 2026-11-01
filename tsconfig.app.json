@@ -22,8 +22,8 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
+    "verbatimModuleSyntax": true,
 
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }

@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
 interface FaqItem {
@@ -29,16 +28,10 @@ const faqs: FaqItem[] = [
   },
 ];
 
-export const FaqSection: React.FC = () => {
-  const [openIdx, setOpenIdx] = useState<number | null>(0);
-
-  const toggle = (idx: number) => {
-    setOpenIdx(openIdx === idx ? null : idx);
-  };
-
+export function FaqSection() {
   return (
-    <section id="faq" className="py-20 md:py-28 bg-surface-raised border-b border-border">
-      <div className="max-w-[72rem] mx-auto px-4 sm:px-6 flex flex-col gap-12">
+    <section id="faq" className="scroll-mt-20 py-20 md:py-28 bg-surface-raised border-b border-border">
+      <div className="max-w-page mx-auto px-4 sm:px-6 flex flex-col gap-12">
         <div className="flex flex-col gap-3 max-w-2xl">
           <span className="text-caption font-semibold text-primary uppercase tracking-wider">
             Ответы на вопросы
@@ -52,37 +45,23 @@ export const FaqSection: React.FC = () => {
         </div>
 
         <div className="max-w-3xl flex flex-col gap-3">
-          {faqs.map((faq, idx) => {
-            const isOpen = openIdx === idx;
-            return (
-              <div
-                key={idx}
-                className="border border-border rounded-lg bg-surface transition-colors overflow-hidden"
-              >
-                <button
-                  type="button"
-                  onClick={() => toggle(idx)}
-                  className="w-full p-5 text-left flex items-center justify-between gap-4 font-display font-semibold text-ink text-base cursor-pointer hover:text-primary transition-colors select-none"
-                  aria-expanded={isOpen}
-                >
-                  <span>{faq.q}</span>
-                  <ChevronDown
-                    className={`w-5 h-5 text-ink-muted shrink-0 transition-transform duration-fast ${
-                      isOpen ? 'rotate-180 text-primary' : ''
-                    }`}
-                  />
-                </button>
+          {faqs.map((faq) => (
+            <details
+              key={faq.q}
+              className="group border border-border rounded-lg bg-surface transition-colors overflow-hidden"
+            >
+              <summary className="list-none p-5 text-left flex items-center justify-between gap-4 font-display font-semibold text-ink text-base cursor-pointer hover:text-primary transition-colors select-none">
+                <span>{faq.q}</span>
+                <ChevronDown className="w-5 h-5 text-ink-muted shrink-0 transition-transform duration-fast group-open:rotate-180 group-open:text-primary" />
+              </summary>
 
-                {isOpen && (
-                  <div className="px-5 pb-5 pt-0 text-caption text-ink-muted leading-relaxed border-t border-border/40 mt-1">
-                    <p className="pt-3">{faq.a}</p>
-                  </div>
-                )}
+              <div className="px-5 pb-5 pt-0 text-caption text-ink-muted leading-relaxed border-t border-border/40 mt-1">
+                <p className="pt-3">{faq.a}</p>
               </div>
-            );
-          })}
+            </details>
+          ))}
         </div>
       </div>
     </section>
   );
-};
+}

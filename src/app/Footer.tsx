@@ -1,10 +1,9 @@
-import React from 'react';
 import { BookOpen } from 'lucide-react';
 
-export const Footer: React.FC = () => {
+export function Footer() {
   return (
     <footer className="w-full bg-surface-sunken border-t border-border py-14">
-      <div className="max-w-[72rem] mx-auto px-4 sm:px-6 flex flex-col gap-10">
+      <div className="max-w-page mx-auto px-4 sm:px-6 flex flex-col gap-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Col */}
           <div className="md:col-span-2 flex flex-col gap-3">
@@ -45,22 +44,23 @@ export const Footer: React.FC = () => {
             <span className="font-semibold text-ink uppercase tracking-wider text-xs">
               Поддержка & Оферта
             </span>
-            <span className="text-ink-muted">support@praktikum-pro.dev</span>
+            <a
+              href="mailto:support@praktikum-pro.dev"
+              className="text-ink-muted hover:text-ink transition-colors"
+            >
+              support@praktikum-pro.dev
+            </a>
             <span className="text-ink-muted">Пн-Пт: 10:00 — 19:00 (МСК)</span>
-            <a href="#" className="text-ink-muted hover:text-ink transition-colors">
-              Публичная оферта
-            </a>
-            <a href="#" className="text-ink-muted hover:text-ink transition-colors">
-              Политика конфиденциальности
-            </a>
+            <span className="text-ink-muted">Публичная оферта № 2026/01</span>
+            <span className="text-ink-muted">Политика конфиденциальности</span>
           </div>
         </div>
 
         <div className="pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-ink-muted">
           <span>© {new Date().getFullYear()} Практикум.PRO. Все права защищены.</span>
-          <span>Разработано на React 19 + Tailwind CSS v4</span>
+          <span>Образовательная платформа</span>
         </div>
       </div>
     </footer>
   );
-};
+}

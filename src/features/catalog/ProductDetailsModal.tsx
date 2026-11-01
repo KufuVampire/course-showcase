@@ -1,8 +1,8 @@
-import React from 'react';
 import { Star, Clock, CheckCircle2, ShieldCheck, ArrowRight, User } from 'lucide-react';
-import { Product } from '@/shared/api';
+import type { Product } from '@/shared/api';
 import { formatDuration, formatPrice } from '@/shared/lib/formatters';
 import { Badge, Button, Modal } from '@/shared/ui';
+import { LEVEL_LABEL, PRODUCT_TYPE_META } from '@/shared/config/product';
 
 export interface ProductDetailsModalProps {
   product: Product | null;
@@ -11,21 +11,28 @@ export interface ProductDetailsModalProps {
   onProceedToCheckout: (product: Product) => void;
 }
 
-export const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
+export function ProductDetailsModal({
   product,
   isOpen,
   onClose,
   onProceedToCheckout,
-}) => {
+}: ProductDetailsModalProps) {
   if (!product) return null;
 
+  const typeMeta = PRODUCT_TYPE_META[product.type];
+
   return (
-    <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      maxWidth="xl"
+      ariaLabel={product.title}
+    >
       <div className="flex flex-col gap-6">
         {/* Header tags and rating */}
         <div className="flex items-center justify-between gap-2 flex-wrap">
           <div className="flex items-center gap-2">
-            <Badge variant="primary">{product.type.toUpperCase()}</Badge>
+            <Badge variant={typeMeta.variant}>{typeMeta.label}</Badge>
             {product.badge && <Badge variant="accent">{product.badge}</Badge>}
           </div>
 
@@ -57,17 +64,19 @@ export const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
           </div>
           <div>
             <span className="text-ink-muted block text-xs">Сложность</span>
-            <span className="font-semibold text-ink mt-0.5 block">{product.level}</span>
+            <span className="font-semibold text-ink mt-0.5 block">{LEVEL_LABEL[product.level]}</span>
           </div>
           <div className="col-span-2 sm:col-span-1">
             <span className="text-ink-muted block text-xs">Формат</span>
-            <span className="font-semibold text-ink mt-0.5 block">Онлайн + практика</span>
+            <span className="font-semibold text-ink mt-0.5 block">
+              {product.type === 'consultation' ? 'Персональный созвон 1-на-1' : 'Онлайн + практика'}
+            </span>
           </div>
         </div>
 
         {/* Description */}
         <div className="flex flex-col gap-2">
-          <h4 className="font-display font-semibold text-ink text-lg">О продукте</h4>
+          <h3 className="font-display font-semibold text-ink text-lg">О продукте</h3>
           <p className="text-body text-ink leading-relaxed">{product.description}</p>
         </div>
 
@@ -91,19 +100,19 @@ export const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
         {/* Syllabus / Program */}
         {product.syllabus && product.syllabus.length > 0 && (
           <div className="flex flex-col gap-3">
-            <h4 className="font-display font-semibold text-ink text-lg">Программа обучения</h4>
+            <h3 className="font-display font-semibold text-ink text-lg">Программа обучения</h3>
             <div className="flex flex-col gap-3">
-              {product.syllabus.map((item, idx) => (
+              {product.syllabus.map((item) => (
                 <div
-                  key={idx}
+                  key={item.title}
                   className="p-3.5 bg-surface-sunken/60 border border-border/70 rounded-md"
                 >
                   <span className="font-semibold text-ink text-caption block mb-1.5">
                     {item.title}
                   </span>
                   <ul className="flex flex-col gap-1 pl-4">
-                    {item.topics.map((t, tIdx) => (
-                      <li key={tIdx} className="text-caption text-ink-muted list-disc">
+                    {item.topics.map((t) => (
+                      <li key={t} className="text-caption text-ink-muted list-disc">
                         {t}
                       </li>
                     ))}
@@ -116,10 +125,10 @@ export const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
 
         {/* What's included */}
         <div className="flex flex-col gap-3">
-          <h4 className="font-display font-semibold text-ink text-lg">Что входит в стоимость</h4>
+          <h3 className="font-display font-semibold text-ink text-lg">Что входит в стоимость</h3>
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-            {product.features.map((feat, idx) => (
-              <li key={idx} className="flex items-center gap-2 text-caption text-ink">
+            {product.features.map((feat) => (
+              <li key={feat} className="flex items-center gap-2 text-caption text-ink">
                 <CheckCircle2 className="w-4 h-4 text-success shrink-0" />
                 <span>{feat}</span>
               </li>
@@ -171,4 +180,4 @@ export const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
       </div>
     </Modal>
   );
-};
+}
