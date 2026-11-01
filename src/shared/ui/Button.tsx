@@ -25,11 +25,11 @@ export type ButtonProps = CommonProps &
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    'bg-primary text-on-primary hover:brightness-110 active:brightness-90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
+    'bg-accent text-on-accent font-semibold shadow-xs hover:brightness-110 active:brightness-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
   secondary:
-    'bg-surface-sunken text-ink hover:brightness-105 active:brightness-95 hover:bg-border/40 active:bg-border/60 focus-visible:ring-2 focus-visible:ring-ink-muted focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
+    'bg-primary text-on-primary font-medium hover:brightness-110 active:brightness-90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
   accent:
-    'bg-accent text-on-accent hover:brightness-110 active:brightness-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
+    'bg-accent text-on-accent font-semibold shadow-xs hover:brightness-110 active:brightness-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
   outline:
     'border border-border text-ink bg-transparent hover:brightness-105 hover:bg-surface-sunken active:brightness-95 active:bg-border/30 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
   ghost:
