@@ -9,6 +9,20 @@ export interface NavbarProps {
   userEmail?: string;
 }
 
+interface NavItem {
+  href: string;
+  label: string;
+  mobileLabel?: string;
+}
+
+const NAV_ITEMS: readonly NavItem[] = [
+  { href: '/#catalog', label: 'Каталог', mobileLabel: 'Каталог программ' },
+  { href: '/#benefits', label: 'Преимущества' },
+  { href: '/#process', label: 'Процесс', mobileLabel: 'Процесс обучения' },
+  { href: '/#reviews', label: 'Отзывы' },
+  { href: '/#faq', label: 'FAQ', mobileLabel: 'Частые вопросы (FAQ)' },
+];
+
 export function Navbar({ onOpenAccount, userEmail }: NavbarProps) {
   const { theme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -68,21 +82,11 @@ export function Navbar({ onOpenAccount, userEmail }: NavbarProps) {
           className="hidden lg:flex items-center gap-6 text-caption font-medium text-ink-muted"
           aria-label="Основная навигация"
         >
-          <a href="/#catalog" className="hover:text-ink transition-colors">
-            Каталог
-          </a>
-          <a href="/#benefits" className="hover:text-ink transition-colors">
-            Преимущества
-          </a>
-          <a href="/#process" className="hover:text-ink transition-colors">
-            Процесс
-          </a>
-          <a href="/#reviews" className="hover:text-ink transition-colors">
-            Отзывы
-          </a>
-          <a href="/#faq" className="hover:text-ink transition-colors">
-            FAQ
-          </a>
+          {NAV_ITEMS.map((item) => (
+            <a key={item.href} href={item.href} className="hover:text-ink transition-colors">
+              {item.label}
+            </a>
+          ))}
         </nav>
 
         {/* Actions (All 36px height) */}
@@ -154,41 +158,16 @@ export function Navbar({ onOpenAccount, userEmail }: NavbarProps) {
             : 'opacity-0 invisible -translate-y-2 pointer-events-none'
         )}
       >
-        <a
-          href="/#catalog"
-          onClick={() => setMobileMenuOpen(false)}
-          className="py-2.5 px-3 rounded-md hover:bg-surface-sunken"
-        >
-          Каталог программ
-        </a>
-        <a
-          href="/#benefits"
-          onClick={() => setMobileMenuOpen(false)}
-          className="py-2.5 px-3 rounded-md hover:bg-surface-sunken"
-        >
-          Преимущества
-        </a>
-        <a
-          href="/#process"
-          onClick={() => setMobileMenuOpen(false)}
-          className="py-2.5 px-3 rounded-md hover:bg-surface-sunken"
-        >
-          Процесс обучения
-        </a>
-        <a
-          href="/#reviews"
-          onClick={() => setMobileMenuOpen(false)}
-          className="py-2.5 px-3 rounded-md hover:bg-surface-sunken"
-        >
-          Отзывы
-        </a>
-        <a
-          href="/#faq"
-          onClick={() => setMobileMenuOpen(false)}
-          className="py-2.5 px-3 rounded-md hover:bg-surface-sunken"
-        >
-          Частые вопросы (FAQ)
-        </a>
+        {NAV_ITEMS.map((item) => (
+          <a
+            key={item.href}
+            href={item.href}
+            onClick={() => setMobileMenuOpen(false)}
+            className="py-2.5 px-3 rounded-md hover:bg-surface-sunken"
+          >
+            {item.mobileLabel || item.label}
+          </a>
+        ))}
       </nav>
     </header>
   );

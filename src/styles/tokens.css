@@ -109,7 +109,13 @@
   border-radius: 9999px;
 }
 
-/* Modal Open Animation */
+/* Modal Lock & Animation */
+html.modal-open,
+body.modal-open {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+}
+
 dialog[open] {
   animation: modal-enter var(--duration-fast) var(--ease-out-soft);
 }
