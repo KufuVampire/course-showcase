@@ -3,25 +3,13 @@ import { Sun, Moon, User as UserIcon } from 'lucide-react';
 import { useTheme } from '@/shared/lib/useTheme';
 import { Button, Logo } from '@/shared/ui';
 import { cn } from '@/shared/lib/cn';
+import { NavLinks } from './NavLinks';
+import { MobileNavbar } from './MobileNavbar';
 
 export interface NavbarProps {
   onOpenAccount: () => void;
   userEmail?: string;
 }
-
-interface NavItem {
-  href: string;
-  label: string;
-  mobileLabel?: string;
-}
-
-const NAV_ITEMS: readonly NavItem[] = [
-  { href: '/#catalog', label: 'Каталог', mobileLabel: 'Каталог программ' },
-  { href: '/#benefits', label: 'Преимущества' },
-  { href: '/#process', label: 'Процесс', mobileLabel: 'Процесс обучения' },
-  { href: '/#reviews', label: 'Отзывы' },
-  { href: '/#faq', label: 'FAQ', mobileLabel: 'Частые вопросы (FAQ)' },
-];
 
 export function Navbar({ onOpenAccount, userEmail }: NavbarProps) {
   const { theme, toggleTheme } = useTheme();
@@ -78,16 +66,7 @@ export function Navbar({ onOpenAccount, userEmail }: NavbarProps) {
         <Logo showSubtitle />
 
         {/* Desktop Navigation (lg+) */}
-        <nav
-          className="hidden lg:flex items-center gap-6 text-caption font-medium text-ink-muted"
-          aria-label="Основная навигация"
-        >
-          {NAV_ITEMS.map((item) => (
-            <a key={item.href} href={item.href} className="hover:text-ink transition-colors">
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        <NavLinks variant="desktop" />
 
         {/* Actions (All 36px height) */}
         <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
@@ -148,27 +127,7 @@ export function Navbar({ onOpenAccount, userEmail }: NavbarProps) {
       </div>
 
       {/* Mobile Absolute Dropdown Menu */}
-      <nav
-        inert={!mobileMenuOpen}
-        aria-label="Мобильная навигация"
-        className={cn(
-          'absolute top-full left-0 right-0 border-b border-border bg-surface-raised shadow-pop px-4 py-4 flex flex-col gap-1 text-caption font-medium text-ink lg:hidden transition-all duration-fast',
-          mobileMenuOpen
-            ? 'opacity-100 visible translate-y-0'
-            : 'opacity-0 invisible -translate-y-2 pointer-events-none'
-        )}
-      >
-        {NAV_ITEMS.map((item) => (
-          <a
-            key={item.href}
-            href={item.href}
-            onClick={() => setMobileMenuOpen(false)}
-            className="py-2.5 px-3 rounded-md hover:bg-surface-sunken"
-          >
-            {item.mobileLabel || item.label}
-          </a>
-        ))}
-      </nav>
+      <MobileNavbar isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
     </header>
   );
 }
