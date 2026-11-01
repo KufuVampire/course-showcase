@@ -5,11 +5,7 @@ export interface SkeletonProps extends HTMLAttributes<HTMLDivElement> {
   variant?: 'rectangular' | 'circular' | 'text';
 }
 
-export function Skeleton({
-  variant = 'rectangular',
-  className = '',
-  ...rest
-}: SkeletonProps) {
+export function Skeleton({ variant = 'rectangular', className = '', ...rest }: SkeletonProps) {
   const variantStyles = {
     rectangular: 'rounded-md',
     circular: 'rounded-full',

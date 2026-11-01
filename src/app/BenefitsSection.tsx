@@ -30,7 +30,10 @@ const benefits = [
 
 export function BenefitsSection() {
   return (
-    <section id="benefits" className="scroll-mt-20 py-20 md:py-28 bg-surface-sunken/40 border-b border-border">
+    <section
+      id="benefits"
+      className="scroll-mt-20 py-20 md:py-28 bg-surface-sunken/40 border-b border-border"
+    >
       <div className="max-w-page mx-auto px-4 sm:px-6 flex flex-col gap-12">
         <div className="flex flex-col gap-3 max-w-2xl">
           <span className="text-caption font-semibold text-primary uppercase tracking-wider">
@@ -40,7 +43,8 @@ export function BenefitsSection() {
             Почему практикующие инженеры выбирают наши программы
           </h2>
           <p className="text-body text-ink-muted leading-relaxed">
-            Мы отказались от растянутых полугодовых лекций в пользу концентрированных практикумов и индивидуальной работы над вашим проектом.
+            Мы отказались от растянутых полугодовых лекций в пользу концентрированных практикумов и
+            индивидуальной работы над вашим проектом.
           </p>
         </div>
 
@@ -55,9 +59,7 @@ export function BenefitsSection() {
                 <h3 className="font-display font-bold text-lg text-ink leading-snug">
                   {item.title}
                 </h3>
-                <p className="text-caption text-ink-muted leading-relaxed">
-                  {item.description}
-                </p>
+                <p className="text-caption text-ink-muted leading-relaxed">{item.description}</p>
               </Card>
             );
           })}

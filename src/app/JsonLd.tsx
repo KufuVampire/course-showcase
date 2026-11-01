@@ -1,10 +1,14 @@
-import { MOCK_PRODUCTS } from '@/shared/api/mockData';
+import type { Product } from '@/shared/api';
 
-export function JsonLd() {
+export interface JsonLdProps {
+  products: Product[];
+}
+
+export function JsonLd({ products }: JsonLdProps) {
   const schemaData = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    itemListElement: MOCK_PRODUCTS.map((prod, idx) => ({
+    itemListElement: products.map((prod, idx) => ({
       '@type': 'ListItem',
       position: idx + 1,
       item: {
@@ -38,10 +42,5 @@ export function JsonLd() {
 
   const safeJson = JSON.stringify(schemaData).replace(/</g, '\\u003c');
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: safeJson }}
-    />
-  );
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJson }} />;
 }

@@ -22,12 +22,7 @@ export function ProductDetailsModal({
   const typeMeta = PRODUCT_TYPE_META[product.type];
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      maxWidth="xl"
-      ariaLabel={product.title}
-    >
+    <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl" ariaLabel={product.title}>
       <div className="flex flex-col gap-6">
         {/* Header tags and rating */}
         <div className="flex items-center justify-between gap-2 flex-wrap">
@@ -45,12 +40,8 @@ export function ProductDetailsModal({
 
         {/* Title and subtitle */}
         <div className="flex flex-col gap-2">
-          <h2 className="font-display text-h2 font-bold text-ink leading-tight">
-            {product.title}
-          </h2>
-          <p className="text-body text-ink-muted leading-relaxed">
-            {product.subtitle}
-          </p>
+          <h2 className="font-display text-h2 font-bold text-ink leading-tight">{product.title}</h2>
+          <p className="text-body text-ink-muted leading-relaxed">{product.subtitle}</p>
         </div>
 
         {/* Quick info row */}
@@ -64,7 +55,9 @@ export function ProductDetailsModal({
           </div>
           <div>
             <span className="text-ink-muted block text-xs">Сложность</span>
-            <span className="font-semibold text-ink mt-0.5 block">{LEVEL_LABEL[product.level]}</span>
+            <span className="font-semibold text-ink mt-0.5 block">
+              {LEVEL_LABEL[product.level]}
+            </span>
           </div>
           <div className="col-span-2 sm:col-span-1">
             <span className="text-ink-muted block text-xs">Формат</span>

@@ -30,7 +30,11 @@ export function Field({
       {label && (
         <label htmlFor={inputId} className="text-caption font-medium text-ink select-none">
           {label}
-          {required && <span className="text-danger ml-1" aria-hidden="true">*</span>}
+          {required && (
+            <span className="text-danger ml-1" aria-hidden="true">
+              *
+            </span>
+          )}
         </label>
       )}
 
@@ -57,9 +61,7 @@ export function Field({
         />
 
         {rightElement && (
-          <div className="absolute right-3.5 text-ink-muted flex items-center">
-            {rightElement}
-          </div>
+          <div className="absolute right-3.5 text-ink-muted flex items-center">{rightElement}</div>
         )}
       </div>
 

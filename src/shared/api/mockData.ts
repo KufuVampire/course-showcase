@@ -6,7 +6,8 @@ export const MOCK_PRODUCTS: Product[] = [
     slug: 'react-ts-architecture',
     type: 'course',
     title: 'Архитектура React & TypeScript приложений',
-    subtitle: 'От монолита к FSD: масштабируемый стейт, TanStack Query и типизация без компромиссов.',
+    subtitle:
+      'От монолита к FSD: масштабируемый стейт, TanStack Query и типизация без компромиссов.',
     description:
       'Глубокий курс для frontend-разработчиков, желающих перейти на уровень Middle+/Senior. Мы разберем проектирование больших клиентских систем, правильное разделение слоев, изоляцию побочных эффектов и построение надежного DX.',
     price: 34900,
@@ -28,15 +29,27 @@ export const MOCK_PRODUCTS: Product[] = [
     syllabus: [
       {
         title: 'Модуль 1: Архитектурные паттерны фронтенда',
-        topics: ['Feature-Sliced Design на практике', 'Слои, сегменты и правила импорта', 'Контроль циклических зависимостей'],
+        topics: [
+          'Feature-Sliced Design на практике',
+          'Слои, сегменты и правила импорта',
+          'Контроль циклических зависимостей',
+        ],
       },
       {
         title: 'Модуль 2: Управление серверным и клиентским стейтом',
-        topics: ['Кэширование и инвалидация с TanStack Query', 'Оптимистичные обновления и кэш-нормализация', 'Zustand vs Signal-подходы'],
+        topics: [
+          'Кэширование и инвалидация с TanStack Query',
+          'Оптимистичные обновления и кэш-нормализация',
+          'Zustand vs Signal-подходы',
+        ],
       },
       {
         title: 'Модуль 3: Продвинутый TypeScript',
-        topics: ['Conditional Types и Template Literals', 'Branded Types для безопасных DTO', 'Codegen из OpenAPI схем'],
+        topics: [
+          'Conditional Types и Template Literals',
+          'Branded Types для безопасных DTO',
+          'Codegen из OpenAPI схем',
+        ],
       },
       {
         title: 'Модуль 4: Тестирование и надежность',
@@ -53,7 +66,8 @@ export const MOCK_PRODUCTS: Product[] = [
     slug: 'tailwind-v4-design-systems',
     type: 'workshop',
     title: 'Интенсив: Современные дизайн-системы и Tailwind v4',
-    subtitle: 'Переход на @theme, каскадные слои, утилитарная типографика и отказ от произвольных классов.',
+    subtitle:
+      'Переход на @theme, каскадные слои, утилитарная типографика и отказ от произвольных классов.',
     description:
       'Интенсивный 8-часовой воркшоп с живым кодингом: построим готовую масштабируемую дизайн-систему с нуля, внедрим семантические токены, темную тему без мельканий и строгие дизайн-контракты.',
     price: 12900,
@@ -74,11 +88,19 @@ export const MOCK_PRODUCTS: Product[] = [
     syllabus: [
       {
         title: 'Часть 1: Анатомия токенов в CSS и Tailwind v4',
-        topics: ['Семантика против названий цветов', 'Работа с @theme и @layer', 'Fluid typography и Clamp'],
+        topics: [
+          'Семантика против названий цветов',
+          'Работа с @theme и @layer',
+          'Fluid typography и Clamp',
+        ],
       },
       {
         title: 'Часть 2: Доступность и темы',
-        topics: ['Контрастность AA/AAA', 'Бесшовное переключение dark/light', 'Фокус-ловушки и клавиатурная навигация'],
+        topics: [
+          'Контрастность AA/AAA',
+          'Бесшовное переключение dark/light',
+          'Фокус-ловушки и клавиатурная навигация',
+        ],
       },
     ],
     rating: 4.88,
@@ -91,7 +113,8 @@ export const MOCK_PRODUCTS: Product[] = [
     slug: 'portfolio-and-cv-review',
     type: 'consultation',
     title: 'Индивидуальный разбор: Резюме и код-ревью пет-проекта',
-    subtitle: 'Часовая 1-на-1 сессия с Senior-разработчиком. Найдем слабые места, усилим офферы и подготовим к скринингам.',
+    subtitle:
+      'Часовая 1-на-1 сессия с Senior-разработчиком. Найдем слабые места, усилим офферы и подготовим к скринингам.',
     description:
       'Глубокий персональный аудит вашего резюме, профиля GitHub и ключевого проекта. Вы получите конкретный роадмап доработок, устранение грубых ошибок и скрипт самопрезентации для собеседований.',
     price: 8500,
@@ -119,7 +142,8 @@ export const MOCK_PRODUCTS: Product[] = [
     slug: 'nextjs-production-mastery',
     type: 'course',
     title: 'Next.js 15: Production-ready веб-приложения',
-    subtitle: 'Server Components, Streaming, Server Actions, Caching и оптимизация Core Web Vitals.',
+    subtitle:
+      'Server Components, Streaming, Server Actions, Caching и оптимизация Core Web Vitals.',
     description:
       'Практический курс по созданию быстрых и устойчивых веб-сервисов на Next.js App Router. Реальные кейсы: SEO, авторизация через сессии и JWT, работа с базами данных и деплой.',
     price: 38000,
@@ -147,7 +171,8 @@ export const MOCK_PRODUCTS: Product[] = [
     slug: 'ui-unslop-masterclass',
     type: 'workshop',
     title: 'Мастер-класс: Устранение «AI Slop» в интерфейсах',
-    subtitle: 'Превращаем сгенерированные шаблоны в премиальный и характерный UI с продуманной типографикой.',
+    subtitle:
+      'Превращаем сгенерированные шаблоны в премиальный и характерный UI с продуманной типографикой.',
     description:
       'Учимся отличать безвкусные шаблонные сетки от взвешенного продуктового дизайна. Разбираем иерархию, ритм шрифтов, тихие фоны и точечные акценты.',
     price: 9900,
@@ -173,7 +198,8 @@ export const MOCK_PRODUCTS: Product[] = [
     slug: 'career-strategy-consultation',
     type: 'consultation',
     title: 'Карьерная стратегия: Переход из Junior в Middle+',
-    subtitle: 'Как выстроить вектор роста, закрыть пробелы в Computer Science и выйти на стабильный рост грейда.',
+    subtitle:
+      'Как выстроить вектор роста, закрыть пробелы в Computer Science и выйти на стабильный рост грейда.',
     description:
       'Персональная диагностика навыков: составим матрицу компетенций, выявим слепые зоны и выстроим стратегию перехода на следующий уровень дохода и ответственности.',
     price: 7900,

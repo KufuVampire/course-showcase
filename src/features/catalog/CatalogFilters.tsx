@@ -22,17 +22,12 @@ const typeTabs: { type: ProductType | 'all'; label: string }[] = [
   { type: 'consultation', label: 'Консультации' },
 ];
 
-export function CatalogFilters({
-  filters,
-  onFilterChange,
-  onReset,
-  counts,
-}: CatalogFiltersProps) {
+export function CatalogFilters({ filters, onFilterChange, onReset, counts }: CatalogFiltersProps) {
   const isFiltered = Boolean(
     (filters.type && filters.type !== 'all') ||
-      (filters.level && filters.level !== 'all') ||
-      filters.query ||
-      (filters.sortBy && filters.sortBy !== 'popular')
+    (filters.level && filters.level !== 'all') ||
+    filters.query ||
+    (filters.sortBy && filters.sortBy !== 'popular')
   );
 
   return (

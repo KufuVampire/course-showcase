@@ -27,7 +27,10 @@ const reviews = [
 
 export function ReviewsSection() {
   return (
-    <section id="reviews" className="scroll-mt-20 py-20 md:py-28 bg-surface-sunken/40 border-b border-border">
+    <section
+      id="reviews"
+      className="scroll-mt-20 py-20 md:py-28 bg-surface-sunken/40 border-b border-border"
+    >
       <div className="max-w-page mx-auto px-4 sm:px-6 flex flex-col gap-12">
         <div className="flex flex-col gap-3 max-w-2xl">
           <span className="text-caption font-semibold text-primary uppercase tracking-wider">
@@ -43,7 +46,11 @@ export function ReviewsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {reviews.map((rev) => (
-            <Card key={rev.author} padding="lg" className="flex flex-col gap-4 bg-surface-raised relative">
+            <Card
+              key={rev.author}
+              padding="lg"
+              className="flex flex-col gap-4 bg-surface-raised relative"
+            >
               <Quote className="w-8 h-8 text-primary/15 absolute top-6 right-6" />
 
               <div className="flex items-center gap-1">
@@ -52,9 +59,7 @@ export function ReviewsSection() {
                 ))}
               </div>
 
-              <p className="text-caption text-ink leading-relaxed italic">
-                «{rev.text}»
-              </p>
+              <p className="text-caption text-ink leading-relaxed italic">«{rev.text}»</p>
 
               <div className="pt-4 border-t border-border/60 mt-auto flex flex-col">
                 <span className="font-display font-bold text-ink text-sm">{rev.author}</span>

@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   color-scheme: light;
@@ -6,25 +6,25 @@
 
 @theme {
   /* semantic colors */
-  --color-surface: #FBFAF7;
-  --color-surface-raised: #FFFFFF;
-  --color-surface-sunken: #F3F1EC;
-  --color-ink: #14181F;
-  --color-ink-muted: #5B6370;
-  --color-border: #E4E0D8;
-  --color-primary: #0F5C54;
-  --color-on-primary: #FFFFFF;
-  --color-accent: #D97706;
-  --color-on-accent: #14181F;
-  --color-type-consult: #4F46E5;
+  --color-surface: #fbfaf7;
+  --color-surface-raised: #ffffff;
+  --color-surface-sunken: #f3f1ec;
+  --color-ink: #14181f;
+  --color-ink-muted: #5b6370;
+  --color-border: #e4e0d8;
+  --color-primary: #0f5c54;
+  --color-on-primary: #ffffff;
+  --color-accent: #d97706;
+  --color-on-accent: #14181f;
+  --color-type-consult: #4f46e5;
   --color-success: #166534;
-  --color-warning: #92400E;
-  --color-danger: #B42318;
-  --color-info: #1D5FA8;
+  --color-warning: #92400e;
+  --color-danger: #b42318;
+  --color-info: #1d5fa8;
 
   /* typography */
-  --font-display: "Literata", Georgia, serif;
-  --font-sans: "Onest", system-ui, sans-serif;
+  --font-display: 'Literata', Georgia, serif;
+  --font-sans: 'Onest', system-ui, sans-serif;
   --text-display: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);
   --text-display--line-height: 1.05;
   --text-h2: clamp(1.75rem, 1.3rem + 1.8vw, 2.75rem);
@@ -55,22 +55,22 @@
   --duration-base: 240ms;
 }
 
-[data-theme="dark"] {
+[data-theme='dark'] {
   color-scheme: dark;
-  --color-surface: #0F1216;
-  --color-surface-raised: #171B21;
-  --color-surface-sunken: #0B0D10;
-  --color-ink: #F1EFE9;
-  --color-ink-muted: #A3AAB5;
-  --color-border: #272D36;
-  --color-primary: #4FB3A6;
-  --color-on-primary: #0B0D10;
-  --color-accent: #FBBF24;
-  --color-type-consult: #A79AF5;
-  --color-success: #4ADE80;
-  --color-warning: #FDE047;
-  --color-danger: #F87171;
-  --color-info: #60A5FA;
+  --color-surface: #0f1216;
+  --color-surface-raised: #171b21;
+  --color-surface-sunken: #0b0d10;
+  --color-ink: #f1efe9;
+  --color-ink-muted: #a3aab5;
+  --color-border: #272d36;
+  --color-primary: #4fb3a6;
+  --color-on-primary: #0b0d10;
+  --color-accent: #fbbf24;
+  --color-type-consult: #a79af5;
+  --color-success: #4ade80;
+  --color-warning: #fde047;
+  --color-danger: #f87171;
+  --color-info: #60a5fa;
 }
 
 @utility duration-fast {

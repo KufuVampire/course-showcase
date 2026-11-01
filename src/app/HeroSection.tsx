@@ -18,7 +18,8 @@ export function HeroSection() {
 
         {/* Hero Subtitle */}
         <p className="font-sans text-body text-ink-muted max-w-2xl leading-relaxed text-lg mb-10">
-          Сфокусированные программы без воды: архитектура приложений, дизайн-системы нового поколения и персональные карьерные консультации с разбором вашего кода.
+          Сфокусированные программы без воды: архитектура приложений, дизайн-системы нового
+          поколения и персональные карьерные консультации с разбором вашего кода.
         </p>
 
         {/* CTA Buttons */}
@@ -33,12 +34,7 @@ export function HeroSection() {
             Выбрать программу в каталоге
           </Button>
 
-          <Button
-            href="#benefits"
-            variant="outline"
-            size="lg"
-            fullWidth
-          >
+          <Button href="#benefits" variant="outline" size="lg" fullWidth>
             Как устроено обучение
           </Button>
         </div>
@@ -55,7 +51,9 @@ export function HeroSection() {
 
           <div className="flex flex-col items-center gap-1 border-y sm:border-y-0 sm:border-x border-border/80 py-4 sm:py-0">
             <span className="font-display font-bold text-2xl text-ink">100% практика</span>
-            <span className="text-caption text-ink-muted">Реальные продакшн-задачи в портфолио</span>
+            <span className="text-caption text-ink-muted">
+              Реальные продакшн-задачи в портфолио
+            </span>
           </div>
 
           <div className="flex flex-col items-center gap-1">

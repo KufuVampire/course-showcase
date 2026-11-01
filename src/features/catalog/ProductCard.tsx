@@ -10,21 +10,12 @@ export interface ProductCardProps {
   onCheckout: (product: Product) => void;
 }
 
-export function ProductCard({
-  product,
-  onOpenDetails,
-  onCheckout,
-}: ProductCardProps) {
+export function ProductCard({ product, onOpenDetails, onCheckout }: ProductCardProps) {
   const typeMeta = PRODUCT_TYPE_META[product.type];
   const hasInstallments = product.price >= 10000 && product.type !== 'consultation';
 
   return (
-    <Card
-      as="article"
-      hoverable
-      padding="none"
-      className="flex flex-col h-full overflow-hidden"
-    >
+    <Card as="article" hoverable padding="none" className="flex flex-col h-full overflow-hidden">
       {/* Card Header Media Accent */}
       <div className="p-6 pb-4 flex flex-col gap-3">
         <div className="flex items-center justify-between gap-2 flex-wrap">

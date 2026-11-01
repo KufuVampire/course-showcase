@@ -12,7 +12,7 @@ import type { CheckoutPayload, Order, PaymentMethod, Product } from '@/shared/ap
 import { paymentGateway } from '@/shared/api';
 import { formatPrice } from '@/shared/lib/formatters';
 import { applyPromo, type PromoDiscount } from '@/shared/lib/promo';
-import { Button, Field, Modal } from '@/shared/ui';
+import { Button, Checkbox, Field, Modal } from '@/shared/ui';
 import { useAuthContext } from '@/app/AuthContext';
 import { cx } from '@/shared/lib/cx';
 
@@ -25,12 +25,19 @@ export interface CheckoutModalProps {
 
 type CheckoutStep = 'form' | 'processing' | 'success' | 'error';
 
-export function CheckoutModal({
-  product,
-  isOpen,
-  onClose,
-  onOpenAccount,
-}: CheckoutModalProps) {
+interface PaymentOption {
+  id: PaymentMethod;
+  label: string;
+  icon: typeof CreditCard;
+}
+
+const paymentOptions: PaymentOption[] = [
+  { id: 'card', label: 'Карта РФ / Мир', icon: CreditCard },
+  { id: 'sbp', label: 'СБП (QR-код)', icon: QrCode },
+  { id: 'installments', label: 'Рассрочка 0%', icon: CalendarCheck },
+];
+
+export function CheckoutModal({ product, isOpen, onClose, onOpenAccount }: CheckoutModalProps) {
   const { refreshOrders } = useAuthContext();
   const [step, setStep] = useState<CheckoutStep>('form');
   const [order, setOrder] = useState<Order | null>(null);
@@ -242,75 +249,51 @@ export function CheckoutModal({
             </div>
             {promoError && <span className="text-caption text-danger">{promoError}</span>}
             {promoApplied && (
-              <span className="text-caption text-success">
-                ✓ Промокод успешно активирован
-              </span>
+              <span className="text-caption text-success">✓ Промокод успешно активирован</span>
             )}
           </div>
 
-          {/* Payment Methods */}
+          {/* Payment Methods RadioGroup */}
           <div className="flex flex-col gap-2">
             <span className="text-caption font-medium text-ink">Способ оплаты</span>
-            <div className="grid grid-cols-3 gap-3">
-              <button
-                type="button"
-                onClick={() => setPaymentMethod('card')}
-                className={cx(
-                  'p-3 rounded-md border flex flex-col items-center gap-2 cursor-pointer transition-colors',
-                  paymentMethod === 'card'
-                    ? 'border-primary bg-primary/5 text-primary font-semibold ring-1 ring-primary'
-                    : 'border-border bg-surface-raised text-ink hover:bg-surface-sunken'
-                )}
-              >
-                <CreditCard className="w-5 h-5" />
-                <span className="text-caption">Карта РФ / Мир</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setPaymentMethod('sbp')}
-                className={cx(
-                  'p-3 rounded-md border flex flex-col items-center gap-2 cursor-pointer transition-colors',
-                  paymentMethod === 'sbp'
-                    ? 'border-primary bg-primary/5 text-primary font-semibold ring-1 ring-primary'
-                    : 'border-border bg-surface-raised text-ink hover:bg-surface-sunken'
-                )}
-              >
-                <QrCode className="w-5 h-5" />
-                <span className="text-caption">СБП (QR-код)</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setPaymentMethod('installments')}
-                className={cx(
-                  'p-3 rounded-md border flex flex-col items-center gap-2 cursor-pointer transition-colors',
-                  paymentMethod === 'installments'
-                    ? 'border-primary bg-primary/5 text-primary font-semibold ring-1 ring-primary'
-                    : 'border-border bg-surface-raised text-ink hover:bg-surface-sunken'
-                )}
-              >
-                <CalendarCheck className="w-5 h-5" />
-                <span className="text-caption">Рассрочка 0%</span>
-              </button>
+            <div
+              role="radiogroup"
+              aria-label="Выбор способа оплаты"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-3"
+            >
+              {paymentOptions.map((opt) => {
+                const Icon = opt.icon;
+                const isSelected = paymentMethod === opt.id;
+                return (
+                  <button
+                    key={opt.id}
+                    type="button"
+                    role="radio"
+                    aria-checked={isSelected}
+                    onClick={() => setPaymentMethod(opt.id)}
+                    className={cx(
+                      'p-3 rounded-md border flex flex-col items-center justify-center gap-2 cursor-pointer transition-colors text-center',
+                      isSelected
+                        ? 'border-primary bg-primary/5 text-primary font-semibold ring-1 ring-primary'
+                        : 'border-border bg-surface-raised text-ink hover:bg-surface-sunken'
+                    )}
+                  >
+                    <Icon className="w-5 h-5 shrink-0" />
+                    <span className="text-caption">{opt.label}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
           {/* Terms checkbox */}
-          <div className="flex flex-col gap-1">
-            <label className="flex items-start gap-2.5 cursor-pointer select-none">
-              <input
-                type="checkbox"
-                checked={agreed}
-                onChange={(e) => setAgreed(e.target.checked)}
-                className="mt-1 h-4 w-4 rounded-sm border-border accent-primary cursor-pointer"
-              />
-              <span className="text-caption text-ink-muted leading-tight">
-                Я согласен с условиями публичной оферты и политикой обработки персональных данных.
-              </span>
-            </label>
-            {errors.agreed && <span className="text-caption text-danger">{errors.agreed}</span>}
-          </div>
+          <Checkbox
+            label="Я согласен с условиями публичной оферты и политикой обработки персональных данных."
+            checked={agreed}
+            onChange={(e) => setAgreed(e.target.checked)}
+            error={errors.agreed}
+            required
+          />
 
           {/* Submit */}
           <Button
@@ -401,7 +384,8 @@ export function CheckoutModal({
           </div>
 
           <p className="text-caption text-ink-muted">
-            Деньги не были списаны. Вы можете проверить введенные данные или выбрать другой метод оплаты.
+            Деньги не были списаны. Вы можете проверить введенные данные или выбрать другой метод
+            оплаты.
           </p>
 
           <div className="flex items-center gap-3 w-full">

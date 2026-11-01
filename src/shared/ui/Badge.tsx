@@ -2,13 +2,7 @@ import type { HTMLAttributes, ReactNode } from 'react';
 import { cx } from '@/shared/lib/cx';
 
 export type BadgeVariant =
-  | 'default'
-  | 'primary'
-  | 'accent'
-  | 'consult'
-  | 'success'
-  | 'warning'
-  | 'danger';
+  'default' | 'primary' | 'accent' | 'consult' | 'success' | 'warning' | 'danger';
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   variant?: BadgeVariant;

@@ -16,7 +16,9 @@ export type PaymentResult = PaymentSuccess | PaymentFailure;
 
 export interface PaymentGateway {
   processPayment(payload: CheckoutPayload): Promise<PaymentResult>;
-  validatePromo(code: string): Promise<{ valid: boolean; discountPercent?: number; discountAmount?: number }>;
+  validatePromo(
+    code: string
+  ): Promise<{ valid: boolean; discountPercent?: number; discountAmount?: number }>;
 }
 
 export class MockPaymentGateway implements PaymentGateway {
@@ -26,7 +28,9 @@ export class MockPaymentGateway implements PaymentGateway {
     this.delayMs = delayMs;
   }
 
-  async validatePromo(code: string): Promise<{ valid: boolean; discountPercent?: number; discountAmount?: number }> {
+  async validatePromo(
+    code: string
+  ): Promise<{ valid: boolean; discountPercent?: number; discountAmount?: number }> {
     await new Promise((r) => setTimeout(r, 200));
     const upper = code.trim().toUpperCase();
     if (upper === 'PROMO10' || upper === 'FRONTEND') {
@@ -42,7 +46,10 @@ export class MockPaymentGateway implements PaymentGateway {
     await new Promise((r) => setTimeout(r, this.delayMs));
 
     // Support intentional failure for testing UI error state
-    if (payload.email.toLowerCase().includes('fail') || payload.fullName.toLowerCase().includes('ошибка')) {
+    if (
+      payload.email.toLowerCase().includes('fail') ||
+      payload.fullName.toLowerCase().includes('ошибка')
+    ) {
       return {
         success: false,
         error: 'Банк отклонил транзакцию. Проверьте реквизиты или попробуйте другой способ оплаты.',

@@ -37,15 +37,15 @@ const variantStyles: Record<ButtonVariant, string> = {
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
-  sm: 'text-caption py-1.5 px-3 rounded-sm gap-1.5',
-  md: 'text-body py-2.5 px-5 rounded-md gap-2 font-medium',
-  lg: 'text-body py-3.5 px-7 rounded-md gap-2.5 font-semibold',
+  sm: 'text-caption h-8 py-1.5 px-3 rounded-sm gap-1.5',
+  md: 'text-body h-10 py-2 px-5 rounded-md gap-2 font-medium',
+  lg: 'text-body h-12 py-3 px-7 rounded-md gap-2.5 font-semibold',
 };
 
 const iconOnlySizeStyles: Record<ButtonSize, string> = {
-  sm: 'p-1.5 rounded-sm',
-  md: 'p-2.5 rounded-md',
-  lg: 'p-3.5 rounded-md',
+  sm: 'w-8 h-8 p-1.5 rounded-sm',
+  md: 'w-10 h-10 p-2.5 rounded-md',
+  lg: 'w-12 h-12 p-3 rounded-md',
 };
 
 export function Button({
@@ -61,7 +61,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const baseStyles =
-    'inline-flex items-center justify-center transition-colors cursor-pointer select-none outline-none disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed text-center';
+    'inline-flex items-center justify-center transition-colors cursor-pointer select-none outline-none whitespace-nowrap disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed text-center';
 
   const classes = cx(
     baseStyles,
@@ -92,15 +92,14 @@ export function Button({
     );
   }
 
-  const { type = 'button', disabled, ...buttonRest } = props as ButtonHTMLAttributes<HTMLButtonElement>;
+  const {
+    type = 'button',
+    disabled,
+    ...buttonRest
+  } = props as ButtonHTMLAttributes<HTMLButtonElement>;
 
   return (
-    <button
-      type={type}
-      disabled={disabled || isLoading}
-      className={classes}
-      {...buttonRest}
-    >
+    <button type={type} disabled={disabled || isLoading} className={classes} {...buttonRest}>
       {content}
     </button>
   );

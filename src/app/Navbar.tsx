@@ -15,7 +15,7 @@ export function Navbar({ onOpenAccount, userEmail }: NavbarProps) {
   return (
     <header className="sticky top-0 z-40 w-full bg-surface/90 backdrop-blur-md border-b border-border transition-colors">
       <a
-        href="#catalog"
+        href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-on-primary focus:rounded-md"
       >
         Перейти к содержимому

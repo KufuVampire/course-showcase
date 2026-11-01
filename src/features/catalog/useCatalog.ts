@@ -41,6 +41,8 @@ export function useCatalog() {
     };
   }, []);
 
+  const { type, level, sortBy, maxPrice } = filters;
+
   const loadProducts = useCallback(async (currentFilters: ProductFilters, q: string) => {
     setIsLoading(true);
     setError(null);
@@ -74,7 +76,10 @@ export function useCatalog() {
     const eff = async () => {
       try {
         const data = await catalogApi.getProducts({
-          ...filters,
+          type,
+          level,
+          sortBy,
+          maxPrice,
           query: debouncedQuery,
         });
         if (!cancel) {
@@ -95,7 +100,7 @@ export function useCatalog() {
     return () => {
       cancel = true;
     };
-  }, [filters.type, filters.level, filters.sortBy, filters.maxPrice, debouncedQuery]);
+  }, [type, level, sortBy, maxPrice, debouncedQuery]);
 
   const updateFilters = useCallback((updated: Partial<ProductFilters>) => {
     setFilters((prev) => ({ ...prev, ...updated }));

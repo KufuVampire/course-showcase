@@ -30,7 +30,10 @@ const faqs: FaqItem[] = [
 
 export function FaqSection() {
   return (
-    <section id="faq" className="scroll-mt-20 py-20 md:py-28 bg-surface-raised border-b border-border">
+    <section
+      id="faq"
+      className="scroll-mt-20 py-20 md:py-28 bg-surface-raised border-b border-border"
+    >
       <div className="max-w-page mx-auto px-4 sm:px-6 flex flex-col gap-12">
         <div className="flex flex-col gap-3 max-w-2xl">
           <span className="text-caption font-semibold text-primary uppercase tracking-wider">
