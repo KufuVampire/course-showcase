@@ -52,23 +52,23 @@ export function BenefitsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
           {benefits.map((item) => {
             const Icon = item.icon;
             return (
               <Card
                 key={item.title}
-                padding="md"
-                className="flex flex-col gap-3.5 bg-surface-raised border border-border"
+                padding="none"
+                className="flex flex-col gap-3.5 lg:gap-5 p-5 sm:p-6 lg:p-7 bg-surface-raised border border-border h-full"
               >
                 <div className="flex items-center justify-between">
-                  <Icon className="w-5 h-5 text-primary" />
-                  <span className="font-mono text-xs text-ink-muted/80">{item.index}</span>
+                  <Icon className="w-5 h-5 lg:w-6 lg:h-6 text-primary" />
+                  <span className="font-mono text-xs lg:text-sm text-ink-muted/80">{item.index}</span>
                 </div>
-                <h3 className="font-display font-semibold text-base text-ink leading-snug">
+                <h3 className="font-display font-semibold text-base lg:text-title text-ink leading-snug">
                   {item.title}
                 </h3>
-                <p className="text-caption text-ink-muted leading-relaxed text-pretty">
+                <p className="text-caption lg:text-body text-ink-muted leading-relaxed lg:leading-relaxed text-pretty">
                   {item.description}
                 </p>
               </Card>

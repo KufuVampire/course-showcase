@@ -120,12 +120,12 @@ export function ProcessSection() {
 
         {/* MODE 1: QUIZ TRACK SELECTOR */}
         {mode === 'quiz' ? (
-          <div className="p-6 sm:p-8 rounded-lg border border-border bg-surface-sunken/40 flex flex-col gap-8">
+          <div className="p-6 sm:p-8 lg:p-10 rounded-lg border border-border bg-surface-sunken/40 flex flex-col gap-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Question 1: Grade */}
               <div className="flex flex-col gap-3">
                 <span className="font-mono text-xs text-primary font-medium">Шаг 1 из 2</span>
-                <span className="font-display font-semibold text-base text-ink">
+                <span className="font-display font-semibold text-base lg:text-title text-ink">
                   Ваш текущий грейд:
                 </span>
                 <div className="grid grid-cols-2 gap-2.5">
@@ -160,7 +160,7 @@ export function ProcessSection() {
               {/* Question 2: Goal */}
               <div className="flex flex-col gap-3">
                 <span className="font-mono text-xs text-primary font-medium">Шаг 2 из 2</span>
-                <span className="font-display font-semibold text-base text-ink">
+                <span className="font-display font-semibold text-base lg:text-title text-ink">
                   Главный приоритет:
                 </span>
                 <div className="flex flex-col gap-2">
@@ -188,7 +188,7 @@ export function ProcessSection() {
             </div>
 
             {/* Recommendation Card */}
-            <div className="p-5 sm:p-6 rounded-md bg-surface-raised border border-border/90 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div className="p-5 sm:p-6 lg:p-7 rounded-md bg-surface-raised border border-border/90 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
               <div className="flex flex-col gap-2">
                 <div className="flex items-center gap-2">
                   <span className="font-mono text-xs px-2 py-0.5 rounded-sm bg-accent/20 text-ink border border-accent/40 font-medium">
@@ -196,10 +196,10 @@ export function ProcessSection() {
                   </span>
                   <span className="text-xs text-ink-muted font-mono">{recommendation.duration}</span>
                 </div>
-                <h3 className="font-display font-semibold text-lg text-ink">
+                <h3 className="font-display font-semibold text-lg lg:text-title text-ink">
                   {recommendation.title}
                 </h3>
-                <p className="text-caption text-ink-muted leading-relaxed max-w-xl text-pretty">
+                <p className="text-caption lg:text-body text-ink-muted leading-relaxed max-w-xl text-pretty">
                   <strong className="text-ink">Артефакт:</strong> {recommendation.artifact}
                 </p>
               </div>
@@ -221,7 +221,7 @@ export function ProcessSection() {
             {processSteps.map((item, idx) => (
               <div
                 key={item.title}
-                className="p-5 rounded-lg border border-border bg-surface-raised flex flex-col gap-3 relative"
+                className="p-5 lg:p-6 rounded-lg border border-border bg-surface-raised flex flex-col gap-3 relative"
               >
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs font-semibold text-primary px-2 py-0.5 rounded-sm bg-primary/10 border border-primary/20">
@@ -231,10 +231,10 @@ export function ProcessSection() {
                     <span className="text-xs text-ink-muted/50 hidden lg:inline font-mono">→</span>
                   )}
                 </div>
-                <h3 className="font-display font-semibold text-base text-ink leading-snug">
+                <h3 className="font-display font-semibold text-base lg:text-title text-ink leading-snug">
                   {item.title}
                 </h3>
-                <p className="text-caption text-ink-muted leading-relaxed text-pretty">{item.desc}</p>
+                <p className="text-caption lg:text-body text-ink-muted leading-relaxed text-pretty">{item.desc}</p>
               </div>
             ))}
           </div>

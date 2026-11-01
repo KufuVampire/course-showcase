@@ -47,34 +47,32 @@ export function ReviewsSection() {
           {reviews.map((rev) => (
             <Card
               key={rev.author}
-              padding="lg"
-              className="flex flex-col gap-4 bg-surface-raised border border-border"
+              padding="none"
+              className="flex flex-col gap-4 p-5 sm:p-6 lg:p-7 bg-surface-raised border border-border h-full"
             >
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between gap-2">
-                  <span className="font-mono text-xs px-2 py-0.5 rounded-sm bg-primary/10 text-primary border border-primary/20 font-medium shrink-0">
+                  <span className="font-mono text-xs px-2.5 py-1 rounded-sm bg-primary/10 text-primary border border-primary/25 font-semibold shrink-0">
                     {rev.outcome}
                   </span>
-                  <span className="text-xs text-ink-muted font-mono">Выпускник</span>
+                  <span className="text-xs text-ink-muted/70 font-mono">Выпускник</span>
                 </div>
-                <h3 className="font-display font-semibold text-ink text-sm leading-snug">
+                <h3 className="font-display font-semibold text-ink text-base lg:text-title leading-snug">
                   {rev.product}
                 </h3>
               </div>
 
-              <p className="text-caption text-ink leading-relaxed text-pretty">
+              <p className="text-body text-ink leading-relaxed lg:leading-relaxed text-pretty">
                 «{rev.text}»
               </p>
 
-              <div className="pt-4 border-t border-border mt-auto flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-surface-sunken border border-border flex items-center justify-center font-mono text-xs font-medium text-ink shrink-0">
-                  {rev.author[0]}
+              <footer className="pt-3.5 border-t border-border/60 mt-auto flex items-center justify-between gap-3 text-caption text-ink-muted">
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <span className="font-medium text-ink/80">{rev.author}</span>
+                  <span className="text-ink-muted/50">·</span>
+                  <span className="text-xs text-ink-muted">{rev.role}</span>
                 </div>
-                <div className="flex flex-col text-caption">
-                  <span className="font-medium text-ink">{rev.author}</span>
-                  <span className="text-ink-muted">{rev.role}</span>
-                </div>
-              </div>
+              </footer>
             </Card>
           ))}
         </div>

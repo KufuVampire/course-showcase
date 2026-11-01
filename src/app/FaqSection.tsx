@@ -60,7 +60,7 @@ export function FaqSection() {
                 <ChevronDown className="w-5 h-5 text-ink-muted shrink-0 transition-transform duration-fast group-open:rotate-180 group-open:text-primary" />
               </summary>
 
-              <div className="px-5 pb-5 pt-0 text-caption text-ink-muted leading-relaxed border-t border-border/40 mt-1">
+              <div className="px-5 pb-5 pt-0 text-caption lg:text-body text-ink-muted leading-relaxed border-t border-border/40 mt-1">
                 <p className="pt-3 text-pretty">{faq.a}</p>
               </div>
             </details>
