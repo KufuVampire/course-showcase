@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import type { Product, ProductFilters } from '@/shared/api';
+import { useSearchParams } from 'react-router';
+import type { Product, ProductFilters, ProductLevel, ProductType } from '@/shared/api';
 import { catalogApi } from '@/shared/api';
+
+export type ProductSort = 'popular' | 'price-asc' | 'price-desc' | 'rating';
 
 const defaultFilters: ProductFilters = {
   type: 'all',
@@ -10,12 +13,48 @@ const defaultFilters: ProductFilters = {
 };
 
 export function useCatalog() {
-  const [filters, setFilters] = useState<ProductFilters>(defaultFilters);
-  const [debouncedQuery, setDebouncedQuery] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const getFiltersFromParams = useCallback((): ProductFilters => {
+    const typeParam = searchParams.get('type') as ProductType | 'all' | null;
+    const levelParam = searchParams.get('level') as ProductLevel | null;
+    const sortParam = searchParams.get('sortBy') as ProductSort | null;
+    const queryParam = searchParams.get('query');
+
+    const validTypes: (ProductType | 'all')[] = ['all', 'course', 'workshop', 'consultation'];
+    const validLevels: ProductLevel[] = ['all', 'beginner', 'intermediate', 'advanced'];
+    const validSorts: ProductSort[] = ['popular', 'price-asc', 'price-desc', 'rating'];
+
+    return {
+      type: typeParam && validTypes.includes(typeParam) ? typeParam : 'all',
+      level: levelParam && validLevels.includes(levelParam) ? levelParam : 'all',
+      sortBy: sortParam && validSorts.includes(sortParam) ? sortParam : 'popular',
+      query: queryParam || '',
+    };
+  }, [searchParams]);
+
+  const [filters, setFilters] = useState<ProductFilters>(getFiltersFromParams);
+  const [debouncedQuery, setDebouncedQuery] = useState(filters.query || '');
   const [products, setProducts] = useState<Product[]>([]);
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Sync external search params changes (e.g. browser back/forward)
+  useEffect(() => {
+    const fromParams = getFiltersFromParams();
+    setFilters((prev) => {
+      if (
+        prev.type === fromParams.type &&
+        prev.level === fromParams.level &&
+        prev.sortBy === fromParams.sortBy &&
+        prev.query === fromParams.query
+      ) {
+        return prev;
+      }
+      return fromParams;
+    });
+  }, [getFiltersFromParams]);
 
   // Debounce search query input (300ms)
   useEffect(() => {
@@ -46,33 +85,25 @@ export function useCatalog() {
   const loadProducts = useCallback(async (currentFilters: ProductFilters, q: string) => {
     setIsLoading(true);
     setError(null);
-    let active = true;
 
     try {
       const data = await catalogApi.getProducts({
         ...currentFilters,
         query: q,
       });
-      if (active) {
-        setProducts(data);
-      }
+      setProducts(data);
     } catch {
-      if (active) {
-        setError('Не удалось загрузить каталог. Попробуйте обновить страницу.');
-      }
+      setError('Не удалось загрузить каталог. Попробуйте обновить страницу.');
     } finally {
-      if (active) {
-        setIsLoading(false);
-      }
+      setIsLoading(false);
     }
-
-    return () => {
-      active = false;
-    };
   }, []);
 
   useEffect(() => {
     let cancel = false;
+    setIsLoading(true);
+    setError(null);
+
     const eff = async () => {
       try {
         const data = await catalogApi.getProducts({
@@ -96,19 +127,55 @@ export function useCatalog() {
         }
       }
     };
+
     eff();
+
     return () => {
       cancel = true;
     };
   }, [type, level, sortBy, maxPrice, debouncedQuery]);
 
-  const updateFilters = useCallback((updated: Partial<ProductFilters>) => {
-    setFilters((prev) => ({ ...prev, ...updated }));
-  }, []);
+  const updateFilters = useCallback(
+    (updated: Partial<ProductFilters>) => {
+      setFilters((prev) => ({ ...prev, ...updated }));
+      setSearchParams(
+        (prevParams) => {
+          const params = new URLSearchParams(prevParams);
+          const next = { ...filters, ...updated };
+          if (next.type && next.type !== 'all') params.set('type', next.type);
+          else params.delete('type');
+
+          if (next.level && next.level !== 'all') params.set('level', next.level);
+          else params.delete('level');
+
+          if (next.sortBy && next.sortBy !== 'popular') params.set('sortBy', next.sortBy);
+          else params.delete('sortBy');
+
+          if (next.query && next.query.trim()) params.set('query', next.query.trim());
+          else params.delete('query');
+
+          return params;
+        },
+        { replace: true }
+      );
+    },
+    [filters, setSearchParams]
+  );
 
   const resetFilters = useCallback(() => {
     setFilters(defaultFilters);
-  }, []);
+    setSearchParams(
+      (prevParams) => {
+        const params = new URLSearchParams(prevParams);
+        params.delete('type');
+        params.delete('level');
+        params.delete('sortBy');
+        params.delete('query');
+        return params;
+      },
+      { replace: true }
+    );
+  }, [setSearchParams]);
 
   const counts = useMemo(
     () => ({

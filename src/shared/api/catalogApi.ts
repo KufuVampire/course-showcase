@@ -11,7 +11,6 @@ export interface ProductFilters {
 
 export interface CatalogApi {
   getProducts(filters?: ProductFilters): Promise<Product[]>;
-  getProductBySlug(slug: string): Promise<Product | null>;
   getProductById(id: string): Promise<Product | null>;
 }
 
@@ -70,11 +69,6 @@ export class MockCatalogApi implements CatalogApi {
     }
 
     return list;
-  }
-
-  async getProductBySlug(slug: string): Promise<Product | null> {
-    await new Promise((r) => setTimeout(r, this.delayMs));
-    return this.products.find((p) => p.slug === slug) ?? null;
   }
 
   async getProductById(id: string): Promise<Product | null> {

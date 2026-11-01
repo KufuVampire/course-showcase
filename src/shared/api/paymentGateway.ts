@@ -39,6 +39,9 @@ export class MockPaymentGateway implements PaymentGateway {
     if (upper === 'DEV2000') {
       return { valid: true, discountAmount: 2000 };
     }
+    if (upper === 'DEV20') {
+      return { valid: true, discountPercent: 20 };
+    }
     return { valid: false };
   }
 

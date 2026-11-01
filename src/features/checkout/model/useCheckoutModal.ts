@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import type { CheckoutPayload, Order, PaymentMethod, Product } from '@/shared/api';
 import { paymentGateway } from '@/shared/api';
 import { applyPromo, type PromoDiscount } from '@/shared/lib/promo';
@@ -7,14 +7,14 @@ import { useAuthContext } from '@/app/AuthContext';
 export type CheckoutStep = 'form' | 'processing' | 'success' | 'error';
 
 export function useCheckoutModal(product: Product | null) {
-  const { refreshOrders } = useAuthContext();
+  const { user, refreshOrders, refreshUser } = useAuthContext();
   const [step, setStep] = useState<CheckoutStep>('form');
   const [order, setOrder] = useState<Order | null>(null);
   const [errorMessage, setErrorMessage] = useState('');
 
-  // Form state
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
+  // Form state prefilled from logged-in user
+  const [fullName, setFullName] = useState(user?.fullName || '');
+  const [email, setEmail] = useState(user?.email || '');
   const [phone, setPhone] = useState('+7 ');
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('card');
   const [agreed, setAgreed] = useState(false);
@@ -22,6 +22,14 @@ export function useCheckoutModal(product: Product | null) {
   const [promoApplied, setPromoApplied] = useState<PromoDiscount | null>(null);
   const [promoError, setPromoError] = useState('');
   const [isCheckingPromo, setIsCheckingPromo] = useState(false);
+
+  // Sync contacts if user loaded asynchronously
+  useEffect(() => {
+    if (user) {
+      setFullName((prev) => prev || user.fullName || '');
+      setEmail((prev) => prev || user.email || '');
+    }
+  }, [user]);
 
   // Field validation errors
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -97,7 +105,7 @@ export function useCheckoutModal(product: Product | null) {
       if (res.success) {
         setOrder(res.order);
         setStep('success');
-        await refreshOrders();
+        await Promise.all([refreshOrders(), refreshUser()]);
       } else {
         setStep('error');
         setErrorMessage(res.error || 'Платеж был отклонен банком');

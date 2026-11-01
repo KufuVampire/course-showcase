@@ -150,6 +150,11 @@ export function Select({ options, value, onChange, ariaLabel, className = '' }: 
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         aria-controls={listboxId}
+        aria-activedescendant={
+          isOpen && focusedIndex >= 0 && options[focusedIndex]
+            ? `${listboxId}-option-${options[focusedIndex]!.value}`
+            : undefined
+        }
         aria-label={ariaLabel}
         onClick={() => setIsOpen((prev) => !prev)}
         onKeyDown={handleKeyDown}

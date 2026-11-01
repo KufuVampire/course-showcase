@@ -16,6 +16,7 @@ interface AuthContextValue {
   login: (email: string, name?: string) => Promise<User>;
   logout: () => Promise<void>;
   refreshOrders: () => Promise<void>;
+  refreshUser: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -24,6 +25,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [orders, setOrders] = useState<Order[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const refreshUser = useCallback(async () => {
+    try {
+      const currentUser = await authService.getCurrentUser();
+      setUser(currentUser);
+    } catch {
+      // ignore
+    }
+  }, []);
 
   const refreshOrders = useCallback(async () => {
     try {
@@ -82,8 +92,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       login,
       logout,
       refreshOrders,
+      refreshUser,
     }),
-    [user, orders, isLoading, login, logout, refreshOrders]
+    [user, orders, isLoading, login, logout, refreshOrders, refreshUser]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
