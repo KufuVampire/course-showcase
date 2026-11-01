@@ -1,0 +1,119 @@
+import React, { useState } from 'react';
+import { Product } from '@/shared/api';
+import { CatalogFilters, CatalogList, ProductDetailsModal, useCatalog } from '@/features/catalog';
+import { CheckoutModal } from '@/features/checkout';
+import { AccountModal, useAuth } from '@/features/account';
+import { Navbar } from './Navbar';
+import { HeroSection } from './HeroSection';
+import { BenefitsSection } from './BenefitsSection';
+import { ProcessSection } from './ProcessSection';
+import { ReviewsSection } from './ReviewsSection';
+import { FaqSection } from './FaqSection';
+import { Footer } from './Footer';
+import { JsonLd } from './JsonLd';
+
+export const App: React.FC = () => {
+  const { user } = useAuth();
+  const {
+    products,
+    isLoading,
+    error,
+    filters,
+    counts,
+    updateFilters,
+    resetFilters,
+    reload,
+  } = useCatalog();
+
+  // Modals state
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [isAccountOpen, setIsAccountOpen] = useState(false);
+
+  const handleOpenDetails = (product: Product) => {
+    setSelectedProduct(product);
+    setIsDetailsOpen(true);
+  };
+
+  const handleOpenCheckout = (product: Product) => {
+    setSelectedProduct(product);
+    setIsCheckoutOpen(true);
+  };
+
+  return (
+    <div className="min-h-screen bg-surface text-ink flex flex-col font-sans transition-colors selection:bg-accent/30 selection:text-ink">
+      <JsonLd />
+
+      <Navbar onOpenAccount={() => setIsAccountOpen(true)} userEmail={user?.email} />
+
+      <main className="flex-1 flex flex-col">
+        <HeroSection />
+
+        {/* CATALOG SECTION */}
+        <section id="catalog" className="py-20 md:py-28 max-w-[72rem] mx-auto px-4 sm:px-6 w-full flex flex-col gap-10">
+          <div className="flex flex-col gap-3">
+            <span className="text-caption font-semibold text-primary uppercase tracking-wider">
+              Витрина программ
+            </span>
+            <div className="flex items-baseline justify-between flex-wrap gap-4">
+              <h2 className="font-display text-h2 font-bold text-ink leading-tight">
+                Каталог образовательных продуктов
+              </h2>
+              <span className="text-caption text-ink-muted">
+                Найдено программ: <strong className="text-ink">{products.length}</strong>
+              </span>
+            </div>
+            <p className="text-body text-ink-muted max-w-2xl leading-relaxed">
+              Выберите курс для системного роста, воркшоп для освоения точечного навыка или запишитесь на персональную консультацию.
+            </p>
+          </div>
+
+          <CatalogFilters
+            filters={filters}
+            onFilterChange={updateFilters}
+            onReset={resetFilters}
+            counts={counts}
+          />
+
+          <CatalogList
+            products={products}
+            isLoading={isLoading}
+            error={error}
+            onOpenDetails={handleOpenDetails}
+            onCheckout={handleOpenCheckout}
+            onResetFilters={resetFilters}
+            onRetry={reload}
+          />
+        </section>
+
+        <BenefitsSection />
+        <ProcessSection />
+        <ReviewsSection />
+        <FaqSection />
+      </main>
+
+      <Footer />
+
+      {/* MODALS */}
+      <ProductDetailsModal
+        product={selectedProduct}
+        isOpen={isDetailsOpen}
+        onClose={() => setIsDetailsOpen(false)}
+        onProceedToCheckout={handleOpenCheckout}
+      />
+
+      <CheckoutModal
+        product={selectedProduct}
+        isOpen={isCheckoutOpen}
+        onClose={() => setIsCheckoutOpen(false)}
+        onOpenAccount={() => setIsAccountOpen(true)}
+      />
+
+      <AccountModal
+        isOpen={isAccountOpen}
+        onClose={() => setIsAccountOpen(false)}
+      />
+    </div>
+  );
+};
