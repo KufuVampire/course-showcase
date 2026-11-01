@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, type ReactNode } from 'react';
 import { X } from 'lucide-react';
 import { cn } from '@/shared/lib/cn';
+import { useScrollLock } from '@/shared/lib/useScrollLock';
 
 export interface ModalProps {
   isOpen: boolean;
@@ -32,7 +33,7 @@ export function Modal({
   const titleId = useId();
   const descId = useId();
 
-  // Dialog open/close & body scroll-lock
+  // Dialog open/close lifecycle
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
@@ -40,20 +41,16 @@ export function Modal({
     if (isOpen) {
       if (!dialog.open) {
         dialog.showModal();
-        document.body.style.overflow = 'hidden';
       }
-    } else {
-      if (dialog.open) {
-        dialog.close();
-      }
-      document.body.style.overflow = '';
+    } else if (dialog.open) {
+      dialog.close();
     }
-
-    return () => {
-      document.body.style.overflow = '';
-    };
   }, [isOpen]);
 
+  // Lock background scroll, wheel & touchmove
+  useScrollLock(isOpen, dialogRef);
+
+  // Esc / cancel listener
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
@@ -92,7 +89,7 @@ export function Modal({
       aria-describedby={description ? descId : undefined}
       onClick={handleBackdropClick}
       className={cn(
-        'w-full max-h-[90vh] bg-surface-raised border border-border rounded-lg shadow-pop p-0 m-auto text-ink outline-none backdrop:bg-scrim/60 backdrop:backdrop-blur-xs flex flex-col overflow-hidden max-sm:h-full max-sm:max-h-screen max-sm:rounded-none max-sm:m-0 max-sm:w-screen',
+        'w-full max-h-[90vh] bg-surface-raised border border-border rounded-lg shadow-pop p-0 m-auto text-ink outline-none backdrop:bg-scrim/60 backdrop:backdrop-blur-xs flex flex-col overflow-hidden overscroll-contain max-sm:h-full max-sm:max-h-screen max-sm:rounded-none max-sm:m-0 max-sm:w-screen',
         maxWidthStyles[maxWidth]
       )}
     >
@@ -125,7 +122,12 @@ export function Modal({
       </div>
 
       {/* Scrollable Content Body */}
-      <div className="p-6 md:p-8 pt-4 overflow-y-auto scrollbar-custom flex-1">{children}</div>
+      <div
+        data-modal-body="true"
+        className="p-6 md:p-8 pt-4 overflow-y-auto overscroll-y-contain scrollbar-custom flex-1"
+      >
+        {children}
+      </div>
     </dialog>
   );
 }

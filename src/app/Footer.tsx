@@ -1,4 +1,4 @@
-import { BookOpen } from 'lucide-react';
+import { Logo } from '@/shared/ui';
 
 export function Footer() {
   return (
@@ -7,14 +7,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Col */}
           <div className="md:col-span-2 flex flex-col gap-3">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-md bg-primary text-on-primary flex items-center justify-center font-display font-bold text-base shadow-xs">
-                <BookOpen className="w-4 h-4" />
-              </div>
-              <span className="font-display font-bold text-ink text-lg leading-none">
-                Практикум.PRO
-              </span>
-            </div>
+            <Logo asLink={false} />
             <p className="text-caption text-ink-muted max-w-sm leading-relaxed">
               Практические курсы, воркшопы и индивидуальные консультации по frontend-архитектуре,
               дизайну и современным веб-стандартам.
@@ -23,7 +16,7 @@ export function Footer() {
 
           {/* Nav Col */}
           <div className="flex flex-col gap-2.5 text-caption">
-            <span className="font-semibold text-ink uppercase tracking-wider text-xs">
+            <span className="font-medium text-ink text-xs">
               Навигация
             </span>
             <a href="/#catalog" className="text-ink-muted hover:text-ink transition-colors">
@@ -42,8 +35,8 @@ export function Footer() {
 
           {/* Legal Col */}
           <div className="flex flex-col gap-2.5 text-caption">
-            <span className="font-semibold text-ink uppercase tracking-wider text-xs">
-              Поддержка & Оферта
+            <span className="font-medium text-ink text-xs">
+              Поддержка и документы
             </span>
             <a
               href="mailto:support@praktikum-pro.dev"

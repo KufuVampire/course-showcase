@@ -4,27 +4,31 @@ import { Card } from '@/shared/ui';
 const benefits = [
   {
     icon: Users,
+    index: '01',
     title: 'Ведущие инженеры индустрии',
     description:
-      'Программы ведут действующие Staff и Lead инженеры с опытом построения распределенных систем и дизайн-китов с миллионными аудиториями.',
+      'Программы ведут действующие Staff и Lead инженеры с опытом распределенных систем и дизайн-систем с миллионными аудиториями.',
   },
   {
     icon: Terminal,
-    title: 'Стек без устаревших подходов',
+    index: '02',
+    title: 'Актуальный стек решений',
     description:
-      'Изучаем технологии, востребованные сегодня: React 19, Server Components, Tailwind v4 @theme, строгий TypeScript и Feature-Sliced Design.',
+      'Технологии сегодняшнего дня: React 19, Server Components, Tailwind v4 @theme, строгий TypeScript и Feature-Sliced Design.',
   },
   {
     icon: Code,
-    title: 'Глубокий разбор вашего кода',
+    index: '03',
+    title: 'Ручной разбор архитектуры',
     description:
-      'Не автотесты с абстрактными проверками, а ручное код-ревью с разбором архитектурных решений, пограничных случаев и кодстайла.',
+      'Не шаблонные тесты, а детальное ревью вашего Pull Request с проверкой контрактов слоёв, пограничных случаев и производительности.',
   },
   {
     icon: MessagesSquare,
-    title: 'Закрытый инженерный клуб',
+    index: '04',
+    title: 'Закрытое сообщество',
     description:
-      'Доступ в закрытый чат авторов и выпускников: обсуждение архитектурных решений, вакансии без открытого рынка и взаимопомощь.',
+      'Инженерный чат выпускников и наставников: обсуждение архитектурных паттернов, закрытые вакансии и экспертная помощь.',
   },
 ];
 
@@ -32,31 +36,36 @@ export function BenefitsSection() {
   return (
     <section
       id="benefits"
-      className="scroll-mt-20 py-20 md:py-28 bg-surface-sunken/40 border-b border-border"
+      className="scroll-mt-20 py-16 md:py-24 bg-surface-sunken/40 border-b border-border"
     >
-      <div className="max-w-page mx-auto px-4 sm:px-6 flex flex-col gap-12">
-        <div className="flex flex-col gap-3 max-w-2xl">
-          <span className="text-caption font-semibold text-primary uppercase tracking-wider">
-            Наш подход
+      <div className="max-w-page mx-auto px-4 sm:px-6 flex flex-col gap-10">
+        <div className="flex flex-col gap-2 max-w-2xl">
+          <span className="text-caption font-medium text-primary">
+            Инженерный подход
           </span>
-          <h2 className="font-display text-h2 font-bold text-ink leading-tight">
-            Почему практикующие инженеры выбирают наши программы
+          <h2 className="font-display text-h2 font-semibold text-ink leading-tight">
+            Принципы, на которых строится обучение
           </h2>
           <p className="text-body text-ink-muted leading-relaxed">
-            Мы отказались от растянутых полугодовых лекций в пользу концентрированных практикумов и
-            индивидуальной работы над вашим проектом.
+            Мы отказались от пассивных лекций в пользу концентрированных практикумов и
+            прямой работы с кодом вашего проекта.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {benefits.map((item) => {
             const Icon = item.icon;
             return (
-              <Card key={item.title} padding="lg" className="flex flex-col gap-4 bg-surface-raised">
-                <div className="w-10 h-10 rounded-md bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                  <Icon className="w-5 h-5" />
+              <Card
+                key={item.title}
+                padding="md"
+                className="flex flex-col gap-3.5 bg-surface-raised border border-border"
+              >
+                <div className="flex items-center justify-between">
+                  <Icon className="w-5 h-5 text-primary" />
+                  <span className="font-mono text-xs text-ink-muted/80">{item.index}</span>
                 </div>
-                <h3 className="font-display font-bold text-lg text-ink leading-snug">
+                <h3 className="font-display font-semibold text-base text-ink leading-snug">
                   {item.title}
                 </h3>
                 <p className="text-caption text-ink-muted leading-relaxed">{item.description}</p>

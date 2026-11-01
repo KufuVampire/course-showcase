@@ -31,7 +31,7 @@ export function ProductCard({ product, onOpenDetails, onCheckout }: ProductCardP
           </div>
         </div>
 
-        <h3 className="font-display text-title font-bold text-ink leading-tight">
+        <h3 className="font-display text-title font-semibold text-ink leading-tight">
           <button
             type="button"
             onClick={() => onOpenDetails(product)}
@@ -71,11 +71,11 @@ export function ProductCard({ product, onOpenDetails, onCheckout }: ProductCardP
       <div className="p-6 pt-4 border-t border-border flex flex-col gap-3">
         <div className="flex items-baseline justify-between gap-2">
           <div className="flex items-baseline gap-2">
-            <span className="font-display font-bold text-ink text-price">
+            <span className="font-mono font-medium text-ink text-price tabular-nums">
               {formatPrice(product.price)}
             </span>
             {product.oldPrice && (
-              <span className="text-caption line-through text-ink-muted">
+              <span className="font-mono text-caption line-through text-ink-muted tabular-nums">
                 {formatPrice(product.oldPrice)}
               </span>
             )}

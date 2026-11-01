@@ -60,7 +60,7 @@ export function CatalogFilters({ filters, onFilterChange, onReset, counts }: Cat
               aria-selected={isActive}
               onClick={() => onFilterChange({ type: tab.type })}
               className={cn(
-                'inline-flex items-center gap-2 px-4 py-2 rounded-md text-caption font-medium transition-all whitespace-nowrap cursor-pointer select-none',
+                'inline-flex items-center gap-2 px-4 py-2 rounded-md text-caption font-medium transition-colors duration-fast whitespace-nowrap cursor-pointer select-none',
                 isActive
                   ? 'bg-primary text-on-primary shadow-xs'
                   : 'bg-surface-sunken text-ink hover:bg-border/60'
@@ -69,7 +69,7 @@ export function CatalogFilters({ filters, onFilterChange, onReset, counts }: Cat
               <span>{tab.label}</span>
               <span
                 className={cn(
-                  'text-xs px-1.5 py-0.5 rounded-sm',
+                  'text-xs px-1.5 py-0.5 rounded-sm font-mono tabular-nums',
                   isActive ? 'bg-on-primary/20 text-on-primary' : 'bg-border/70 text-ink-muted'
                 )}
               >

@@ -37,7 +37,7 @@ export function Card({
   return (
     <Component
       className={cn(
-        'rounded-lg transition-all',
+        'rounded-lg transition-[border-color,box-shadow] duration-fast',
         variantStyles[variant],
         paddingStyles[padding],
         hoverable ? 'hover:shadow-pop hover:border-primary/40' : '',

@@ -32,14 +32,14 @@ export function FaqSection() {
   return (
     <section
       id="faq"
-      className="scroll-mt-20 py-20 md:py-28 bg-surface-raised border-b border-border"
+      className="scroll-mt-20 py-16 md:py-24 bg-surface-raised border-b border-border"
     >
-      <div className="max-w-page mx-auto px-4 sm:px-6 flex flex-col gap-12">
-        <div className="flex flex-col gap-3 max-w-2xl">
-          <span className="text-caption font-semibold text-primary uppercase tracking-wider">
-            Ответы на вопросы
+      <div className="max-w-page mx-auto px-4 sm:px-6 flex flex-col gap-10">
+        <div className="flex flex-col gap-2 max-w-2xl">
+          <span className="text-caption font-medium text-primary">
+            Вопросы и ответы
           </span>
-          <h2 className="font-display text-h2 font-bold text-ink leading-tight">
+          <h2 className="font-display text-h2 font-semibold text-ink leading-tight">
             Часто задаваемые вопросы
           </h2>
           <p className="text-body text-ink-muted leading-relaxed">

@@ -1,13 +1,27 @@
 import { useState, useEffect, useRef } from 'react';
-import { Sun, Moon, User as UserIcon, BookOpen } from 'lucide-react';
+import { Sun, Moon, User as UserIcon } from 'lucide-react';
 import { useTheme } from '@/shared/lib/useTheme';
-import { Button } from '@/shared/ui';
+import { Button, Logo } from '@/shared/ui';
 import { cn } from '@/shared/lib/cn';
 
 export interface NavbarProps {
   onOpenAccount: () => void;
   userEmail?: string;
 }
+
+interface NavItem {
+  href: string;
+  label: string;
+  mobileLabel?: string;
+}
+
+const NAV_ITEMS: readonly NavItem[] = [
+  { href: '/#catalog', label: 'Каталог', mobileLabel: 'Каталог программ' },
+  { href: '/#benefits', label: 'Преимущества' },
+  { href: '/#process', label: 'Процесс', mobileLabel: 'Процесс обучения' },
+  { href: '/#reviews', label: 'Отзывы' },
+  { href: '/#faq', label: 'FAQ', mobileLabel: 'Частые вопросы (FAQ)' },
+];
 
 export function Navbar({ onOpenAccount, userEmail }: NavbarProps) {
   const { theme, toggleTheme } = useTheme();
@@ -61,40 +75,18 @@ export function Navbar({ onOpenAccount, userEmail }: NavbarProps) {
 
       <div className="max-w-page mx-auto px-3 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-2 sm:gap-4">
         {/* Brand */}
-        <a href="/" className="flex items-center gap-2 group min-w-0 shrink">
-          <div className="w-8 h-8 rounded-md bg-primary text-on-primary flex items-center justify-center font-display font-bold text-base shadow-xs shrink-0 group-hover:opacity-90 transition-opacity">
-            <BookOpen className="w-4 h-4" />
-          </div>
-          <div className="flex flex-col min-w-0">
-            <span className="font-display font-bold text-ink tracking-tight text-base sm:text-lg leading-none truncate">
-              Практикум.PRO
-            </span>
-            <span className="text-caption text-ink-muted leading-tight text-xs truncate hidden xs:inline">
-              Образовательные программы
-            </span>
-          </div>
-        </a>
+        <Logo showSubtitle />
 
         {/* Desktop Navigation (lg+) */}
         <nav
           className="hidden lg:flex items-center gap-6 text-caption font-medium text-ink-muted"
           aria-label="Основная навигация"
         >
-          <a href="/#catalog" className="hover:text-ink transition-colors">
-            Каталог
-          </a>
-          <a href="/#benefits" className="hover:text-ink transition-colors">
-            Преимущества
-          </a>
-          <a href="/#process" className="hover:text-ink transition-colors">
-            Процесс
-          </a>
-          <a href="/#reviews" className="hover:text-ink transition-colors">
-            Отзывы
-          </a>
-          <a href="/#faq" className="hover:text-ink transition-colors">
-            FAQ
-          </a>
+          {NAV_ITEMS.map((item) => (
+            <a key={item.href} href={item.href} className="hover:text-ink transition-colors">
+              {item.label}
+            </a>
+          ))}
         </nav>
 
         {/* Actions (All 36px height) */}
@@ -166,41 +158,16 @@ export function Navbar({ onOpenAccount, userEmail }: NavbarProps) {
             : 'opacity-0 invisible -translate-y-2 pointer-events-none'
         )}
       >
-        <a
-          href="/#catalog"
-          onClick={() => setMobileMenuOpen(false)}
-          className="py-2.5 px-3 rounded-md hover:bg-surface-sunken"
-        >
-          Каталог программ
-        </a>
-        <a
-          href="/#benefits"
-          onClick={() => setMobileMenuOpen(false)}
-          className="py-2.5 px-3 rounded-md hover:bg-surface-sunken"
-        >
-          Преимущества
-        </a>
-        <a
-          href="/#process"
-          onClick={() => setMobileMenuOpen(false)}
-          className="py-2.5 px-3 rounded-md hover:bg-surface-sunken"
-        >
-          Процесс обучения
-        </a>
-        <a
-          href="/#reviews"
-          onClick={() => setMobileMenuOpen(false)}
-          className="py-2.5 px-3 rounded-md hover:bg-surface-sunken"
-        >
-          Отзывы
-        </a>
-        <a
-          href="/#faq"
-          onClick={() => setMobileMenuOpen(false)}
-          className="py-2.5 px-3 rounded-md hover:bg-surface-sunken"
-        >
-          Частые вопросы (FAQ)
-        </a>
+        {NAV_ITEMS.map((item) => (
+          <a
+            key={item.href}
+            href={item.href}
+            onClick={() => setMobileMenuOpen(false)}
+            className="py-2.5 px-3 rounded-md hover:bg-surface-sunken"
+          >
+            {item.mobileLabel || item.label}
+          </a>
+        ))}
       </nav>
     </header>
   );
