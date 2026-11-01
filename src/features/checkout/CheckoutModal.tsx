@@ -14,7 +14,7 @@ import { formatPrice } from '@/shared/lib/formatters';
 import { applyPromo, type PromoDiscount } from '@/shared/lib/promo';
 import { Button, Checkbox, Field, Modal } from '@/shared/ui';
 import { useAuthContext } from '@/app/AuthContext';
-import { cx } from '@/shared/lib/cx';
+import { cn } from '@/shared/lib/cn';
 
 export interface CheckoutModalProps {
   product: Product | null;
@@ -271,7 +271,7 @@ export function CheckoutModal({ product, isOpen, onClose, onOpenAccount }: Check
                     role="radio"
                     aria-checked={isSelected}
                     onClick={() => setPaymentMethod(opt.id)}
-                    className={cx(
+                    className={cn(
                       'p-3 rounded-md border flex flex-col items-center justify-center gap-2 cursor-pointer transition-colors text-center',
                       isSelected
                         ? 'border-primary bg-primary/5 text-primary font-semibold ring-1 ring-primary'
