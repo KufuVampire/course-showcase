@@ -1,67 +1,126 @@
-import { ArrowDown, Shield, Sparkles, Award } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Button } from '@/shared/ui';
 
 export function HeroSection() {
   return (
-    <section className="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden border-b border-border bg-surface-raised">
-      <div className="max-w-page mx-auto px-4 sm:px-6 flex flex-col items-center text-center">
-        {/* Editorial Eyebrow */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-surface-sunken border border-border text-caption text-ink font-medium mb-6">
-          <Sparkles className="w-3.5 h-3.5 text-accent" />
-          <span>Практический инжиниринг и продуктовый дизайн</span>
-        </div>
-
-        {/* Hero Title */}
-        <h1 className="font-display text-display font-bold text-ink max-w-4xl tracking-tight mb-6">
-          Образование от практиков, создающих реальные цифровые системы
-        </h1>
-
-        {/* Hero Subtitle */}
-        <p className="font-sans text-body text-ink-muted max-w-2xl leading-relaxed text-lg mb-10">
-          Сфокусированные программы без воды: архитектура приложений, дизайн-системы нового
-          поколения и персональные карьерные консультации с разбором вашего кода.
-        </p>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 w-full sm:w-auto">
-          <Button
-            href="/#catalog"
-            variant="accent"
-            size="lg"
-            className="w-full sm:w-auto"
-            rightIcon={<ArrowDown className="w-4 h-4" />}
-          >
-            Выбрать программу в каталоге
-          </Button>
-
-          <Button href="/#benefits" variant="outline" size="lg" className="w-full sm:w-auto">
-            Как устроено обучение
-          </Button>
-        </div>
-
-        {/* Key Indicators / Trust Strip */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-3xl pt-8 border-t border-border">
-          <div className="flex flex-col items-center gap-1">
-            <div className="flex items-center gap-1.5 text-primary">
-              <Award className="w-5 h-5 text-primary" />
-              <span className="font-display font-bold text-2xl text-ink">4.94 / 5.0</span>
+    <section className="relative pt-12 pb-16 md:pt-18 md:pb-24 border-b border-border bg-surface-raised overflow-hidden">
+      <div className="max-w-page mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Left Column: Editorial Value Proposition */}
+          <div className="lg:col-span-6 flex flex-col items-start text-left">
+            {/* Quiet status eyebrow */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-surface-sunken border border-border text-caption text-ink font-medium mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" aria-hidden="true" />
+              <span>Инженерные практикумы и код-ревью</span>
             </div>
-            <span className="text-caption text-ink-muted">Средняя оценка выпускников</span>
+
+            {/* Headline */}
+            <h1 className="font-display text-display font-semibold text-ink tracking-tight mb-5 text-balance">
+              Архитектура систем и код-ревью уровня Staff
+            </h1>
+
+            {/* Subtitle */}
+            <p className="font-sans text-body text-ink-muted text-lg leading-relaxed mb-8 max-w-xl">
+              Сфокусированные программы по Feature-Sliced Design, современным дизайн-системам и
+              чистоте слоёв. Без растянутых лекций: проектирование, разбор реального кода и защита решений.
+            </p>
+
+            {/* Actions */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-12 w-full sm:w-auto">
+              <Button
+                href="/#catalog"
+                variant="accent"
+                size="lg"
+                rightIcon={<ArrowRight className="w-4 h-4" />}
+              >
+                Выбрать программу
+              </Button>
+
+              <Button href="/#benefits" variant="outline" size="lg">
+                Как устроено обучение
+              </Button>
+            </div>
+
+            {/* Technical Key Indicators */}
+            <div className="grid grid-cols-3 gap-6 w-full pt-6 border-t border-border">
+              <div className="flex flex-col gap-0.5">
+                <span className="font-mono text-xl font-medium text-ink tabular-nums">4.94</span>
+                <span className="text-caption text-ink-muted">Оценка на основе 160+ отзывов</span>
+              </div>
+
+              <div className="flex flex-col gap-0.5 border-x border-border/70 px-4 sm:px-6">
+                <span className="font-mono text-xl font-medium text-ink tabular-nums">1 : 1</span>
+                <span className="text-caption text-ink-muted">Личное код-ревью каждого PR</span>
+              </div>
+
+              <div className="flex flex-col gap-0.5">
+                <span className="font-mono text-xl font-medium text-ink tabular-nums">14 дней</span>
+                <span className="text-caption text-ink-muted">Гарантия возврата средств</span>
+              </div>
+            </div>
           </div>
 
-          <div className="flex flex-col items-center gap-1 border-y sm:border-y-0 sm:border-x border-border/80 py-4 sm:py-0">
-            <span className="font-display font-bold text-2xl text-ink">100% практика</span>
-            <span className="text-caption text-ink-muted">
-              Реальные продакшн-задачи в портфолио
-            </span>
-          </div>
+          {/* Right Column: Hero Visual — Real Staff Code Review Artifact */}
+          <div className="lg:col-span-6 w-full">
+            <div className="rounded-lg border border-border bg-surface shadow-card overflow-hidden">
+              {/* Terminal / Code Editor Header */}
+              <div className="px-4 py-3 border-b border-border bg-surface-sunken/60 flex items-center justify-between gap-3 text-caption">
+                <div className="flex items-center gap-2 font-mono text-xs text-ink-muted">
+                  <span className="inline-block w-2.5 h-2.5 rounded-full bg-border" />
+                  <span className="inline-block w-2.5 h-2.5 rounded-full bg-border" />
+                  <span className="inline-block w-2.5 h-2.5 rounded-full bg-border" />
+                  <span className="ml-2 text-ink">PR #48 · refactor/fsd-layer-contracts</span>
+                </div>
+                <span className="font-mono text-xs px-2 py-0.5 rounded-sm bg-success/15 text-success border border-success/30 font-medium">
+                  ✓ Review passed
+                </span>
+              </div>
 
-          <div className="flex flex-col items-center gap-1">
-            <div className="flex items-center gap-1.5 text-success">
-              <Shield className="w-5 h-5" />
-              <span className="font-display font-bold text-2xl text-ink">14 дней</span>
+              {/* Code Diff Presentation */}
+              <div className="p-4 sm:p-5 font-mono text-xs leading-relaxed overflow-x-auto bg-surface-raised scrollbar-custom">
+                <div className="text-ink-muted mb-2 font-sans font-medium text-caption">
+                  src/features/catalog/model/useCatalog.ts
+                </div>
+
+                <div className="flex flex-col gap-1 text-ink">
+                  {/* Monolithic old code */}
+                  <div className="text-danger/90 bg-danger/10 px-2 py-1 rounded-sm line-through">
+                    - const [items, setItems] = useState([]); useEffect(&#123; fetchCatalog()... &#125;)
+                  </div>
+
+                  {/* Clean FSD query code */}
+                  <div className="text-primary bg-primary/10 px-2 py-1 rounded-sm font-medium">
+                    + const &#123; data: products, status &#125; = useCatalogQuery(filters);
+                  </div>
+                  <div className="text-primary bg-primary/10 px-2 py-1 rounded-sm font-medium">
+                    + const updateFilters = useCatalogFiltersSync();
+                  </div>
+                </div>
+
+                {/* Staff Review Comment Box */}
+                <div className="mt-4 p-3.5 rounded-md border border-border bg-surface-sunken/80 flex flex-col gap-2">
+                  <div className="flex items-center justify-between text-xs font-sans">
+                    <div className="flex items-center gap-2">
+                      <span className="w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-[10px]">
+                        S
+                      </span>
+                      <span className="font-medium text-ink">Staff Reviewer</span>
+                      <span className="text-ink-muted">@infrastructure</span>
+                    </div>
+                    <span className="text-ink-muted font-mono">14 мин назад</span>
+                  </div>
+                  <p className="font-sans text-caption text-ink-muted leading-relaxed">
+                    Отличная декомпозиция. Серверное состояние изолировано в TanStack Query, фильтры синхронизированы через URL, циклические зависимости отсутствуют. В продакшн.
+                  </p>
+                </div>
+              </div>
+
+              {/* Meta spec strip */}
+              <div className="px-4 py-2.5 border-t border-border bg-surface-sunken/40 flex items-center justify-between text-xs font-mono text-ink-muted">
+                <span>Stack: TypeScript 5.8 · React 19 · FSD 2.1</span>
+                <span className="text-primary font-medium">0 cycles detected</span>
+              </div>
             </div>
-            <span className="text-caption text-ink-muted">Полная гарантия возврата средств</span>
           </div>
         </div>
       </div>

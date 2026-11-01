@@ -1,27 +1,27 @@
 const steps = [
   {
     step: '01',
-    title: 'Выбор формата и программы',
+    title: 'Выбор программы и уровня',
     description:
-      'Изучите программу, требования к уровню и результаты в каталоге. Подберите курс для глубокого погружения или воркшоп для точечного навыка.',
+      'Изучите стек, требования и результаты в каталоге. Выберите комплексный практикум или точечный воркшоп под текущую задачу.',
   },
   {
     step: '02',
-    title: 'Оформление в 1 клик',
+    title: 'Оформление доступа',
     description:
-      'Укажите контактные данные и выберите удобный способ: банковская карта, СБП или рассрочка от 0% без переплат.',
+      'Укажите контактные данные и выберите удобный способ: карта, СБП или беспроцентная рассрочка 0%.',
   },
   {
     step: '03',
-    title: 'Мгновенный старт',
+    title: 'Доступ к материалам',
     description:
-      'Сразу после подтверждения оплаты личный кабинет активируется. Все видео, репозитории и методички доступны в любое время.',
+      'Сразу после подтверждения активируется личный кабинет: репозитории, спецификации, видеоматериалы и чат потока.',
   },
   {
     step: '04',
-    title: 'Практика и персональный фидбек',
+    title: 'Практика и ревью Pull Request',
     description:
-      'Выполняйте практические задачи в личном темпе, получайте подробные комментарии к Pull Request от наставника и защищайте проект.',
+      'Пишите реальный код, отправляйте PR на ревью наставнику и получайте подробные комментарии к архитектуре.',
   },
 ];
 
@@ -29,18 +29,18 @@ export function ProcessSection() {
   return (
     <section
       id="process"
-      className="scroll-mt-20 py-20 md:py-28 bg-surface-raised border-b border-border"
+      className="scroll-mt-20 py-16 md:py-24 bg-surface-raised border-b border-border"
     >
-      <div className="max-w-page mx-auto px-4 sm:px-6 flex flex-col gap-14">
-        <div className="flex flex-col gap-3 max-w-2xl">
-          <span className="text-caption font-semibold text-primary uppercase tracking-wider">
-            Прозрачный процесс
+      <div className="max-w-page mx-auto px-4 sm:px-6 flex flex-col gap-12">
+        <div className="flex flex-col gap-2 max-w-2xl">
+          <span className="text-caption font-medium text-primary">
+            Этапы программы
           </span>
-          <h2 className="font-display text-h2 font-bold text-ink leading-tight">
-            Как проходит обучение от заявки до сертификата
+          <h2 className="font-display text-h2 font-semibold text-ink leading-tight">
+            Как проходит обучение от заявки до защиты проекта
           </h2>
           <p className="text-body text-ink-muted leading-relaxed">
-            Без бюрократии и ожидания набора групп: приступайте к материалам в день оформления.
+            Без ожидания набора групп: приступайте к материалам и первому заданию сразу после оформления.
           </p>
         </div>
 
@@ -49,11 +49,13 @@ export function ProcessSection() {
             <div key={item.title} className="flex flex-col gap-3 relative">
               <span
                 aria-hidden="true"
-                className="font-display font-bold text-3xl text-primary/40 select-none"
+                className="font-mono text-sm font-semibold text-primary/70 select-none"
               >
-                {item.step}
+                {item.step} —
               </span>
-              <h3 className="font-display font-bold text-lg text-ink">{item.title}</h3>
+              <h3 className="font-display font-semibold text-base text-ink leading-snug">
+                {item.title}
+              </h3>
               <p className="text-caption text-ink-muted leading-relaxed">{item.description}</p>
             </div>
           ))}

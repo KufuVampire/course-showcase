@@ -23,7 +23,7 @@ export function Footer() {
 
           {/* Nav Col */}
           <div className="flex flex-col gap-2.5 text-caption">
-            <span className="font-semibold text-ink uppercase tracking-wider text-xs">
+            <span className="font-medium text-ink text-xs">
               Навигация
             </span>
             <a href="/#catalog" className="text-ink-muted hover:text-ink transition-colors">
@@ -42,8 +42,8 @@ export function Footer() {
 
           {/* Legal Col */}
           <div className="flex flex-col gap-2.5 text-caption">
-            <span className="font-semibold text-ink uppercase tracking-wider text-xs">
-              Поддержка & Оферта
+            <span className="font-medium text-ink text-xs">
+              Поддержка и документы
             </span>
             <a
               href="mailto:support@praktikum-pro.dev"
