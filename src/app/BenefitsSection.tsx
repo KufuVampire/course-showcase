@@ -7,28 +7,28 @@ const benefits = [
     index: '01',
     title: 'Ведущие инженеры индустрии',
     description:
-      'Программы ведут действующие Staff и Lead инженеры с опытом распределенных систем и дизайн-систем с миллионными аудиториями.',
+      'Программы ведут действующие Staff и\u00A0Lead инженеры с\u00A0опытом распределенных систем и\u00A0дизайн-систем с\u00A0миллионными аудиториями.',
   },
   {
     icon: Terminal,
     index: '02',
     title: 'Актуальный стек решений',
     description:
-      'Технологии сегодняшнего дня: React 19, Server Components, Tailwind v4 @theme, строгий TypeScript и Feature-Sliced Design.',
+      'Технологии сегодняшнего дня: React\u00A019, Server Components, Tailwind\u00A0v4 @theme, строгий TypeScript и\u00A0Feature-Sliced Design.',
   },
   {
     icon: Code,
     index: '03',
     title: 'Ручной разбор архитектуры',
     description:
-      'Не шаблонные тесты, а детальное ревью вашего Pull Request с проверкой контрактов слоёв, пограничных случаев и производительности.',
+      'Не\u00A0шаблонные тесты, а\u00A0детальное ревью вашего Pull Request с\u00A0проверкой контрактов слоёв, пограничных случаев и\u00A0производительности.',
   },
   {
     icon: MessagesSquare,
     index: '04',
     title: 'Закрытое сообщество',
     description:
-      'Инженерный чат выпускников и наставников: обсуждение архитектурных паттернов, закрытые вакансии и экспертная помощь.',
+      'Инженерный чат выпускников и\u00A0наставников: обсуждение архитектурных паттернов, закрытые вакансии и\u00A0экспертная помощь.',
   },
 ];
 
@@ -43,12 +43,12 @@ export function BenefitsSection() {
           <span className="text-caption font-medium text-primary">
             Инженерный подход
           </span>
-          <h2 className="font-display text-h2 font-semibold text-ink leading-tight">
-            Принципы, на которых строится обучение
+          <h2 className="font-display text-h2 font-semibold text-ink leading-tight text-balance">
+            Принципы, на&nbsp;которых строится обучение
           </h2>
-          <p className="text-body text-ink-muted leading-relaxed">
-            Мы отказались от пассивных лекций в пользу концентрированных практикумов и
-            прямой работы с кодом вашего проекта.
+          <p className="text-body text-ink-muted leading-relaxed text-pretty">
+            Мы отказались от пассивных лекций в&nbsp;пользу концентрированных практикумов
+            и&nbsp;прямой работы с&nbsp;кодом вашего проекта.
           </p>
         </div>
 
@@ -68,7 +68,9 @@ export function BenefitsSection() {
                 <h3 className="font-display font-semibold text-base text-ink leading-snug">
                   {item.title}
                 </h3>
-                <p className="text-caption text-ink-muted leading-relaxed">{item.description}</p>
+                <p className="text-caption text-ink-muted leading-relaxed text-pretty">
+                  {item.description}
+                </p>
               </Card>
             );
           })}

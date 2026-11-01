@@ -39,23 +39,23 @@ const quizRecommendations: Record<QuizGoal, TrackQuizResult> = {
 const processSteps = [
   {
     step: '01',
-    title: 'Выбор программы и трека',
+    title: 'Выбор программы и\u00A0трека',
     desc: 'Определите цель через квиз или каталог. Выберите глубокий практикум, воркшоп или консультацию.',
   },
   {
     step: '02',
-    title: 'Оформление и мгновенный доступ',
-    desc: 'Оплата картой, СБП или рассрочка 0%. Кабинет и репозитории открываются сразу.',
+    title: 'Оформление и\u00A0мгновенный доступ',
+    desc: 'Оплата картой, СБП или рассрочка 0\u00A0%. Кабинет и\u00A0репозитории открываются сразу.',
   },
   {
     step: '03',
     title: 'Решение боевых задач',
-    desc: 'Пишете код в личном форке репозитория, проектируете слои и отправляете PR на проверку.',
+    desc: 'Пишете код в\u00A0личном форке репозитория, проектируете слои и\u00A0отправляете PR на\u00A0проверку.',
   },
   {
     step: '04',
-    title: 'Ревью от Staff и защита',
-    desc: 'Получаете построчный разбор от наставника, дорабатываете архитектуру и получаете сертификат.',
+    title: 'Ревью от\u00A0Staff и\u00A0защита',
+    desc: 'Получаете построчный разбор от\u00A0наставника, дорабатываете архитектуру и\u00A0получаете сертификат.',
   },
 ];
 
@@ -80,10 +80,10 @@ export function ProcessSection() {
             <span className="text-caption font-medium text-primary">
               Траектория обучения
             </span>
-            <h2 className="font-display text-h2 font-semibold text-ink leading-tight">
-              Как проходит обучение и защита решений
+            <h2 className="font-display text-h2 font-semibold text-ink leading-tight text-balance">
+              Как проходит обучение и&nbsp;защита решений
             </h2>
-            <p className="text-body text-ink-muted leading-relaxed">
+            <p className="text-body text-ink-muted leading-relaxed text-pretty">
               Пройдите короткий опрос для подбора оптимального трека или изучите пошаговый процесс.
             </p>
           </div>
@@ -99,9 +99,10 @@ export function ProcessSection() {
                   : 'text-ink-muted hover:text-ink'
               }`}
             >
-              <Compass className="w-3.5 h-3.5 text-accent" />
-              <span>Квиз: подбор трека</span>
+              <Compass className="w-3.5 h-3.5 text-primary" />
+              <span>Подобрать трек</span>
             </button>
+
             <button
               type="button"
               onClick={() => setMode('steps')}
@@ -124,9 +125,9 @@ export function ProcessSection() {
               {/* Question 1: Grade */}
               <div className="flex flex-col gap-3">
                 <span className="font-mono text-xs text-primary font-medium">Шаг 1 из 2</span>
-                <label className="font-display font-semibold text-base text-ink">
+                <span className="font-display font-semibold text-base text-ink">
                   Ваш текущий грейд:
-                </label>
+                </span>
                 <div className="grid grid-cols-2 gap-2.5">
                   <button
                     type="button"
@@ -159,9 +160,9 @@ export function ProcessSection() {
               {/* Question 2: Goal */}
               <div className="flex flex-col gap-3">
                 <span className="font-mono text-xs text-primary font-medium">Шаг 2 из 2</span>
-                <label className="font-display font-semibold text-base text-ink">
+                <span className="font-display font-semibold text-base text-ink">
                   Главный приоритет:
-                </label>
+                </span>
                 <div className="flex flex-col gap-2">
                   {[
                     { id: 'architecture', title: 'Архитектура FSD, чистота слоёв и TanStack Query' },
@@ -186,7 +187,7 @@ export function ProcessSection() {
               </div>
             </div>
 
-            {/* Recommendation Result Banner */}
+            {/* Recommendation Card */}
             <div className="p-5 sm:p-6 rounded-md bg-surface-raised border border-border/90 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
               <div className="flex flex-col gap-2">
                 <div className="flex items-center gap-2">
@@ -198,7 +199,7 @@ export function ProcessSection() {
                 <h3 className="font-display font-semibold text-lg text-ink">
                   {recommendation.title}
                 </h3>
-                <p className="text-caption text-ink-muted leading-relaxed max-w-xl">
+                <p className="text-caption text-ink-muted leading-relaxed max-w-xl text-pretty">
                   <strong className="text-ink">Артефакт:</strong> {recommendation.artifact}
                 </p>
               </div>
@@ -210,7 +211,7 @@ export function ProcessSection() {
                 rightIcon={<ArrowRight className="w-4 h-4" />}
                 className="shrink-0 w-full sm:w-auto"
               >
-                Смотреть в каталоге
+                Смотреть в&nbsp;каталоге
               </Button>
             </div>
           </div>
@@ -233,7 +234,7 @@ export function ProcessSection() {
                 <h3 className="font-display font-semibold text-base text-ink leading-snug">
                   {item.title}
                 </h3>
-                <p className="text-caption text-ink-muted leading-relaxed">{item.desc}</p>
+                <p className="text-caption text-ink-muted leading-relaxed text-pretty">{item.desc}</p>
               </div>
             ))}
           </div>

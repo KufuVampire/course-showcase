@@ -100,9 +100,9 @@ export function AccountDashboardTabs({
                   <div className="flex flex-col gap-1">
                     <div className="flex items-center gap-2">
                       <Badge variant={typeMeta.variant}>{typeMeta.label}</Badge>
-                      <span className="text-caption text-ink-muted">Заказ {ord.orderNumber}</span>
+                      <span className="text-caption text-ink-muted">Заказ #{ord.orderNumber}</span>
                     </div>
-                    <h4 className="font-display font-bold text-ink text-base">{ord.productTitle}</h4>
+                    <h3 className="font-display font-semibold text-ink text-base">{ord.productTitle}</h3>
                     <span className="text-caption text-success font-medium">Доступ активен без ограничений</span>
                   </div>
 
@@ -132,7 +132,7 @@ export function AccountDashboardTabs({
                 className="p-4 bg-surface-raised border border-border rounded-md flex flex-col gap-2 text-caption"
               >
                 <div className="flex items-center justify-between flex-wrap gap-2">
-                  <span className="font-semibold text-ink">Заказ #{ord.orderNumber}</span>
+                  <h3 className="font-semibold text-ink font-display text-base">Заказ #{ord.orderNumber}</h3>
                   <Badge variant={statusMeta.variant}>{statusMeta.label}</Badge>
                 </div>
 

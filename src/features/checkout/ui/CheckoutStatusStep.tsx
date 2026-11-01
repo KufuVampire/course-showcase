@@ -29,8 +29,8 @@ export function CheckoutStatusStep({
           <span className="font-display font-semibold text-lg text-ink">
             Обработка транзакции...
           </span>
-          <span className="text-caption text-ink-muted">
-            Связываемся с платежным шлюзом. Пожалуйста, не закрывайте окно.
+          <span className="text-caption text-ink-muted text-pretty">
+            Связываемся с&nbsp;платежным шлюзом. Пожалуйста, не&nbsp;закрывайте окно.
           </span>
         </div>
       </div>
@@ -45,11 +45,10 @@ export function CheckoutStatusStep({
         </div>
 
         <div className="flex flex-col gap-2">
-          <h3 className="font-display text-h2 font-bold text-ink">Оплата прошла успешно!</h3>
-          <p className="text-body text-ink-muted max-w-md">
-            Заказ <strong className="text-ink">#{order.orderNumber}</strong> на сумму{' '}
-            <strong className="text-ink font-mono">{formatPrice(order.totalAmount)}</strong> подтвержден. Доступ к
-            материалам открыт в вашем личном кабинете.
+          <h3 className="font-display text-h2 font-semibold text-ink text-balance">Оплата прошла успешно!</h3>
+          <p className="text-body text-ink-muted max-w-md text-pretty">
+            Заказ <strong className="text-ink">#{order.orderNumber}</strong> на&nbsp;сумму{' '}
+            <strong className="text-ink font-mono">{formatPrice(order.totalAmount)}</strong> подтвержден. Доступ к&nbsp;материалам открыт в&nbsp;вашем личном кабинете.
           </p>
         </div>
 
@@ -68,21 +67,20 @@ export function CheckoutStatusStep({
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center gap-3 w-full">
-          <Button variant="outline" size="md" fullWidth onClick={onClose}>
-            Вернуться в каталог
+        <div className="flex items-center gap-3 w-full sm:w-auto">
+          <Button variant="outline" size="md" onClick={onClose}>
+            Закрыть
           </Button>
           <Button
-            variant="primary"
+            variant="accent"
             size="md"
-            fullWidth
             onClick={() => {
               onClose();
               onOpenAccount();
             }}
             rightIcon={<ArrowRight className="w-4 h-4" />}
           >
-            В личный кабинет
+            Перейти в&nbsp;кабинет
           </Button>
         </div>
       </div>
@@ -97,10 +95,10 @@ export function CheckoutStatusStep({
         </div>
 
         <div className="flex flex-col gap-2">
-          <h3 className="font-display text-h2 font-bold text-ink">Ошибка при оплате</h3>
-          <p className="text-body text-danger max-w-md">{errorMessage}</p>
-          <span className="text-caption text-ink-muted">
-            Средства не были списаны. Вы можете повторить попытку или выбрать другой способ оплаты.
+          <h3 className="font-display text-h2 font-semibold text-ink text-balance">Ошибка при оплате</h3>
+          <p className="text-body text-danger max-w-md text-pretty">{errorMessage}</p>
+          <span className="text-caption text-ink-muted text-pretty">
+            Средства не&nbsp;были списаны. Вы можете повторить попытку или выбрать другой способ оплаты.
           </span>
         </div>
 

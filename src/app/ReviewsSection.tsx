@@ -6,21 +6,21 @@ const reviews = [
     role: 'Frontend Engineer @ E-Commerce',
     product: 'Архитектура React & TypeScript',
     outcome: 'Junior → Middle+',
-    text: 'Курс систематизировал понимание FSD и разделения слоёв. Перестал путаться в циклических зависимостях и научился чисто организовывать кэш TanStack Query. Через 2 месяца после защиты проекта успешно прошёл собеседование на Middle+.',
+    text: 'Курс систематизировал понимание FSD и\u00A0разделения слоёв. Перестал путаться в\u00A0циклических зависимостях и\u00A0научился чисто организовывать кэш TanStack Query. Через 2\u00A0месяца после защиты проекта успешно прошёл собеседование на\u00A0Middle+.',
   },
   {
     author: 'Анна Ковалёва',
     role: 'UI/UX & Frontend Developer',
-    product: 'Дизайн-системы и Tailwind v4',
+    product: 'Дизайн-системы и\u00A0Tailwind v4',
     outcome: 'Миграция дизайн-системы',
-    text: 'Воркшоп по Tailwind v4 и @theme сэкономил недели блужданий по документации. Вся команда оценила переезд на семантические токены без arbitrary-классов. Теперь дизайн-система поддерживается без боли.',
+    text: 'Воркшоп по\u00A0Tailwind\u00A0v4 и\u00A0@theme сэкономил недели блужданий по\u00A0документации. Вся команда оценила переезд на\u00A0семантические токены без arbitrary-классов. Теперь дизайн-система поддерживается без боли.',
   },
   {
     author: 'Илья Мартынов',
     role: 'Fullstack Разработчик',
-    product: 'Консультация: Разбор резюме и пет-проекта',
+    product: 'Консультация: Разбор резюме и\u00A0пет-проекта',
     outcome: '2 оффера за 3 недели',
-    text: 'Дмитрий за час разобрал слабые места в архитектуре моего пет-проекта, на которые мне раньше указывали на собеседованиях. Переписал по его чек-листу — и получил 2 оффера за 3 недели.',
+    text: 'Дмитрий за\u00A0час разобрал слабые места в\u00A0архитектуре моего пет-проекта, на\u00A0которые мне раньше указывали на\u00A0собеседованиях. Переписал по\u00A0его чек-листу\u00A0— и\u00A0получил 2\u00A0оффера за\u00A03\u00A0недели.',
   },
 ];
 
@@ -35,11 +35,11 @@ export function ReviewsSection() {
           <span className="text-caption font-medium text-primary">
             Опыт выпускников
           </span>
-          <h2 className="font-display text-h2 font-semibold text-ink leading-tight">
-            Инженеры о практике, архитектуре и результатах
+          <h2 className="font-display text-h2 font-semibold text-ink leading-tight text-balance">
+            Инженеры о&nbsp;практике, архитектуре и&nbsp;результатах
           </h2>
-          <p className="text-body text-ink-muted leading-relaxed">
-            Реальные истории разработчиков о переходе на FSD, дизайн-системах и защите решений на собеседованиях.
+          <p className="text-body text-ink-muted leading-relaxed text-pretty">
+            Реальные истории разработчиков о&nbsp;переходе на&nbsp;FSD, дизайн-системах и&nbsp;защите решений на&nbsp;собеседованиях.
           </p>
         </div>
 
@@ -62,17 +62,17 @@ export function ReviewsSection() {
                 </h3>
               </div>
 
-              <p className="text-caption text-ink leading-relaxed">
+              <p className="text-caption text-ink leading-relaxed text-pretty">
                 «{rev.text}»
               </p>
 
               <div className="pt-4 border-t border-border mt-auto flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-surface-sunken border border-border flex items-center justify-center font-mono text-xs font-medium text-ink shrink-0">
-                  {rev.author.split(' ').map((n) => n[0]).join('')}
+                  {rev.author[0]}
                 </div>
-                <div className="flex flex-col min-w-0">
-                  <span className="font-display font-medium text-ink text-sm truncate">{rev.author}</span>
-                  <span className="text-xs text-ink-muted truncate">{rev.role}</span>
+                <div className="flex flex-col text-caption">
+                  <span className="font-medium text-ink">{rev.author}</span>
+                  <span className="text-ink-muted">{rev.role}</span>
                 </div>
               </div>
             </Card>

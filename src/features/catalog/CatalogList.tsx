@@ -70,9 +70,9 @@ export function CatalogList({
     return (
       <div className="w-full p-12 border border-border bg-surface-sunken/50 rounded-lg flex flex-col items-center text-center gap-4">
         <SearchX className="w-10 h-10 text-ink-muted/80" />
-        <h3 className="font-display font-bold text-xl text-ink">Ничего не найдено</h3>
-        <p className="text-body text-ink-muted max-w-md">
-          По вашему запросу не нашлось подходящих образовательных продуктов. Попробуйте изменить
+        <h3 className="font-display font-semibold text-xl text-ink">Ничего не&nbsp;найдено</h3>
+        <p className="text-body text-ink-muted max-w-md text-pretty">
+          По&nbsp;вашему запросу не&nbsp;нашлось подходящих образовательных продуктов. Попробуйте изменить
           фильтры или формулировку поиска.
         </p>
         <Button variant="secondary" size="md" onClick={onResetFilters}>

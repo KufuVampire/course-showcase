@@ -15,7 +15,7 @@ interface PaymentOption {
 const paymentOptions: PaymentOption[] = [
   { id: 'card', label: 'Карта РФ / Мир', icon: CreditCard },
   { id: 'sbp', label: 'СБП (QR-код)', icon: QrCode },
-  { id: 'installments', label: 'Рассрочка 0%', icon: CalendarCheck },
+  { id: 'installments', label: 'Рассрочка 0 %', icon: CalendarCheck },
 ];
 
 export interface CheckoutFormStepProps {
@@ -87,7 +87,7 @@ export function CheckoutFormStep({
         {promoApplied && (
           <div className="pt-2 border-t border-border/60 flex items-center justify-between text-xs text-success font-medium">
             <span>
-              Скидка по промокоду ({promoApplied.discountPercent ? `${promoApplied.discountPercent}%` : `${promoApplied.discountAmount} ₽`}):
+              Скидка по&nbsp;промокоду ({promoApplied.discountPercent ? `${promoApplied.discountPercent} %` : `${promoApplied.discountAmount} ₽`}):
             </span>
             <span className="font-mono">-{formatPrice(product.price - currentTotal)}</span>
           </div>
@@ -121,7 +121,7 @@ export function CheckoutFormStep({
 
       {/* Contact Fields */}
       <div className="flex flex-col gap-4">
-        <h4 className="font-display font-semibold text-ink text-base">Контакты покупателя</h4>
+        <h3 className="font-display font-semibold text-ink text-base">Контакты покупателя</h3>
 
         <Field
           label="Имя и фамилия"
@@ -160,9 +160,9 @@ export function CheckoutFormStep({
 
       {/* Payment Method */}
       <div className="flex flex-col gap-3">
-        <span className="font-display font-semibold text-ink text-base block">
+        <h3 className="font-display font-semibold text-ink text-base">
           Способ оплаты
-        </span>
+        </h3>
 
         <div
           role="radiogroup"
@@ -198,7 +198,7 @@ export function CheckoutFormStep({
       <Checkbox
         label={
           <span>
-            Я согласен с{' '}
+            Я согласен с&nbsp;
             <a
               href="/oferta"
               target="_blank"
@@ -207,7 +207,7 @@ export function CheckoutFormStep({
             >
               условиями публичной оферты
             </a>{' '}
-            и{' '}
+            и&nbsp;
             <a
               href="/privacy"
               target="_blank"

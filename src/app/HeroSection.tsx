@@ -11,18 +11,19 @@ export function HeroSection() {
             {/* Quiet status eyebrow */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-surface-sunken border border-border text-caption text-ink font-medium mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" aria-hidden="true" />
-              <span>Инженерные практикумы и код-ревью</span>
+              <span>Инженерные практикумы и&nbsp;код-ревью</span>
             </div>
 
             {/* Headline */}
             <h1 className="font-display text-display font-semibold text-ink tracking-tight mb-5 text-balance">
-              Архитектура систем и код-ревью уровня Staff
+              Архитектура систем и&nbsp;код-ревью уровня Staff
             </h1>
 
             {/* Subtitle */}
-            <p className="font-sans text-body text-ink-muted leading-relaxed mb-8 max-w-xl">
-              Сфокусированные программы по Feature-Sliced Design, современным дизайн-системам и
-              чистоте слоёв. Без растянутых лекций: проектирование, разбор реального кода и защита решений.
+            <p className="font-sans text-body text-ink-muted leading-relaxed mb-8 max-w-xl text-pretty">
+              Сфокусированные программы по&nbsp;Feature-Sliced Design, современным дизайн-системам
+              и&nbsp;чистоте слоёв. Без растянутых лекций: проектирование, разбор реального кода
+              и&nbsp;защита решений.
             </p>
 
             {/* Actions */}
@@ -89,10 +90,10 @@ export function HeroSection() {
                       <span className="font-medium text-ink">Staff Reviewer</span>
                       <span className="text-ink-muted">@infrastructure</span>
                     </div>
-                    <span className="text-ink-muted font-mono">14 мин назад</span>
+                    <span className="text-ink-muted font-mono">14&nbsp;мин назад</span>
                   </div>
-                  <p className="font-sans text-caption text-ink-muted leading-relaxed">
-                    Отличная декомпозиция. Серверное состояние изолировано в TanStack Query, фильтры синхронизированы через URL, циклические зависимости отсутствуют. В продакшн.
+                  <p className="font-sans text-caption text-ink-muted leading-relaxed text-pretty">
+                    Отличная декомпозиция. Серверное состояние изолировано в&nbsp;TanStack Query, фильтры синхронизированы через URL, циклические зависимости отсутствуют. В&nbsp;продакшн.
                   </p>
                 </div>
               </div>
