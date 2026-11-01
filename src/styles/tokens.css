@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  /* semantic colors */
+  --color-surface: #FBFAF7;
+  --color-surface-raised: #FFFFFF;
+  --color-surface-sunken: #F3F1EC;
+  --color-ink: #14181F;
+  --color-ink-muted: #5B6370;
+  --color-border: #E4E0D8;
+  --color-primary: #0F5C54;
+  --color-on-primary: #FFFFFF;
+  --color-accent: #F2A93B;
+  --color-on-accent: #14181F;
+  --color-type-consult: #6B5BD2;
+  --color-success: #1E7A4C;
+  --color-warning: #B7791F;
+  --color-danger: #B42318;
+  --color-info: #1D5FA8;
+
+  /* typography */
+  --font-display: "Literata", Georgia, serif;
+  --font-sans: "Onest", system-ui, sans-serif;
+  --text-display: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);
+  --text-display--line-height: 1.05;
+  --text-h2: clamp(1.75rem, 1.3rem + 1.8vw, 2.75rem);
+  --text-h2--line-height: 1.15;
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
+  --text-caption: 0.8125rem;
+
+  /* shape and depth */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.5rem;
+  --shadow-card: 0 1px 2px rgb(20 24 31 / 0.06), 0 8px 24px rgb(20 24 31 / 0.06);
+  --shadow-pop: 0 12px 40px rgb(20 24 31 / 0.16);
+
+  /* layout and motion */
+  --container-page: 72rem;
+  --spacing-section: 6rem;
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 150ms;
+  --duration-base: 240ms;
+}
+
+[data-theme="dark"] {
+  --color-surface: #0F1216;
+  --color-surface-raised: #171B21;
+  --color-surface-sunken: #0B0D10;
+  --color-ink: #F1EFE9;
+  --color-ink-muted: #A3AAB5;
+  --color-border: #272D36;
+  --color-primary: #4FB3A6;
+  --color-on-primary: #0B0D10;
+}
