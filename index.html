@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,14 +18,12 @@
       content="Витрина практических программ от Staff и Lead инженеров: архитектура приложений, дизайн-системы и код-ревью."
     />
 
-    <!-- Theme Flash Prevention Script -->
+    <!-- Тема без вспышки: по умолчанию светлая, тёмная только если пользователь выбрал её сам -->
     <script>
       (function () {
         try {
           var saved = localStorage.getItem('course_showcase_theme');
-          var theme =
-            saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-          document.documentElement.setAttribute('data-theme', theme);
+          document.documentElement.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light');
         } catch (e) {}
       })();
     </script>

@@ -137,3 +137,28 @@ details::details-content {
 details[open]::details-content {
   block-size: auto;
 }
+
+/* Theme switch: вся страница меняет тему синхронно */
+
+/* На время смены гасим CSS-переходы всех элементов: иначе кнопки, карточки, ссылки и поля
+   (transition-colors / transition-all) доезжают до нового цвета позже остальных. */
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition: none !important;
+}
+
+/* Единый кросс-фейд всей страницы (View Transitions API) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: var(--duration-base);
+  animation-timing-function: var(--ease-out-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
