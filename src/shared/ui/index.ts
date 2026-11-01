@@ -6,3 +6,4 @@ export * from './Checkbox';
 export * from './Select';
 export * from './Modal';
 export * from './Skeleton';
+export * from './Logo';

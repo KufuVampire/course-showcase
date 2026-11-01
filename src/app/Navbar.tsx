@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { Sun, Moon, User as UserIcon, BookOpen } from 'lucide-react';
+import { Sun, Moon, User as UserIcon } from 'lucide-react';
 import { useTheme } from '@/shared/lib/useTheme';
-import { Button } from '@/shared/ui';
+import { Button, Logo } from '@/shared/ui';
 import { cn } from '@/shared/lib/cn';
 
 export interface NavbarProps {
@@ -61,19 +61,7 @@ export function Navbar({ onOpenAccount, userEmail }: NavbarProps) {
 
       <div className="max-w-page mx-auto px-3 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-2 sm:gap-4">
         {/* Brand */}
-        <a href="/" className="flex items-center gap-2 group min-w-0 shrink">
-          <div className="w-8 h-8 rounded-md bg-primary text-on-primary flex items-center justify-center font-display font-bold text-base shadow-xs shrink-0 group-hover:opacity-90 transition-opacity">
-            <BookOpen className="w-4 h-4" />
-          </div>
-          <div className="flex flex-col min-w-0">
-            <span className="font-display font-bold text-ink tracking-tight text-base sm:text-lg leading-none truncate">
-              Практикум.PRO
-            </span>
-            <span className="text-caption text-ink-muted leading-tight text-xs truncate hidden xs:inline">
-              Образовательные программы
-            </span>
-          </div>
-        </a>
+        <Logo showSubtitle />
 
         {/* Desktop Navigation (lg+) */}
         <nav

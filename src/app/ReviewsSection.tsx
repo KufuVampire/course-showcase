@@ -50,11 +50,16 @@ export function ReviewsSection() {
               padding="lg"
               className="flex flex-col gap-4 bg-surface-raised border border-border"
             >
-              <div className="flex items-center justify-between text-xs">
-                <span className="font-mono text-primary font-medium">{rev.product}</span>
-                <span className="font-mono px-2 py-0.5 rounded-sm bg-surface-sunken text-ink-muted border border-border">
-                  {rev.outcome}
-                </span>
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-mono text-xs px-2 py-0.5 rounded-sm bg-primary/10 text-primary border border-primary/20 font-medium shrink-0">
+                    {rev.outcome}
+                  </span>
+                  <span className="text-xs text-ink-muted font-mono">Выпускник</span>
+                </div>
+                <h3 className="font-display font-semibold text-ink text-sm leading-snug">
+                  {rev.product}
+                </h3>
               </div>
 
               <p className="text-caption text-ink leading-relaxed">

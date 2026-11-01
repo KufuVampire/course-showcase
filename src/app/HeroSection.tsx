@@ -20,13 +20,13 @@ export function HeroSection() {
             </h1>
 
             {/* Subtitle */}
-            <p className="font-sans text-body text-ink-muted text-lg leading-relaxed mb-8 max-w-xl">
+            <p className="font-sans text-body text-ink-muted leading-relaxed mb-8 max-w-xl">
               Сфокусированные программы по Feature-Sliced Design, современным дизайн-системам и
               чистоте слоёв. Без растянутых лекций: проектирование, разбор реального кода и защита решений.
             </p>
 
             {/* Actions */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-12 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto">
               <Button
                 href="/#catalog"
                 variant="accent"
@@ -39,24 +39,6 @@ export function HeroSection() {
               <Button href="/#benefits" variant="outline" size="lg">
                 Как устроено обучение
               </Button>
-            </div>
-
-            {/* Technical Key Indicators */}
-            <div className="grid grid-cols-3 gap-6 w-full pt-6 border-t border-border">
-              <div className="flex flex-col gap-0.5">
-                <span className="font-mono text-xl font-medium text-ink tabular-nums">4.94</span>
-                <span className="text-caption text-ink-muted">Оценка на основе 160+ отзывов</span>
-              </div>
-
-              <div className="flex flex-col gap-0.5 border-x border-border/70 px-4 sm:px-6">
-                <span className="font-mono text-xl font-medium text-ink tabular-nums">1 : 1</span>
-                <span className="text-caption text-ink-muted">Личное код-ревью каждого PR</span>
-              </div>
-
-              <div className="flex flex-col gap-0.5">
-                <span className="font-mono text-xl font-medium text-ink tabular-nums">14 дней</span>
-                <span className="text-caption text-ink-muted">Гарантия возврата средств</span>
-              </div>
             </div>
           </div>
 
