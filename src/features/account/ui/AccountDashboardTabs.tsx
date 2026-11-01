@@ -107,9 +107,9 @@ export function AccountDashboardTabs({
                   </div>
 
                   <Button
-                    variant="outline"
+                    variant="secondary"
                     size="sm"
-                    rightIcon={<PlayCircle className="w-4 h-4 text-primary" />}
+                    rightIcon={<PlayCircle className="w-4 h-4" />}
                     onClick={() => onNotifyCourse(`Обучающая среда для «${ord.productTitle}» подготовлена (демо).`)}
                   >
                     К урокам
