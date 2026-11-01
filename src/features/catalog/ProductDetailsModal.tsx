@@ -53,7 +53,7 @@ export function ProductDetailsModal({
           <div>
             <span className="text-ink-muted block text-xs">Длительность</span>
             <span className="font-semibold text-ink flex items-center gap-1 mt-0.5 font-mono">
-              <Clock className="w-3.5 h-3.5 text-primary" />
+              <Clock className="w-3.5 h-3.5 text-accent" />
               {formatDuration(product.durationHours)}
             </span>
           </div>

@@ -40,7 +40,7 @@ export function BenefitsSection() {
     >
       <div className="max-w-page mx-auto px-4 sm:px-6 flex flex-col gap-10">
         <div className="flex flex-col gap-2 max-w-2xl">
-          <span className="text-caption font-medium text-primary">
+          <span className="text-caption font-medium text-accent">
             Инженерный подход
           </span>
           <h2 className="font-display text-h2 font-semibold text-ink leading-tight text-balance">
@@ -59,16 +59,16 @@ export function BenefitsSection() {
               <Card
                 key={item.title}
                 padding="none"
-                className="flex flex-col gap-3.5 lg:gap-5 p-5 sm:p-6 lg:p-7 bg-surface-raised border border-border h-full"
+                className="flex flex-col gap-3.5 lg:gap-4 p-5 lg:p-6 bg-surface-raised border border-border h-full"
               >
                 <div className="flex items-center justify-between">
-                  <Icon className="w-5 h-5 lg:w-6 lg:h-6 text-primary" />
+                  <Icon className="w-5 h-5 lg:w-6 lg:h-6 text-accent" />
                   <span className="font-mono text-xs lg:text-sm text-ink-muted/80">{item.index}</span>
                 </div>
-                <h3 className="font-display font-semibold text-base lg:text-title text-ink leading-snug">
+                <h3 className="font-display font-semibold text-base lg:text-lg text-ink leading-snug">
                   {item.title}
                 </h3>
-                <p className="text-caption lg:text-body text-ink-muted leading-relaxed lg:leading-relaxed text-pretty">
+                <p className="text-caption lg:text-[15px] text-ink-muted leading-relaxed text-pretty">
                   {item.description}
                 </p>
               </Card>

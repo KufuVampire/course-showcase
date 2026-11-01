@@ -77,7 +77,7 @@ export function ProcessSection() {
         {/* Section Header with Mode Switcher */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="flex flex-col gap-2 max-w-2xl">
-            <span className="text-caption font-medium text-primary">
+            <span className="text-caption font-medium text-accent">
               Траектория обучения
             </span>
             <h2 className="font-display text-h2 font-semibold text-ink leading-tight text-balance">
@@ -93,26 +93,26 @@ export function ProcessSection() {
             <button
               type="button"
               onClick={() => setMode('quiz')}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm text-caption font-medium transition-colors cursor-pointer ${
+              className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-sm text-caption font-medium transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                 mode === 'quiz'
-                  ? 'bg-surface-raised text-ink shadow-xs border border-border/80'
+                  ? 'bg-accent text-on-accent shadow-xs font-semibold'
                   : 'text-ink-muted hover:text-ink'
               }`}
             >
-              <Compass className="w-3.5 h-3.5 text-primary" />
+              <Compass className={`w-3.5 h-3.5 ${mode === 'quiz' ? 'text-on-accent' : 'text-accent'}`} />
               <span>Подобрать трек</span>
             </button>
 
             <button
               type="button"
               onClick={() => setMode('steps')}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm text-caption font-medium transition-colors cursor-pointer ${
+              className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-sm text-caption font-medium transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                 mode === 'steps'
-                  ? 'bg-surface-raised text-ink shadow-xs border border-border/80'
+                  ? 'bg-accent text-on-accent shadow-xs font-semibold'
                   : 'text-ink-muted hover:text-ink'
               }`}
             >
-              <ListOrdered className="w-3.5 h-3.5 text-primary" />
+              <ListOrdered className={`w-3.5 h-3.5 ${mode === 'steps' ? 'text-on-accent' : 'text-accent'}`} />
               <span>Пошаговый процесс</span>
             </button>
           </div>
@@ -124,7 +124,7 @@ export function ProcessSection() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Question 1: Grade */}
               <div className="flex flex-col gap-3">
-                <span className="font-mono text-xs text-primary font-medium">Шаг 1 из 2</span>
+                <span className="font-mono text-xs text-accent font-medium">Шаг 1 из 2</span>
                 <span className="font-display font-semibold text-base lg:text-title text-ink">
                   Ваш текущий грейд:
                 </span>
@@ -132,9 +132,9 @@ export function ProcessSection() {
                   <button
                     type="button"
                     onClick={() => setLevel('middle')}
-                    className={`p-3 text-left rounded-md border text-caption font-medium transition-colors cursor-pointer ${
+                    className={`p-3 text-left rounded-md border text-caption font-medium transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                       level === 'middle'
-                        ? 'bg-surface-raised border-primary text-primary ring-1 ring-primary'
+                        ? 'bg-surface-raised border-accent text-ink ring-1 ring-accent'
                         : 'bg-surface border-border text-ink hover:bg-surface-sunken'
                     }`}
                   >
@@ -145,9 +145,9 @@ export function ProcessSection() {
                   <button
                     type="button"
                     onClick={() => setLevel('senior')}
-                    className={`p-3 text-left rounded-md border text-caption font-medium transition-colors cursor-pointer ${
+                    className={`p-3 text-left rounded-md border text-caption font-medium transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                       level === 'senior'
-                        ? 'bg-surface-raised border-primary text-primary ring-1 ring-primary'
+                        ? 'bg-surface-raised border-accent text-ink ring-1 ring-accent'
                         : 'bg-surface border-border text-ink hover:bg-surface-sunken'
                     }`}
                   >
@@ -159,7 +159,7 @@ export function ProcessSection() {
 
               {/* Question 2: Goal */}
               <div className="flex flex-col gap-3">
-                <span className="font-mono text-xs text-primary font-medium">Шаг 2 из 2</span>
+                <span className="font-mono text-xs text-accent font-medium">Шаг 2 из 2</span>
                 <span className="font-display font-semibold text-base lg:text-title text-ink">
                   Главный приоритет:
                 </span>
@@ -173,14 +173,14 @@ export function ProcessSection() {
                       key={opt.id}
                       type="button"
                       onClick={() => setGoal(opt.id as typeof goal)}
-                      className={`p-2.5 px-3.5 text-left rounded-md border text-caption font-medium transition-colors cursor-pointer flex items-center justify-between ${
+                      className={`p-2.5 px-3.5 text-left rounded-md border text-caption font-medium transition-colors cursor-pointer flex items-center justify-between outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                         goal === opt.id
-                          ? 'bg-surface-raised border-primary text-primary ring-1 ring-primary'
+                          ? 'bg-surface-raised border-accent text-ink ring-1 ring-accent'
                           : 'bg-surface border-border text-ink hover:bg-surface-sunken'
                       }`}
                     >
                       <span>{opt.title}</span>
-                      {goal === opt.id && <CheckCircle2 className="w-4 h-4 text-primary shrink-0 ml-2" />}
+                      {goal === opt.id && <CheckCircle2 className="w-4 h-4 text-accent shrink-0 ml-2" />}
                     </button>
                   ))}
                 </div>
@@ -199,7 +199,7 @@ export function ProcessSection() {
                 <h3 className="font-display font-semibold text-lg lg:text-title text-ink">
                   {recommendation.title}
                 </h3>
-                <p className="text-caption lg:text-body text-ink-muted leading-relaxed max-w-xl text-pretty">
+                <p className="text-caption lg:text-[15px] text-ink-muted leading-relaxed max-w-xl text-pretty">
                   <strong className="text-ink">Артефакт:</strong> {recommendation.artifact}
                 </p>
               </div>
@@ -224,7 +224,7 @@ export function ProcessSection() {
                 className="p-5 lg:p-6 rounded-lg border border-border bg-surface-raised flex flex-col gap-3 relative"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs font-semibold text-primary px-2 py-0.5 rounded-sm bg-primary/10 border border-primary/20">
+                  <span className="font-mono text-xs font-semibold text-accent px-2 py-0.5 rounded-sm bg-accent/15 border border-accent/30">
                     Этап {item.step}
                   </span>
                   {idx < processSteps.length - 1 && (
@@ -234,7 +234,7 @@ export function ProcessSection() {
                 <h3 className="font-display font-semibold text-base lg:text-title text-ink leading-snug">
                   {item.title}
                 </h3>
-                <p className="text-caption lg:text-body text-ink-muted leading-relaxed text-pretty">{item.desc}</p>
+                <p className="text-caption lg:text-[15px] text-ink-muted leading-relaxed text-pretty">{item.desc}</p>
               </div>
             ))}
           </div>

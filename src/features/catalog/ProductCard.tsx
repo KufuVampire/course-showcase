@@ -35,7 +35,7 @@ export function ProductCard({ product, onOpenDetails, onCheckout }: ProductCardP
           <button
             type="button"
             onClick={() => onOpenDetails(product)}
-            className="text-left hover:text-primary transition-colors cursor-pointer"
+            className="text-left hover:text-accent focus-visible:text-accent focus-visible:outline-none transition-colors cursor-pointer"
           >
             {product.title}
           </button>
@@ -49,7 +49,7 @@ export function ProductCard({ product, onOpenDetails, onCheckout }: ProductCardP
       {/* Meta tags & Details */}
       <div className="px-6 py-2 flex flex-wrap gap-2 text-caption text-ink-muted">
         <span className="inline-flex items-center gap-1">
-          <Clock className="w-3.5 h-3.5 text-primary" />
+          <Clock className="w-3.5 h-3.5 text-accent" />
           {formatDuration(product.durationHours)}
         </span>
         <span>•</span>
@@ -58,7 +58,7 @@ export function ProductCard({ product, onOpenDetails, onCheckout }: ProductCardP
 
       {/* Instructor info */}
       <div className="px-6 py-3 flex items-center gap-2.5 text-caption border-t border-border/50 mt-auto bg-surface-sunken/40">
-        <div className="w-7 h-7 rounded-full bg-border flex items-center justify-center text-ink-muted font-bold text-xs shrink-0">
+        <div className="w-7 h-7 rounded-full bg-accent/15 text-accent flex items-center justify-center font-bold text-xs shrink-0">
           <User className="w-4 h-4" />
         </div>
         <div className="flex flex-col min-w-0">
@@ -97,7 +97,7 @@ export function ProductCard({ product, onOpenDetails, onCheckout }: ProductCardP
           </Button>
 
           <Button
-            variant="primary"
+            variant="accent"
             size="sm"
             fullWidth
             onClick={() => onCheckout(product)}

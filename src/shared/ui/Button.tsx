@@ -25,15 +25,15 @@ export type ButtonProps = CommonProps &
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    'bg-primary text-on-primary hover:opacity-90 active:opacity-95 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
+    'bg-primary text-on-primary hover:brightness-110 active:brightness-90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
   secondary:
-    'bg-surface-sunken text-ink hover:bg-border/40 active:bg-border/60 focus-visible:ring-2 focus-visible:ring-ink-muted focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
+    'bg-surface-sunken text-ink hover:brightness-105 active:brightness-95 hover:bg-border/40 active:bg-border/60 focus-visible:ring-2 focus-visible:ring-ink-muted focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
   accent:
-    'bg-accent text-on-accent hover:opacity-90 active:opacity-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
+    'bg-accent text-on-accent hover:brightness-110 active:brightness-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
   outline:
-    'border border-border text-ink bg-transparent hover:bg-surface-sunken active:bg-border/30 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
+    'border border-border text-ink bg-transparent hover:brightness-105 hover:bg-surface-sunken active:brightness-95 active:bg-border/30 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
   ghost:
-    'text-ink-muted hover:text-ink hover:bg-surface-sunken active:bg-border/30 focus-visible:ring-2 focus-visible:ring-primary',
+    'text-ink-muted hover:text-ink hover:brightness-105 hover:bg-surface-sunken active:brightness-95 active:bg-border/30 focus-visible:ring-2 focus-visible:ring-primary',
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -61,7 +61,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const baseStyles =
-    'inline-flex items-center justify-center transition-colors cursor-pointer select-none outline-none whitespace-nowrap disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed text-center';
+    'inline-flex items-center justify-center transition-[filter,background-color,border-color,color] duration-fast cursor-pointer select-none outline-none whitespace-nowrap disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed text-center';
 
   const classes = cn(
     baseStyles,

@@ -41,13 +41,13 @@ export function AccountDashboardTabs({
           role="tab"
           aria-selected={activeTab === 'courses'}
           onClick={() => onTabChange('courses')}
-          className={`pb-3 text-caption font-semibold cursor-pointer border-b-2 flex items-center gap-1.5 transition-colors ${
+          className={`pb-3 text-caption font-semibold cursor-pointer border-b-2 flex items-center gap-1.5 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-accent ${
             activeTab === 'courses'
-              ? 'border-primary text-primary'
+              ? 'border-accent text-accent'
               : 'border-transparent text-ink-muted hover:text-ink'
           }`}
         >
-          <GraduationCap className="w-4 h-4" />
+          <GraduationCap className="w-4 h-4 text-accent" />
           Мои материалы ({uniqueCoursesCount})
         </button>
 
@@ -56,13 +56,13 @@ export function AccountDashboardTabs({
           role="tab"
           aria-selected={activeTab === 'orders'}
           onClick={() => onTabChange('orders')}
-          className={`pb-3 text-caption font-semibold cursor-pointer border-b-2 flex items-center gap-1.5 transition-colors ${
+          className={`pb-3 text-caption font-semibold cursor-pointer border-b-2 flex items-center gap-1.5 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-accent ${
             activeTab === 'orders'
-              ? 'border-primary text-primary'
+              ? 'border-accent text-accent'
               : 'border-transparent text-ink-muted hover:text-ink'
           }`}
         >
-          <Receipt className="w-4 h-4" />
+          <Receipt className="w-4 h-4 text-accent" />
           История заказов ({orders.length})
         </button>
 
@@ -71,13 +71,13 @@ export function AccountDashboardTabs({
           role="tab"
           aria-selected={activeTab === 'profile'}
           onClick={() => onTabChange('profile')}
-          className={`pb-3 text-caption font-semibold cursor-pointer border-b-2 flex items-center gap-1.5 transition-colors ${
+          className={`pb-3 text-caption font-semibold cursor-pointer border-b-2 flex items-center gap-1.5 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-accent ${
             activeTab === 'profile'
-              ? 'border-primary text-primary'
+              ? 'border-accent text-accent'
               : 'border-transparent text-ink-muted hover:text-ink'
           }`}
         >
-          <UserIcon className="w-4 h-4" />
+          <UserIcon className="w-4 h-4 text-accent" />
           Профиль
         </button>
       </div>
@@ -109,7 +109,7 @@ export function AccountDashboardTabs({
                   <Button
                     variant="outline"
                     size="sm"
-                    rightIcon={<PlayCircle className="w-4 h-4" />}
+                    rightIcon={<PlayCircle className="w-4 h-4 text-accent" />}
                     onClick={() => onNotifyCourse(`Обучающая среда для «${ord.productTitle}» подготовлена (демо).`)}
                   >
                     К урокам
@@ -143,11 +143,11 @@ export function AccountDashboardTabs({
 
                 <div className="flex items-center gap-4 text-ink-muted text-xs pt-2 border-t border-border/60">
                   <span className="flex items-center gap-1">
-                    <Calendar className="w-3.5 h-3.5" />
+                    <Calendar className="w-3.5 h-3.5 text-accent" />
                     {formatDate(ord.createdAt)}
                   </span>
                   <span className="flex items-center gap-1">
-                    <CreditCard className="w-3.5 h-3.5" />
+                    <CreditCard className="w-3.5 h-3.5 text-accent" />
                     {ord.paymentMethod.toUpperCase()}
                   </span>
                 </div>

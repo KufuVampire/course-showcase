@@ -1,30 +1,25 @@
 import { ChevronDown } from 'lucide-react';
 
-interface FaqItem {
-  q: string;
-  a: string;
-}
-
-const faqs: FaqItem[] = [
+const faqs = [
   {
-    q: 'Как устроен доступ к\u00A0материалам после покупки?',
-    a: 'Доступ открывается мгновенно после подтверждения оплаты. Вы получаете пожизненный доступ к\u00A0записям, материалам репозиториев и\u00A0всем будущим обновлениям программы в\u00A0личном кабинете.',
+    q: 'Кому подходят ваши практикумы?',
+    a: 'Наши программы рассчитаны на практикующих разработчиков уровня Middle и Senior, которые хотят систематизировать знания архитектуры, освоить Feature-Sliced Design и проектировать масштабируемые интерфейсы без хаоса в коде.',
   },
   {
-    q: 'Как работает гарантия возврата 14\u00A0дней?',
-    a: 'Если в\u00A0течение первых 14\u00A0дней вы решите, что программа вам не\u00A0подходит по\u00A0уровню или подаче, просто напишите нам на\u00A0почту поддержки. Мы вернем 100\u00A0% оплаченной суммы без лишних споров.',
+    q: 'Как проходит код-ревью моих практических заданий?',
+    a: 'Вы работаете в персональном форке учебного репозитория и создаёте Pull Request на каждую выполненную задачу. Действующий Staff или Lead инженер проводит детальное ревью: проверяет контракты слоёв, пограничные случаи, мемоизацию и тесты, оставляя предметные комментарии.',
   },
   {
-    q: 'Предоставляется ли беспроцентная рассрочка?',
-    a: 'Да, для курсов и\u00A0комплексных программ доступна рассрочка на\u00A03, 6 или 12\u00A0месяцев без первого взноса и\u00A0переплат через Т-Банк, Сбербанк и\u00A0сервис «Долями».',
+    q: 'Есть ли рассрочка и гарантия возврата средств?',
+    a: 'Да, на все программы стоимостью от 10 000 ₽ доступна беспроцентная рассрочка без переплат. Кроме того, действует гарантия полного возврата 100 % средств в течение первых 14 дней обучения, если программа вам не подойдёт.',
   },
   {
-    q: 'Чем воркшоп отличается от\u00A0полноценного курса?',
-    a: 'Воркшоп\u00A0— это концентрированный однодневный интенсив (6–8\u00A0часов) с\u00A0живым разбором конкретного инструмента или архитектурного перехода. Курс\u00A0— это глубокая 4–8-недельная программа с\u00A0регулярным код-ревью и\u00A0защитой дипломного проекта.',
+    q: 'Как быстро я получу доступ к материалам после оплаты?',
+    a: 'Мгновенно. Сразу после успешного подтверждения транзакции репозитории, практические задания и инструкции станут доступны в вашем личном кабинете. Ссылка на личный кабинет также дублируется на указанную почту.',
   },
   {
-    q: 'Выдается ли сертификат по\u00A0завершении?',
-    a: 'Да, после успешной сдачи всех практических заданий и\u00A0прохождения код-ревью вы получаете верифицируемый цифровой сертификат с\u00A0ссылкой на\u00A0ваш репозиторий, который можно прикрепить к\u00A0LinkedIn или резюме.',
+    q: 'Что входит в индивидуальную консультацию?',
+    a: 'В консультацию входит часовой аудио/видео-созвон 1-на-1 с разбором вашего пет-проекта, архитектуры или резюме, а также последующая неделя текстовой поддержки и асинхронного ревью изменений.',
   },
 ];
 
@@ -36,7 +31,7 @@ export function FaqSection() {
     >
       <div className="max-w-page mx-auto px-4 sm:px-6 flex flex-col gap-10">
         <div className="flex flex-col gap-2 max-w-2xl">
-          <span className="text-caption font-medium text-primary">
+          <span className="text-caption font-medium text-accent">
             Вопросы и ответы
           </span>
           <h2 className="font-display text-h2 font-semibold text-ink leading-tight text-balance">
@@ -53,11 +48,11 @@ export function FaqSection() {
               key={faq.q}
               className="group border border-border rounded-lg bg-surface transition-colors overflow-hidden"
             >
-              <summary className="list-none p-5 text-left flex items-center justify-between gap-4 cursor-pointer hover:text-primary transition-colors select-none">
+              <summary className="list-none p-5 text-left flex items-center justify-between gap-4 cursor-pointer hover:text-accent focus-visible:outline-none focus-visible:text-accent transition-colors select-none">
                 <h3 className="font-display font-semibold text-ink text-base leading-snug">
                   {faq.q}
                 </h3>
-                <ChevronDown className="w-5 h-5 text-ink-muted shrink-0 transition-transform duration-fast group-open:rotate-180 group-open:text-primary" />
+                <ChevronDown className="w-5 h-5 text-ink-muted shrink-0 transition-transform duration-fast group-open:rotate-180 group-open:text-accent" />
               </summary>
 
               <div className="px-5 pb-5 pt-0 text-caption lg:text-body text-ink-muted leading-relaxed border-t border-border/40 mt-1">

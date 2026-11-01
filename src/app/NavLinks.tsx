@@ -31,7 +31,11 @@ export function NavLinks({ variant = 'desktop', onItemClick, className }: NavLin
         aria-label="Основная навигация"
       >
         {NAV_ITEMS.map((item) => (
-          <a key={item.href} href={item.href} className="hover:text-ink transition-colors">
+          <a
+            key={item.href}
+            href={item.href}
+            className="hover:text-ink focus-visible:text-ink focus-visible:outline-none transition-colors"
+          >
             {item.label}
           </a>
         ))}
@@ -46,7 +50,10 @@ export function NavLinks({ variant = 'desktop', onItemClick, className }: NavLin
           key={item.href}
           href={item.href}
           onClick={onItemClick}
-          className={cn('py-2.5 px-3 rounded-md hover:bg-surface-sunken', className)}
+          className={cn(
+            'py-2.5 px-3 rounded-md hover:bg-surface-sunken outline-none focus-visible:ring-2 focus-visible:ring-accent',
+            className
+          )}
         >
           {item.mobileLabel || item.label}
         </a>

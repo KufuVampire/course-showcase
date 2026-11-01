@@ -180,13 +180,13 @@ export function CheckoutFormStep({
                 aria-checked={isSelected}
                 onClick={() => onPaymentMethodChange(opt.id)}
                 className={cn(
-                  'p-3 rounded-md border flex flex-col items-center justify-center gap-2 cursor-pointer transition-colors text-center',
+                  'p-3 rounded-md border flex flex-col items-center justify-center gap-2 cursor-pointer transition-colors text-center outline-none focus-visible:ring-2 focus-visible:ring-accent',
                   isSelected
-                    ? 'border-primary bg-primary/5 text-primary font-semibold ring-1 ring-primary'
+                    ? 'border-accent bg-accent/10 text-ink font-semibold ring-1 ring-accent'
                     : 'border-border bg-surface-raised text-ink hover:bg-surface-sunken'
                 )}
               >
-                <Icon className="w-5 h-5 shrink-0" />
+                <Icon className={cn('w-5 h-5 shrink-0', isSelected ? 'text-accent' : 'text-ink-muted')} />
                 <span className="text-caption">{opt.label}</span>
               </button>
             );

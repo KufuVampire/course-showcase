@@ -26,7 +26,7 @@ export function HomePage({ catalogState, onOpenDetails, onCheckout }: HomePagePr
         className="scroll-mt-20 py-16 md:py-24 max-w-page mx-auto px-4 sm:px-6 w-full flex flex-col gap-8"
       >
         <div className="flex flex-col gap-2">
-          <span className="text-caption font-medium text-primary">
+          <span className="text-caption font-medium text-accent">
             Каталог программ
           </span>
           <div className="flex items-baseline justify-between flex-wrap gap-4">
@@ -60,9 +60,16 @@ export function HomePage({ catalogState, onOpenDetails, onCheckout }: HomePagePr
         />
       </section>
 
+      {/* VALUE PRINCIPLES */}
       <BenefitsSection />
+
+      {/* LEARNING TIMELINE & QUIZ */}
       <ProcessSection />
+
+      {/* REVIEWS & CASE STUDIES */}
       <ReviewsSection />
+
+      {/* FAQ */}
       <FaqSection />
     </>
   );

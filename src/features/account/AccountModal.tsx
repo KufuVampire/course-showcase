@@ -42,7 +42,7 @@ export function AccountModal({ isOpen, onClose }: AccountModalProps) {
     >
       {isLoading ? (
         <div className="py-12 flex justify-center items-center text-ink-muted">
-          <Loader2 className="w-6 h-6 animate-spin text-primary" />
+          <Loader2 className="w-6 h-6 animate-spin text-accent" />
         </div>
       ) : !user ? (
         <AccountLoginForm
@@ -56,7 +56,7 @@ export function AccountModal({ isOpen, onClose }: AccountModalProps) {
       ) : (
         <>
           {activeCourseNotification && (
-            <div className="mb-4 p-3 bg-primary/10 border border-primary/20 text-primary text-caption rounded-md flex justify-between items-center">
+            <div className="mb-4 p-3 bg-accent/15 border border-accent/30 text-ink text-caption rounded-md flex justify-between items-center">
               <span>{activeCourseNotification}</span>
               <button
                 type="button"

@@ -50,7 +50,7 @@
   --shadow-pop: 0 12px 40px rgb(20 24 31 / 0.16);
 
   /* layout and motion */
-  --container-page: 72rem;
+  --container-page: 80rem;
   --spacing-section: 6rem;
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
   --duration-fast: 150ms;
@@ -68,7 +68,7 @@
   --color-primary: #4fb3a6;
   --color-on-primary: #0b0d10;
   --color-accent: #f2a93b;
-  --color-on-accent: #0b0d10;
+  --color-on-accent: #ffffff;
   --color-type-consult: #a79af5;
   --color-success: #4ade80;
   --color-warning: #fde047;
@@ -129,6 +129,23 @@ dialog[open] {
     opacity: 1;
     transform: scale(1);
   }
+}
+
+/* Select Dropdown Animation */
+@keyframes select-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.select-dropdown-enter {
+  animation: select-enter var(--duration-fast) var(--ease-out-soft);
+  transform-origin: top center;
 }
 
 /* Smooth Accordion via ::details-content */

@@ -32,7 +32,7 @@ export function ReviewsSection() {
     >
       <div className="max-w-page mx-auto px-4 sm:px-6 flex flex-col gap-10">
         <div className="flex flex-col gap-2 max-w-2xl">
-          <span className="text-caption font-medium text-primary">
+          <span className="text-caption font-medium text-accent">
             Опыт выпускников
           </span>
           <h2 className="font-display text-h2 font-semibold text-ink leading-tight text-balance">
@@ -48,21 +48,21 @@ export function ReviewsSection() {
             <Card
               key={rev.author}
               padding="none"
-              className="flex flex-col gap-4 p-5 sm:p-6 lg:p-7 bg-surface-raised border border-border h-full"
+              className="flex flex-col gap-4 p-5 lg:p-6 bg-surface-raised border border-border h-full"
             >
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between gap-2">
-                  <span className="font-mono text-xs px-2.5 py-1 rounded-sm bg-primary/10 text-primary border border-primary/25 font-semibold shrink-0">
+                  <span className="font-mono text-xs px-2.5 py-1 rounded-sm bg-accent/15 text-ink border border-accent/30 font-semibold shrink-0">
                     {rev.outcome}
                   </span>
                   <span className="text-xs text-ink-muted/70 font-mono">Выпускник</span>
                 </div>
-                <h3 className="font-display font-semibold text-ink text-base lg:text-title leading-snug">
+                <h3 className="font-display font-semibold text-ink text-base lg:text-lg leading-snug">
                   {rev.product}
                 </h3>
               </div>
 
-              <p className="text-body text-ink leading-relaxed lg:leading-relaxed text-pretty">
+              <p className="text-caption sm:text-body lg:text-[15px] text-ink leading-relaxed text-pretty">
                 «{rev.text}»
               </p>
 

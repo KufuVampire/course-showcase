@@ -51,10 +51,10 @@ export function Field({
           aria-invalid={Boolean(error)}
           aria-describedby={cn(errorId, hintId) || undefined}
           className={cn(
-            'w-full bg-surface-raised border rounded-md text-body text-ink placeholder:text-ink-muted/80 transition-colors py-2.5 px-3.5 outline-none focus:ring-2 focus:ring-primary focus:border-primary disabled:opacity-50 disabled:cursor-not-allowed',
+            'w-full bg-surface-raised border rounded-md text-body text-ink placeholder:text-ink-muted/80 transition-colors py-2.5 px-3.5 outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:border-primary disabled:opacity-50 disabled:cursor-not-allowed',
             leftElement ? 'pl-10' : '',
             rightElement ? 'pr-10' : '',
-            error ? 'border-danger focus:ring-danger' : 'border-border',
+            error ? 'border-danger focus-visible:ring-danger' : 'border-border',
             className
           )}
           {...rest}

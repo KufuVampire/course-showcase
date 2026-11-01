@@ -159,8 +159,8 @@ export function Select({ options, value, onChange, ariaLabel, className = '' }: 
         onClick={() => setIsOpen((prev) => !prev)}
         onKeyDown={handleKeyDown}
         className={cn(
-          'w-full h-11 bg-surface-raised border border-border rounded-md text-caption py-2.5 px-3.5 text-ink flex items-center justify-between gap-2 outline-none focus:ring-2 focus:ring-primary focus:border-primary cursor-pointer select-none transition-colors text-left',
-          isOpen ? 'ring-2 ring-primary border-primary' : ''
+          'w-full h-11 bg-surface-raised border border-border rounded-md text-caption py-2.5 px-3.5 text-ink flex items-center justify-between gap-2 outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:border-primary cursor-pointer select-none transition-colors text-left',
+          isOpen ? 'border-primary ring-1 ring-primary' : ''
         )}
       >
         <span className="truncate">{selectedOption?.label}</span>
@@ -179,7 +179,7 @@ export function Select({ options, value, onChange, ariaLabel, className = '' }: 
           role="listbox"
           tabIndex={-1}
           aria-label={ariaLabel}
-          className="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-md bg-surface-raised p-1 text-caption shadow-pop border border-border outline-none scrollbar-custom animate-in fade-in-0 zoom-in-95 duration-fast"
+          className="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-md bg-surface-raised p-1 text-caption shadow-pop border border-border outline-none scrollbar-custom select-dropdown-enter"
         >
           {options.map((opt, idx) => {
             const isSelected = opt.value === value;
@@ -196,11 +196,11 @@ export function Select({ options, value, onChange, ariaLabel, className = '' }: 
                 className={cn(
                   'relative flex items-center justify-between py-2 px-3 rounded-sm cursor-pointer select-none transition-colors',
                   isFocused ? 'bg-surface-sunken text-ink' : 'text-ink-muted hover:text-ink',
-                  isSelected ? 'font-semibold text-primary' : ''
+                  isSelected ? 'font-semibold text-accent' : ''
                 )}
               >
                 <span className="truncate">{opt.label}</span>
-                {isSelected && <Check className="w-3.5 h-3.5 text-primary shrink-0" />}
+                {isSelected && <Check className="w-3.5 h-3.5 text-accent shrink-0" />}
               </li>
             );
           })}
