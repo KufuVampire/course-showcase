@@ -1,5 +1,5 @@
 import { BrowserRouter } from 'react-router';
-import { AuthProvider } from './AuthContext';
+import { AuthProvider } from '@/entities/session';
 import { MainLayout } from './MainLayout';
 
 export function App() {
