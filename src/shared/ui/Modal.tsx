@@ -50,7 +50,9 @@ export function Modal({
   // Lock background scroll, wheel & touchmove
   useScrollLock(isOpen, dialogRef);
 
-  // Esc / cancel listener
+  // Esc: браузер шлёт cancel, но может закрыть диалог и без него (повторный Esc без
+  // действия пользователя). Поэтому слушаем и close, чтобы состояние React не расходилось
+  // с реальным состоянием <dialog>.
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
@@ -59,10 +61,17 @@ export function Modal({
       e.preventDefault();
       onClose();
     };
+    const handleClose = () => {
+      if (isOpen) onClose();
+    };
 
     dialog.addEventListener('cancel', handleCancel);
-    return () => dialog.removeEventListener('cancel', handleCancel);
-  }, [onClose]);
+    dialog.addEventListener('close', handleClose);
+    return () => {
+      dialog.removeEventListener('cancel', handleCancel);
+      dialog.removeEventListener('close', handleClose);
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -89,7 +98,7 @@ export function Modal({
       aria-describedby={description ? descId : undefined}
       onClick={handleBackdropClick}
       className={cn(
-        'w-full max-h-[90vh] bg-surface-raised border border-border rounded-lg shadow-pop p-0 m-auto text-ink outline-none backdrop:bg-scrim/60 backdrop:backdrop-blur-xs flex flex-col overflow-hidden overscroll-contain max-sm:h-full max-sm:max-h-screen max-sm:rounded-none max-sm:m-0 max-sm:w-screen',
+        'w-full max-h-[90vh] bg-surface-raised border border-border rounded-lg shadow-pop p-0 m-auto text-ink outline-none backdrop:bg-scrim/60 backdrop:backdrop-blur-xs open:flex flex-col overflow-hidden overscroll-contain max-sm:h-full max-sm:max-h-screen max-sm:rounded-none max-sm:m-0 max-sm:w-screen',
         maxWidthStyles[maxWidth]
       )}
     >
@@ -97,10 +106,7 @@ export function Modal({
       <div className="sticky top-0 z-10 bg-surface-raised border-b border-border/70 p-6 md:p-8 pb-4 flex items-start justify-between gap-4 shrink-0">
         <div className="flex flex-col gap-1 min-w-0 pr-2">
           {title && (
-            <h2
-              id={titleId}
-              className="font-display text-h2 text-ink font-semibold break-words leading-tight"
-            >
+            <h2 id={titleId} className="font-display text-h3 text-ink font-semibold break-words">
               {title}
             </h2>
           )}
