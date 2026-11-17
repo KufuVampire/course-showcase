@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { useAuthContext } from '@/app/AuthContext';
+import { useAuthContext } from '@/entities/session';
 
 export type AccountTabType = 'courses' | 'orders' | 'profile';
 

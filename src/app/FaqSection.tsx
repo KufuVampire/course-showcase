@@ -31,9 +31,7 @@ export function FaqSection() {
     >
       <div className="max-w-page mx-auto px-4 sm:px-6 flex flex-col gap-10">
         <div className="flex flex-col gap-2 max-w-2xl">
-          <span className="text-caption font-medium text-primary">
-            Вопросы и ответы
-          </span>
+          <span className="text-caption font-medium text-primary">Вопросы и ответы</span>
           <h2 className="font-display text-h2 font-semibold text-ink leading-tight text-balance">
             Часто задаваемые вопросы
           </h2>

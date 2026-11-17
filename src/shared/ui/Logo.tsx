@@ -15,7 +15,7 @@ export function Logo({ showSubtitle = false, className, asLink = true }: LogoPro
       </div>
       <div className="flex flex-col min-w-0">
         <span className="font-display font-bold text-ink tracking-tight text-base sm:text-lg leading-none truncate">
-          Практикум.PRO
+          Ревью.Лаб
         </span>
         {showSubtitle && (
           <span className="text-caption text-ink-muted leading-tight truncate hidden xs:inline mt-0.5">
@@ -35,8 +35,6 @@ export function Logo({ showSubtitle = false, className, asLink = true }: LogoPro
   }
 
   return (
-    <div className={cn('flex items-center gap-2 group min-w-0 shrink', className)}>
-      {content}
-    </div>
+    <div className={cn('flex items-center gap-2 group min-w-0 shrink', className)}>{content}</div>
   );
 }

@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import { Logo } from '@/shared/ui';
 
 export function Footer() {
@@ -16,47 +17,45 @@ export function Footer() {
 
           {/* Nav Col */}
           <div className="flex flex-col gap-2.5 text-caption">
-            <span className="font-medium text-ink text-xs">
-              Навигация
-            </span>
-            <a href="/#catalog" className="text-ink-muted hover:text-ink transition-colors">
+            <span className="font-medium text-ink text-xs">Навигация</span>
+            <Link to="/#catalog" className="text-ink-muted hover:text-ink transition-colors">
               Каталог продуктов
-            </a>
-            <a href="/#benefits" className="text-ink-muted hover:text-ink transition-colors">
+            </Link>
+            <Link to="/#benefits" className="text-ink-muted hover:text-ink transition-colors">
               О подходе
-            </a>
-            <a href="/#process" className="text-ink-muted hover:text-ink transition-colors">
+            </Link>
+            <Link to="/#process" className="text-ink-muted hover:text-ink transition-colors">
               Процесс обучения
-            </a>
-            <a href="/#reviews" className="text-ink-muted hover:text-ink transition-colors">
+            </Link>
+            <Link to="/#reviews" className="text-ink-muted hover:text-ink transition-colors">
               Отзывы выпускников
-            </a>
+            </Link>
           </div>
 
           {/* Legal Col */}
           <div className="flex flex-col gap-2.5 text-caption">
-            <span className="font-medium text-ink text-xs">
-              Поддержка и документы
-            </span>
+            <span className="font-medium text-ink text-xs">Поддержка и документы</span>
             <a
-              href="mailto:support@praktikum-pro.dev"
+              href="mailto:support@review-lab.example"
               className="text-ink-muted hover:text-ink transition-colors"
             >
-              support@praktikum-pro.dev
+              support@review-lab.example
             </a>
             <span className="text-ink-muted">Пн-Пт: 10:00 — 19:00 (МСК)</span>
-            <a href="/oferta" className="text-ink-muted hover:text-ink transition-colors">
+            <Link to="/oferta" className="text-ink-muted hover:text-ink transition-colors">
               Публичная оферта
-            </a>
-            <a href="/privacy" className="text-ink-muted hover:text-ink transition-colors">
+            </Link>
+            <Link to="/privacy" className="text-ink-muted hover:text-ink transition-colors">
               Политика конфиденциальности
-            </a>
+            </Link>
           </div>
         </div>
 
         <div className="pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-ink-muted">
-          <span>© {new Date().getFullYear()} Практикум.PRO. Все права защищены.</span>
-          <span>Образовательная платформа</span>
+          <span>© {new Date().getFullYear()} Ревью.Лаб. Все права защищены.</span>
+          <span className="sm:text-right">
+            Демо-проект: оплата не проводится, авторы, отзывы и рейтинги вымышлены.
+          </span>
         </div>
       </div>
     </footer>

@@ -21,5 +21,43 @@ export default tseslint.config(
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
       ],
     },
+  },
+  // Границы слоёв FSD: слой импортирует только нижележащие слои,
+  // фичи не импортируют друг друга (внутри фичи — относительные пути)
+  {
+    files: ['src/shared/**/*.{ts,tsx}'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            '@/app',
+            '@/app/*',
+            '@/features',
+            '@/features/*',
+            '@/entities',
+            '@/entities/*',
+          ],
+        },
+      ],
+    },
+  },
+  {
+    files: ['src/entities/**/*.{ts,tsx}'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        { patterns: ['@/app', '@/app/*', '@/features', '@/features/*'] },
+      ],
+    },
+  },
+  {
+    files: ['src/features/**/*.{ts,tsx}'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        { patterns: ['@/app', '@/app/*', '@/features', '@/features/*'] },
+      ],
+    },
   }
 );

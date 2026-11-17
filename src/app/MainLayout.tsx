@@ -1,11 +1,10 @@
 import { useCallback, useState } from 'react';
 import { Routes, Route } from 'react-router';
 import type { Product } from '@/shared/api';
-import { useCatalog } from '@/features/catalog';
-import { ProductDetailsModal } from '@/features/catalog/ProductDetailsModal';
+import { ProductDetailsModal, useCatalog } from '@/features/catalog';
 import { CheckoutModal } from '@/features/checkout';
 import { AccountModal } from '@/features/account';
-import { useAuthContext } from './AuthContext';
+import { useAuthContext } from '@/entities/session';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { JsonLd } from './JsonLd';

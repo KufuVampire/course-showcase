@@ -44,7 +44,8 @@ export function AccountLoginForm({
       </Button>
 
       <p className="text-caption text-ink-muted text-center leading-relaxed">
-        Поскольку сейчас работает моковый бэкенд, вход выполняется моментально без пароля.
+        Демо-кабинет: вход без пароля по&nbsp;любому email. С&nbsp;адресом student@example.com
+        откроется кабинет с&nbsp;примером заказа.
       </p>
     </form>
   );

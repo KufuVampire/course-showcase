@@ -40,9 +40,7 @@ export function BenefitsSection() {
     >
       <div className="max-w-page mx-auto px-4 sm:px-6 flex flex-col gap-10">
         <div className="flex flex-col gap-2 max-w-2xl">
-          <span className="text-caption font-medium text-primary">
-            Инженерный подход
-          </span>
+          <span className="text-caption font-medium text-primary">Инженерный подход</span>
           <h2 className="font-display text-h2 font-semibold text-ink leading-tight text-balance">
             Принципы, на&nbsp;которых строится обучение
           </h2>
@@ -63,7 +61,9 @@ export function BenefitsSection() {
               >
                 <div className="flex items-center justify-between">
                   <Icon className="w-5 h-5 lg:w-6 lg:h-6 text-primary" />
-                  <span className="font-mono text-xs lg:text-sm text-ink-muted/80">{item.index}</span>
+                  <span className="font-mono text-xs lg:text-sm text-ink-muted/80">
+                    {item.index}
+                  </span>
                 </div>
                 <h3 className="font-display font-semibold text-base lg:text-lg text-ink leading-snug">
                   {item.title}

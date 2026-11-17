@@ -44,7 +44,9 @@ export function ProductDetailsModal({
           <div className="flex items-center gap-1 text-caption text-ink font-semibold">
             <Star className="w-4 h-4 fill-primary text-primary" />
             <span className="font-mono">{product.rating.toFixed(2)}</span>
-            <span className="text-ink-muted font-normal">({product.reviewsCount}&nbsp;отзывов)</span>
+            <span className="text-ink-muted font-normal">
+              ({product.reviewsCount}&nbsp;отзывов)
+            </span>
           </div>
         </div>
 
@@ -85,7 +87,9 @@ export function ProductDetailsModal({
 
         {/* What's included */}
         <div className="flex flex-col gap-3">
-          <h3 className="font-display font-semibold text-ink text-lg">Что входит в&nbsp;стоимость</h3>
+          <h3 className="font-display font-semibold text-ink text-lg">
+            Что входит в&nbsp;стоимость
+          </h3>
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             {product.features.map((feat) => (
               <li key={feat} className="flex items-center gap-2 text-caption text-ink">
@@ -99,7 +103,10 @@ export function ProductDetailsModal({
         {/* Guarantee badge */}
         <div className="flex items-center gap-2.5 p-3 rounded-md bg-success/10 border border-success/20 text-success text-caption">
           <ShieldCheck className="w-5 h-5 shrink-0" />
-          <span>Гарантия возврата 100&nbsp;% средств в&nbsp;течение 14&nbsp;дней, если программа вам не&nbsp;подойдет.</span>
+          <span>
+            Гарантия возврата 100&nbsp;% средств в&nbsp;течение 14&nbsp;дней, если программа вам
+            не&nbsp;подойдет.
+          </span>
         </div>
 
         {/* Footer Checkout CTA */}

@@ -87,7 +87,11 @@ export function CheckoutFormStep({
         {promoApplied && (
           <div className="pt-2 border-t border-border/60 flex items-center justify-between text-xs text-success font-medium">
             <span>
-              Скидка по&nbsp;промокоду ({promoApplied.discountPercent ? `${promoApplied.discountPercent} %` : `${promoApplied.discountAmount} ₽`}):
+              Скидка по&nbsp;промокоду (
+              {promoApplied.discountPercent
+                ? `${promoApplied.discountPercent} %`
+                : `${promoApplied.discountAmount} ₽`}
+              ):
             </span>
             <span className="font-mono">-{formatPrice(product.price - currentTotal)}</span>
           </div>
@@ -160,9 +164,7 @@ export function CheckoutFormStep({
 
       {/* Payment Method */}
       <div className="flex flex-col gap-3">
-        <h3 className="font-display font-semibold text-ink text-base">
-          Способ оплаты
-        </h3>
+        <h3 className="font-display font-semibold text-ink text-base">Способ оплаты</h3>
 
         <div
           role="radiogroup"
@@ -186,7 +188,9 @@ export function CheckoutFormStep({
                     : 'border-border bg-surface-raised text-ink hover:bg-surface-sunken'
                 )}
               >
-                <Icon className={cn('w-5 h-5 shrink-0', isSelected ? 'text-primary' : 'text-ink-muted')} />
+                <Icon
+                  className={cn('w-5 h-5 shrink-0', isSelected ? 'text-primary' : 'text-ink-muted')}
+                />
                 <span className="text-caption">{opt.label}</span>
               </button>
             );
@@ -229,6 +233,11 @@ export function CheckoutFormStep({
       <Button type="submit" variant="primary" size="lg" fullWidth>
         Оплатить {formatPrice(currentTotal)}
       </Button>
+
+      <p className="text-caption text-ink-muted text-center leading-relaxed">
+        Демо-оплата: деньги не&nbsp;списываются. Промокод DEV20 даёт скидку 20&nbsp;%, email
+        с&nbsp;«fail» показывает ошибку оплаты.
+      </p>
     </form>
   );
 }

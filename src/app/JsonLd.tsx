@@ -17,8 +17,8 @@ export function JsonLd({ products }: JsonLdProps) {
         description: prod.description,
         provider: {
           '@type': 'Organization',
-          name: 'Практикум.PRO',
-          sameAs: 'https://praktikum-pro.dev',
+          name: 'Ревью.Лаб',
+          sameAs: 'https://course-showcase-tau.vercel.app',
         },
         offers: {
           '@type': 'Offer',

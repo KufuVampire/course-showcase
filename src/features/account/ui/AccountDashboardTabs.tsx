@@ -1,4 +1,12 @@
-import { GraduationCap, Receipt, User as UserIcon, PlayCircle, Calendar, CreditCard, LogOut } from 'lucide-react';
+import {
+  GraduationCap,
+  Receipt,
+  User as UserIcon,
+  PlayCircle,
+  Calendar,
+  CreditCard,
+  LogOut,
+} from 'lucide-react';
 import type { Order, User } from '@/shared/api';
 import { formatPrice } from '@/shared/lib/formatters';
 import { Badge, Button } from '@/shared/ui';
@@ -102,15 +110,23 @@ export function AccountDashboardTabs({
                       <Badge variant={typeMeta.variant}>{typeMeta.label}</Badge>
                       <span className="text-caption text-ink-muted">Заказ #{ord.orderNumber}</span>
                     </div>
-                    <h3 className="font-display font-semibold text-ink text-base">{ord.productTitle}</h3>
-                    <span className="text-caption text-success font-medium">Доступ активен без ограничений</span>
+                    <h3 className="font-display font-semibold text-ink text-base">
+                      {ord.productTitle}
+                    </h3>
+                    <span className="text-caption text-success font-medium">
+                      Доступ активен без ограничений
+                    </span>
                   </div>
 
                   <Button
                     variant="secondary"
                     size="sm"
                     rightIcon={<PlayCircle className="w-4 h-4" />}
-                    onClick={() => onNotifyCourse(`Обучающая среда для «${ord.productTitle}» подготовлена (демо).`)}
+                    onClick={() =>
+                      onNotifyCourse(
+                        `Обучающая среда для «${ord.productTitle}» подготовлена (демо).`
+                      )
+                    }
                   >
                     К урокам
                   </Button>
@@ -132,7 +148,9 @@ export function AccountDashboardTabs({
                 className="p-4 bg-surface-raised border border-border rounded-md flex flex-col gap-2 text-caption"
               >
                 <div className="flex items-center justify-between flex-wrap gap-2">
-                  <h3 className="font-semibold text-ink font-display text-base">Заказ #{ord.orderNumber}</h3>
+                  <h3 className="font-semibold text-ink font-display text-base">
+                    Заказ #{ord.orderNumber}
+                  </h3>
                   <Badge variant={statusMeta.variant}>{statusMeta.label}</Badge>
                 </div>
 

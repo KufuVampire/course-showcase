@@ -2,7 +2,7 @@ import { useEffect, useState, type FormEvent } from 'react';
 import type { CheckoutPayload, Order, PaymentMethod, Product } from '@/shared/api';
 import { paymentGateway } from '@/shared/api';
 import { applyPromo, type PromoDiscount } from '@/shared/lib/promo';
-import { useAuthContext } from '@/app/AuthContext';
+import { useAuthContext } from '@/entities/session';
 
 export type CheckoutStep = 'form' | 'processing' | 'success' | 'error';
 
