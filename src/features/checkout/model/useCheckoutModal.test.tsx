@@ -3,7 +3,7 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { act } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import type { Product, User } from '@/shared/api';
-import { AuthProvider } from '@/app/AuthContext';
+import { AuthProvider } from '@/entities/session';
 import { useCheckoutModal } from './useCheckoutModal';
 
 (globalThis as unknown as { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
