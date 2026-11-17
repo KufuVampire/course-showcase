@@ -16,9 +16,7 @@ export function Footer() {
 
           {/* Nav Col */}
           <div className="flex flex-col gap-2.5 text-caption">
-            <span className="font-medium text-ink text-xs">
-              Навигация
-            </span>
+            <span className="font-medium text-ink text-xs">Навигация</span>
             <a href="/#catalog" className="text-ink-muted hover:text-ink transition-colors">
               Каталог продуктов
             </a>
@@ -35,9 +33,7 @@ export function Footer() {
 
           {/* Legal Col */}
           <div className="flex flex-col gap-2.5 text-caption">
-            <span className="font-medium text-ink text-xs">
-              Поддержка и документы
-            </span>
+            <span className="font-medium text-ink text-xs">Поддержка и документы</span>
             <a
               href="mailto:support@praktikum-pro.dev"
               className="text-ink-muted hover:text-ink transition-colors"

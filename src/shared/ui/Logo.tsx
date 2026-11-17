@@ -35,8 +35,6 @@ export function Logo({ showSubtitle = false, className, asLink = true }: LogoPro
   }
 
   return (
-    <div className={cn('flex items-center gap-2 group min-w-0 shrink', className)}>
-      {content}
-    </div>
+    <div className={cn('flex items-center gap-2 group min-w-0 shrink', className)}>{content}</div>
   );
 }

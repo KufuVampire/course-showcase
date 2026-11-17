@@ -2,13 +2,7 @@ import type { HTMLAttributes, ReactNode } from 'react';
 import { cn } from '@/shared/lib/cn';
 
 export type BadgeVariant =
-  | 'default'
-  | 'primary'
-  | 'secondary'
-  | 'consult'
-  | 'success'
-  | 'warning'
-  | 'danger';
+  'default' | 'primary' | 'secondary' | 'consult' | 'success' | 'warning' | 'danger';
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   variant?: BadgeVariant;

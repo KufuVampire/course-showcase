@@ -32,14 +32,13 @@ export function ReviewsSection() {
     >
       <div className="max-w-page mx-auto px-4 sm:px-6 flex flex-col gap-10">
         <div className="flex flex-col gap-2 max-w-2xl">
-          <span className="text-caption font-medium text-primary">
-            Опыт выпускников
-          </span>
+          <span className="text-caption font-medium text-primary">Опыт выпускников</span>
           <h2 className="font-display text-h2 font-semibold text-ink leading-tight text-balance">
             Инженеры о&nbsp;практике, архитектуре и&nbsp;результатах
           </h2>
           <p className="text-body text-ink-muted leading-relaxed text-pretty">
-            Реальные истории разработчиков о&nbsp;переходе на&nbsp;FSD, дизайн-системах и&nbsp;защите решений на&nbsp;собеседованиях.
+            Реальные истории разработчиков о&nbsp;переходе на&nbsp;FSD, дизайн-системах
+            и&nbsp;защите решений на&nbsp;собеседованиях.
           </p>
         </div>
 

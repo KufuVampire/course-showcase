@@ -38,19 +38,23 @@ export function PrivacyPage() {
         </section>
 
         <section className="flex flex-col gap-2">
-          <h2 className="font-display text-title font-semibold text-ink">3. Безопасность и&nbsp;хранение</h2>
+          <h2 className="font-display text-title font-semibold text-ink">
+            3. Безопасность и&nbsp;хранение
+          </h2>
           <p>
-            Обработка персональных данных ведется в&nbsp;соответствии с&nbsp;Федеральным законом РФ №&nbsp;152-ФЗ
-            «О&nbsp;персональных данных». Данные банковских карт обрабатываются исключительно на&nbsp;стороне
-            аккредитованного банковского эквайринга по&nbsp;протоколу PCI DSS и&nbsp;не&nbsp;сохраняются на&nbsp;серверах платформы.
+            Обработка персональных данных ведется в&nbsp;соответствии с&nbsp;Федеральным законом РФ
+            №&nbsp;152-ФЗ «О&nbsp;персональных данных». Данные банковских карт обрабатываются
+            исключительно на&nbsp;стороне аккредитованного банковского эквайринга по&nbsp;протоколу
+            PCI DSS и&nbsp;не&nbsp;сохраняются на&nbsp;серверах платформы.
           </p>
         </section>
 
         <section className="flex flex-col gap-2">
           <h2 className="font-display text-title font-semibold text-ink">4. Права пользователя</h2>
           <p>
-            Пользователь имеет право в&nbsp;любой момент запросить удаление своего аккаунта и&nbsp;связанных
-            данных, направив запрос на&nbsp;электронную почту support@praktikum-pro.dev.
+            Пользователь имеет право в&nbsp;любой момент запросить удаление своего аккаунта
+            и&nbsp;связанных данных, направив запрос на&nbsp;электронную почту
+            support@praktikum-pro.dev.
           </p>
         </section>
       </div>
