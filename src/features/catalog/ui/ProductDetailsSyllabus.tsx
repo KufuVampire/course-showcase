@@ -16,9 +16,7 @@ export function ProductDetailsSyllabus({ syllabus }: ProductDetailsSyllabusProps
             key={item.title}
             className="p-3.5 bg-surface-sunken/60 border border-border/70 rounded-md"
           >
-            <h4 className="font-semibold text-ink text-caption block mb-1.5">
-              {item.title}
-            </h4>
+            <h4 className="font-semibold text-ink text-caption block mb-1.5">{item.title}</h4>
             <ul className="flex flex-col gap-1 pl-4">
               {item.topics.map((t) => (
                 <li key={t} className="text-caption text-ink-muted list-disc">

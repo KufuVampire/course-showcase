@@ -68,7 +68,8 @@ export function HeroSection() {
                 <div className="flex flex-col gap-1 text-ink">
                   {/* Monolithic old code */}
                   <div className="text-danger/90 bg-danger/10 px-2 py-1 rounded-sm line-through">
-                    - const [items, setItems] = useState([]); useEffect(&#123; fetchCatalog()... &#125;)
+                    - const [items, setItems] = useState([]); useEffect(&#123; fetchCatalog()...
+                    &#125;)
                   </div>
 
                   {/* Clean FSD query code */}
@@ -93,7 +94,9 @@ export function HeroSection() {
                     <span className="text-ink-muted font-mono">14&nbsp;мин назад</span>
                   </div>
                   <p className="font-sans text-caption text-ink-muted leading-relaxed text-pretty">
-                    Отличная декомпозиция. Серверное состояние изолировано в&nbsp;TanStack Query, фильтры синхронизированы через URL, циклические зависимости отсутствуют. В&nbsp;продакшн.
+                    Отличная декомпозиция. Серверное состояние изолировано в&nbsp;TanStack Query,
+                    фильтры синхронизированы через URL, циклические зависимости отсутствуют.
+                    В&nbsp;продакшн.
                   </p>
                 </div>
               </div>

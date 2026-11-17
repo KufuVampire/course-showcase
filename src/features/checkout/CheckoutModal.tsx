@@ -46,11 +46,7 @@ export function CheckoutModal({ product, isOpen, onClose, onOpenAccount }: Check
       onClose={onClose}
       maxWidth="lg"
       title={step === 'form' ? 'Оформление доступа' : 'Статус заказа'}
-      description={
-        step === 'form'
-          ? `Программа: «${product.title}»`
-          : undefined
-      }
+      description={step === 'form' ? `Программа: «${product.title}»` : undefined}
     >
       {step === 'form' ? (
         <CheckoutFormStep

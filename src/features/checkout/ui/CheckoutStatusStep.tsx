@@ -45,10 +45,13 @@ export function CheckoutStatusStep({
         </div>
 
         <div className="flex flex-col gap-2">
-          <h3 className="font-display text-h2 font-semibold text-ink text-balance">Оплата прошла успешно!</h3>
+          <h3 className="font-display text-h2 font-semibold text-ink text-balance">
+            Оплата прошла успешно!
+          </h3>
           <p className="text-body text-ink-muted max-w-md text-pretty">
             Заказ <strong className="text-ink">#{order.orderNumber}</strong> на&nbsp;сумму{' '}
-            <strong className="text-ink font-mono">{formatPrice(order.totalAmount)}</strong> подтвержден. Доступ к&nbsp;материалам открыт в&nbsp;вашем личном кабинете.
+            <strong className="text-ink font-mono">{formatPrice(order.totalAmount)}</strong>{' '}
+            подтвержден. Доступ к&nbsp;материалам открыт в&nbsp;вашем личном кабинете.
           </p>
         </div>
 
@@ -95,10 +98,13 @@ export function CheckoutStatusStep({
         </div>
 
         <div className="flex flex-col gap-2">
-          <h3 className="font-display text-h2 font-semibold text-ink text-balance">Ошибка при оплате</h3>
+          <h3 className="font-display text-h2 font-semibold text-ink text-balance">
+            Ошибка при оплате
+          </h3>
           <p className="text-body text-danger max-w-md text-pretty">{errorMessage}</p>
           <span className="text-caption text-ink-muted text-pretty">
-            Средства не&nbsp;были списаны. Вы можете повторить попытку или выбрать другой способ оплаты.
+            Средства не&nbsp;были списаны. Вы можете повторить попытку или выбрать другой способ
+            оплаты.
           </span>
         </div>
 

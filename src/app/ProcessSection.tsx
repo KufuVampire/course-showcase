@@ -77,9 +77,7 @@ export function ProcessSection() {
         {/* Section Header with Mode Switcher */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="flex flex-col gap-2 max-w-2xl">
-            <span className="text-caption font-medium text-primary">
-              Траектория обучения
-            </span>
+            <span className="text-caption font-medium text-primary">Траектория обучения</span>
             <h2 className="font-display text-h2 font-semibold text-ink leading-tight text-balance">
               Как проходит обучение и&nbsp;защита решений
             </h2>
@@ -99,7 +97,9 @@ export function ProcessSection() {
                   : 'text-ink-muted hover:text-ink'
               }`}
             >
-              <Compass className={`w-3.5 h-3.5 ${mode === 'quiz' ? 'text-on-primary' : 'text-primary'}`} />
+              <Compass
+                className={`w-3.5 h-3.5 ${mode === 'quiz' ? 'text-on-primary' : 'text-primary'}`}
+              />
               <span>Подобрать трек</span>
             </button>
 
@@ -112,7 +112,9 @@ export function ProcessSection() {
                   : 'text-ink-muted hover:text-ink'
               }`}
             >
-              <ListOrdered className={`w-3.5 h-3.5 ${mode === 'steps' ? 'text-on-primary' : 'text-primary'}`} />
+              <ListOrdered
+                className={`w-3.5 h-3.5 ${mode === 'steps' ? 'text-on-primary' : 'text-primary'}`}
+              />
               <span>Пошаговый процесс</span>
             </button>
           </div>
@@ -139,7 +141,9 @@ export function ProcessSection() {
                     }`}
                   >
                     <span className="block font-semibold">Junior+ / Middle</span>
-                    <span className="text-xs text-ink-muted mt-0.5 block">Хочу сильные базовые паттерны</span>
+                    <span className="text-xs text-ink-muted mt-0.5 block">
+                      Хочу сильные базовые паттерны
+                    </span>
                   </button>
 
                   <button
@@ -152,7 +156,9 @@ export function ProcessSection() {
                     }`}
                   >
                     <span className="block font-semibold">Middle+ / Senior</span>
-                    <span className="text-xs text-ink-muted mt-0.5 block">Фокус на Staff-архитектуру</span>
+                    <span className="text-xs text-ink-muted mt-0.5 block">
+                      Фокус на Staff-архитектуру
+                    </span>
                   </button>
                 </div>
               </div>
@@ -165,8 +171,14 @@ export function ProcessSection() {
                 </span>
                 <div className="flex flex-col gap-2">
                   {[
-                    { id: 'architecture', title: 'Архитектура FSD, чистота слоёв и TanStack Query' },
-                    { id: 'designSystem', title: 'Дизайн-системы на Tailwind v4 и семантические токены' },
+                    {
+                      id: 'architecture',
+                      title: 'Архитектура FSD, чистота слоёв и TanStack Query',
+                    },
+                    {
+                      id: 'designSystem',
+                      title: 'Дизайн-системы на Tailwind v4 и семантические токены',
+                    },
                     { id: 'career', title: 'Аудит пет-проекта и подготовка к собеседованиям' },
                   ].map((opt) => (
                     <button
@@ -180,7 +192,9 @@ export function ProcessSection() {
                       }`}
                     >
                       <span>{opt.title}</span>
-                      {goal === opt.id && <CheckCircle2 className="w-4 h-4 text-primary shrink-0 ml-2" />}
+                      {goal === opt.id && (
+                        <CheckCircle2 className="w-4 h-4 text-primary shrink-0 ml-2" />
+                      )}
                     </button>
                   ))}
                 </div>
@@ -194,7 +208,9 @@ export function ProcessSection() {
                   <span className="font-mono text-xs px-2 py-0.5 rounded-sm bg-primary/20 text-ink border border-primary/40 font-medium">
                     Рекомендованный трек
                   </span>
-                  <span className="text-xs text-ink-muted font-mono">{recommendation.duration}</span>
+                  <span className="text-xs text-ink-muted font-mono">
+                    {recommendation.duration}
+                  </span>
                 </div>
                 <h3 className="font-display font-semibold text-lg lg:text-title text-ink">
                   {recommendation.title}
@@ -234,7 +250,9 @@ export function ProcessSection() {
                 <h3 className="font-display font-semibold text-base lg:text-title text-ink leading-snug">
                   {item.title}
                 </h3>
-                <p className="text-caption lg:text-[15px] text-ink-muted leading-relaxed text-pretty">{item.desc}</p>
+                <p className="text-caption lg:text-[15px] text-ink-muted leading-relaxed text-pretty">
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>

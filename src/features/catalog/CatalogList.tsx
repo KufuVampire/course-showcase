@@ -72,8 +72,8 @@ export function CatalogList({
         <SearchX className="w-10 h-10 text-ink-muted/80" />
         <h3 className="font-display font-semibold text-xl text-ink">Ничего не&nbsp;найдено</h3>
         <p className="text-body text-ink-muted max-w-md text-pretty">
-          По&nbsp;вашему запросу не&nbsp;нашлось подходящих образовательных продуктов. Попробуйте изменить
-          фильтры или формулировку поиска.
+          По&nbsp;вашему запросу не&nbsp;нашлось подходящих образовательных продуктов. Попробуйте
+          изменить фильтры или формулировку поиска.
         </p>
         <Button variant="secondary" size="md" onClick={onResetFilters}>
           Сбросить все фильтры
