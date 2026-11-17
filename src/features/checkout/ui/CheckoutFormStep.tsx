@@ -233,6 +233,11 @@ export function CheckoutFormStep({
       <Button type="submit" variant="primary" size="lg" fullWidth>
         Оплатить {formatPrice(currentTotal)}
       </Button>
+
+      <p className="text-caption text-ink-muted text-center leading-relaxed">
+        Демо-оплата: деньги не&nbsp;списываются. Промокод DEV20 даёт скидку 20&nbsp;%, email
+        с&nbsp;«fail» показывает ошибку оплаты.
+      </p>
     </form>
   );
 }
